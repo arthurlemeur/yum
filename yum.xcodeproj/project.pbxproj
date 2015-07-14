@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B2A4FA719E737ACA8A3B7A9 /* Pods_yum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5901B543043006C447E /* PostMakingHelper.swift */; };
+		8E04F5951B543E78006C447E /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5941B543E78006C447E /* Delivery.swift */; };
+		8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */; };
+		8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E61A31B507A6F00C45E1A /* AppDelegate.swift */; };
+		8E1E61A91B507A6F00C45E1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E61A71B507A6F00C45E1A /* Main.storyboard */; };
+		8E1E61AB1B507A6F00C45E1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E61AA1B507A6F00C45E1A /* Images.xcassets */; };
+		8E1E61AE1B507A6F00C45E1A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E61AC1B507A6F00C45E1A /* LaunchScreen.xib */; };
+		8E1E61BA1B507A6F00C45E1A /* yumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E61B91B507A6F00C45E1A /* yumTests.swift */; };
+		8E2FBEC01B547A1D00061328 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FBEBF1B547A1D00061328 /* MBProgressHUD.m */; };
+		8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A848D1B5081FA00581033 /* HomeViewController.swift */; };
+		8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */; };
+		8E3A84921B508AB700581033 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A84911B508AB700581033 /* OrderInfoViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E1E61B41B507A6F00C45E1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E1E61961B507A6F00C45E1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E1E619D1B507A6F00C45E1A;
+			remoteInfo = yum;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8E04F5901B543043006C447E /* PostMakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostMakingHelper.swift; sourceTree = "<group>"; };
+		8E04F5941B543E78006C447E /* Delivery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
+		8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createDeliveryViewController.swift; sourceTree = "<group>"; };
+		8E1E619E1B507A6F00C45E1A /* yum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E1E61A21B507A6F00C45E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E1E61A31B507A6F00C45E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8E1E61A81B507A6F00C45E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E1E61AA1B507A6F00C45E1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8E1E61AD1B507A6F00C45E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8E1E61B31B507A6F00C45E1A /* yumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E1E61B81B507A6F00C45E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E1E61B91B507A6F00C45E1A /* yumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yumTests.swift; sourceTree = "<group>"; };
+		8E2FBEBD1B54780000061328 /* yum-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yum-Bridging-Header.h"; sourceTree = "<group>"; };
+		8E2FBEBE1B547A1D00061328 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8E2FBEBF1B547A1D00061328 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		8E3A848D1B5081FA00581033 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
+		8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderTableViewCell.swift; path = ../OrderTableViewCell.swift; sourceTree = "<group>"; };
+		8E3A84911B508AB700581033 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderInfoViewController.swift; path = ../OrderInfoViewController.swift; sourceTree = "<group>"; };
+		9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.release.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.release.xcconfig"; sourceTree = "<group>"; };
+		D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.debug.xcconfig"; sourceTree = "<group>"; };
+		F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E1E619B1B507A6F00C45E1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B2A4FA719E737ACA8A3B7A9 /* Pods_yum.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E1E61B01B507A6F00C45E1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		69CDB97458F77B83109F89CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E04F58E1B542F9C006C447E /* PostMaking */ = {
+			isa = PBXGroup;
+			children = (
+				8E04F5901B543043006C447E /* PostMakingHelper.swift */,
+			);
+			path = PostMaking;
+			sourceTree = "<group>";
+		};
+		8E04F58F1B542FA9006C447E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8E3A848D1B5081FA00581033 /* HomeViewController.swift */,
+				8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */,
+				8E3A84911B508AB700581033 /* OrderInfoViewController.swift */,
+				8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8E04F5931B543E53006C447E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E04F5941B543E78006C447E /* Delivery.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E1E61951B507A6F00C45E1A = {
+			isa = PBXGroup;
+			children = (
+				8E1E61A01B507A6F00C45E1A /* yum */,
+				8E1E61B61B507A6F00C45E1A /* yumTests */,
+				8E1E619F1B507A6F00C45E1A /* Products */,
+				FABB72479B8057A28ED059B1 /* Pods */,
+				69CDB97458F77B83109F89CE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8E1E619F1B507A6F00C45E1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E1E619E1B507A6F00C45E1A /* yum.app */,
+				8E1E61B31B507A6F00C45E1A /* yumTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E1E61A01B507A6F00C45E1A /* yum */ = {
+			isa = PBXGroup;
+			children = (
+				8E04F5931B543E53006C447E /* Models */,
+				8E04F58F1B542FA9006C447E /* ViewControllers */,
+				8E04F58E1B542F9C006C447E /* PostMaking */,
+				8E1E61A31B507A6F00C45E1A /* AppDelegate.swift */,
+				8E1E61A71B507A6F00C45E1A /* Main.storyboard */,
+				8E2FBEBD1B54780000061328 /* yum-Bridging-Header.h */,
+				8E2FBEBE1B547A1D00061328 /* MBProgressHUD.h */,
+				8E2FBEBF1B547A1D00061328 /* MBProgressHUD.m */,
+				8E1E61AA1B507A6F00C45E1A /* Images.xcassets */,
+				8E1E61AC1B507A6F00C45E1A /* LaunchScreen.xib */,
+				8E1E61A11B507A6F00C45E1A /* Supporting Files */,
+			);
+			path = yum;
+			sourceTree = "<group>";
+		};
+		8E1E61A11B507A6F00C45E1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E1E61A21B507A6F00C45E1A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E1E61B61B507A6F00C45E1A /* yumTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E1E61B91B507A6F00C45E1A /* yumTests.swift */,
+				8E1E61B71B507A6F00C45E1A /* Supporting Files */,
+			);
+			path = yumTests;
+			sourceTree = "<group>";
+		};
+		8E1E61B71B507A6F00C45E1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E1E61B81B507A6F00C45E1A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FABB72479B8057A28ED059B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */,
+				9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E1E619D1B507A6F00C45E1A /* yum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E1E61BD1B507A6F00C45E1A /* Build configuration list for PBXNativeTarget "yum" */;
+			buildPhases = (
+				84144AE275984F59076895D9 /* Check Pods Manifest.lock */,
+				8E1E619A1B507A6F00C45E1A /* Sources */,
+				8E1E619B1B507A6F00C45E1A /* Frameworks */,
+				8E1E619C1B507A6F00C45E1A /* Resources */,
+				8908EE0B09C86EDA6B9936D0 /* Embed Pods Frameworks */,
+				FA7DF6B026063DF3366741EB /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = yum;
+			productName = yum;
+			productReference = 8E1E619E1B507A6F00C45E1A /* yum.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8E1E61B21B507A6F00C45E1A /* yumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E1E61C01B507A6F00C45E1A /* Build configuration list for PBXNativeTarget "yumTests" */;
+			buildPhases = (
+				8E1E61AF1B507A6F00C45E1A /* Sources */,
+				8E1E61B01B507A6F00C45E1A /* Frameworks */,
+				8E1E61B11B507A6F00C45E1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E1E61B51B507A6F00C45E1A /* PBXTargetDependency */,
+			);
+			name = yumTests;
+			productName = yumTests;
+			productReference = 8E1E61B31B507A6F00C45E1A /* yumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E1E61961B507A6F00C45E1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Arthur Le Meur";
+				TargetAttributes = {
+					8E1E619D1B507A6F00C45E1A = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					8E1E61B21B507A6F00C45E1A = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 8E1E619D1B507A6F00C45E1A;
+					};
+				};
+			};
+			buildConfigurationList = 8E1E61991B507A6F00C45E1A /* Build configuration list for PBXProject "yum" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E1E61951B507A6F00C45E1A;
+			productRefGroup = 8E1E619F1B507A6F00C45E1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E1E619D1B507A6F00C45E1A /* yum */,
+				8E1E61B21B507A6F00C45E1A /* yumTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E1E619C1B507A6F00C45E1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E1E61A91B507A6F00C45E1A /* Main.storyboard in Resources */,
+				8E1E61AE1B507A6F00C45E1A /* LaunchScreen.xib in Resources */,
+				8E1E61AB1B507A6F00C45E1A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E1E61B11B507A6F00C45E1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84144AE275984F59076895D9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8908EE0B09C86EDA6B9936D0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yum/Pods-yum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA7DF6B026063DF3366741EB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yum/Pods-yum-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E1E619A1B507A6F00C45E1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */,
+				8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */,
+				8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */,
+				8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */,
+				8E04F5951B543E78006C447E /* Delivery.swift in Sources */,
+				8E3A84921B508AB700581033 /* OrderInfoViewController.swift in Sources */,
+				8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */,
+				8E2FBEC01B547A1D00061328 /* MBProgressHUD.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E1E61AF1B507A6F00C45E1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E1E61BA1B507A6F00C45E1A /* yumTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8E1E61B51B507A6F00C45E1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E1E619D1B507A6F00C45E1A /* yum */;
+			targetProxy = 8E1E61B41B507A6F00C45E1A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8E1E61A71B507A6F00C45E1A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E1E61A81B507A6F00C45E1A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8E1E61AC1B507A6F00C45E1A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E1E61AD1B507A6F00C45E1A /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E1E61BB1B507A6F00C45E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8E1E61BC1B507A6F00C45E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E1E61BE1B507A6F00C45E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = yum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "yum/yum-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		8E1E61BF1B507A6F00C45E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = yum/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "yum/yum-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8E1E61C11B507A6F00C45E1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = yumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yum.app/yum";
+			};
+			name = Debug;
+		};
+		8E1E61C21B507A6F00C45E1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = yumTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yum.app/yum";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E1E61991B507A6F00C45E1A /* Build configuration list for PBXProject "yum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E1E61BB1B507A6F00C45E1A /* Debug */,
+				8E1E61BC1B507A6F00C45E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E1E61BD1B507A6F00C45E1A /* Build configuration list for PBXNativeTarget "yum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E1E61BE1B507A6F00C45E1A /* Debug */,
+				8E1E61BF1B507A6F00C45E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E1E61C01B507A6F00C45E1A /* Build configuration list for PBXNativeTarget "yumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E1E61C11B507A6F00C45E1A /* Debug */,
+				8E1E61C21B507A6F00C45E1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E1E61961B507A6F00C45E1A /* Project object */;
+}

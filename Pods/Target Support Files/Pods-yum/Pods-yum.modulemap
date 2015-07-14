@@ -1,0 +1,6 @@
+framework module Pods_yum {
+  umbrella header "Pods-yum-umbrella.h"
+
+  export *
+  module * { export * }
+}
