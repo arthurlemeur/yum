@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "03DC4FB707E068917CB7D7F7"
+               BlueprintIdentifier = "99809A0F954A8B04905BEBFD"
                BuildableName = "ConvenienceKit.bundle"
                BlueprintName = "Pods-yum-ConvenienceKit-ConvenienceKit"
                ReferencedContainer = "container:Pods.xcodeproj">

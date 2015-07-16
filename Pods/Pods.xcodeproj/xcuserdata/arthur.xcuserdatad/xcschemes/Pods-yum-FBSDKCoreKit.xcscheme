@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F57106879AB3623E64C39662"
+               BlueprintIdentifier = "CD145E898351C6BD48CA8830"
                BuildableName = "FBSDKCoreKit.framework"
                BlueprintName = "Pods-yum-FBSDKCoreKit"
                ReferencedContainer = "container:Pods.xcodeproj">

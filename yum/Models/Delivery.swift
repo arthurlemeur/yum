@@ -12,13 +12,14 @@ import Parse
 // 1
 class Delivery : PFObject, PFSubclassing {
     
+    
     // 2
     @NSManaged var user: PFUser?
     @NSManaged var deliveryFee: NSNumber
     @NSManaged var deliveryStartTime: NSDate
     @NSManaged var restaurant: String
+    @NSManaged var location: PFGeoPoint?
     
-    //var delivery: UIlabel?
     
     
     //MARK: PFSubclassing Protocol
@@ -40,5 +41,6 @@ class Delivery : PFObject, PFSubclassing {
             self.registerSubclass()
         }
     }
+
 
 }

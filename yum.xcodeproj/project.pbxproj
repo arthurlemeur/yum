@@ -11,6 +11,8 @@
 		8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5901B543043006C447E /* PostMakingHelper.swift */; };
 		8E04F5951B543E78006C447E /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5941B543E78006C447E /* Delivery.swift */; };
 		8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */; };
+		8E068FBD1B56CD4D009D0201 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E068FBB1B56CD4D009D0201 /* ErrorHandling.swift */; };
+		8E068FBE1B56CD4D009D0201 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E068FBC1B56CD4D009D0201 /* ParseLoginHelper.swift */; };
 		8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E61A31B507A6F00C45E1A /* AppDelegate.swift */; };
 		8E1E61A91B507A6F00C45E1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E61A71B507A6F00C45E1A /* Main.storyboard */; };
 		8E1E61AB1B507A6F00C45E1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E61AA1B507A6F00C45E1A /* Images.xcassets */; };
@@ -20,6 +22,7 @@
 		8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A848D1B5081FA00581033 /* HomeViewController.swift */; };
 		8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */; };
 		8E3A84921B508AB700581033 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A84911B508AB700581033 /* OrderInfoViewController.swift */; };
+		8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,8 @@
 		8E04F5901B543043006C447E /* PostMakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostMakingHelper.swift; sourceTree = "<group>"; };
 		8E04F5941B543E78006C447E /* Delivery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createDeliveryViewController.swift; sourceTree = "<group>"; };
+		8E068FBB1B56CD4D009D0201 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		8E068FBC1B56CD4D009D0201 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		8E1E619E1B507A6F00C45E1A /* yum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1E61A21B507A6F00C45E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E1E61A31B507A6F00C45E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +56,13 @@
 		8E3A848D1B5081FA00581033 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderTableViewCell.swift; path = ../OrderTableViewCell.swift; sourceTree = "<group>"; };
 		8E3A84911B508AB700581033 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderInfoViewController.swift; path = ../OrderInfoViewController.swift; sourceTree = "<group>"; };
+		8E9412CD1B55B17D0037848F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		8E9412CF1B55B1860037848F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		8E9412DF1B55C20E0037848F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		8E9412E01B55C20E0037848F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		8E9412E11B55C20E0037848F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		8E9412E21B55C20E0037848F /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.release.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.release.xcconfig"; sourceTree = "<group>"; };
 		D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.debug.xcconfig"; sourceTree = "<group>"; };
 		F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +90,12 @@
 		69CDB97458F77B83109F89CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E9412DF1B55C20E0037848F /* FBSDKLoginKit.framework */,
+				8E9412E01B55C20E0037848F /* FBSDKShareKit.framework */,
+				8E9412E11B55C20E0037848F /* ParseFacebookUtils.framework */,
+				8E9412E21B55C20E0037848F /* ParseFacebookUtilsV4.framework */,
+				8E9412CF1B55B1860037848F /* Social.framework */,
+				8E9412CD1B55B17D0037848F /* Accounts.framework */,
 				F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */,
 			);
 			name = Frameworks;
@@ -133,6 +151,9 @@
 		8E1E61A01B507A6F00C45E1A /* yum */ = {
 			isa = PBXGroup;
 			children = (
+				8E068FBB1B56CD4D009D0201 /* ErrorHandling.swift */,
+				8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */,
+				8E068FBC1B56CD4D009D0201 /* ParseLoginHelper.swift */,
 				8E04F5931B543E53006C447E /* Models */,
 				8E04F58F1B542FA9006C447E /* ViewControllers */,
 				8E04F58E1B542F9C006C447E /* PostMaking */,
@@ -333,12 +354,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E068FBD1B56CD4D009D0201 /* ErrorHandling.swift in Sources */,
+				8E068FBE1B56CD4D009D0201 /* ParseLoginHelper.swift in Sources */,
 				8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */,
 				8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */,
 				8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */,
 				8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */,
 				8E04F5951B543E78006C447E /* Delivery.swift in Sources */,
 				8E3A84921B508AB700581033 /* OrderInfoViewController.swift in Sources */,
+				8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */,
 				8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */,
 				8E2FBEC01B547A1D00061328 /* MBProgressHUD.m in Sources */,
 			);
@@ -422,6 +446,8 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "yum/yum-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "yum$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -459,6 +485,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "yum/yum-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "yum$(SWIFT_MODULE_NAME)-Swift.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -468,8 +496,20 @@
 			baseConfigurationReference = D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtilsV4",
+					"/Users/arthur/Desktop/GitHubProjects/Makestagram-Swift-Solution-StarterProject/Frameworks",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = yum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtilsV4",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "yum/yum-Bridging-Header.h";
 			};
@@ -480,8 +520,20 @@
 			baseConfigurationReference = 9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtilsV4",
+					"/Users/arthur/Desktop/GitHubProjects/Makestagram-Swift-Solution-StarterProject/Frameworks",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = yum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtilsV4",
+					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "yum/yum-Bridging-Header.h";
 			};

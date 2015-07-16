@@ -3,15 +3,16 @@
 
 target 'yum' do
 
-platform :ios, '8.0'
+#platform :ios, '8.0'
 
 use_frameworks!
 
 pod 'Parse'
 pod 'ParseUI'
 pod 'FBSDKCoreKit'
-pod 'ParseFacebookUtilsV4'
 pod 'ConvenienceKit'
+#pod 'ParseFacebookUtils'
+pod 'ParseFacebookUtilsV4'
 pod 'Bond'
 
 end

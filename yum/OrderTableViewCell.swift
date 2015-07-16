@@ -11,9 +11,10 @@ import UIKit
 class OrderTableViewCell: UITableViewCell {
     
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var restaurantLabel: UILabel!
+
+    @IBOutlet weak var username: UILabel!
     
+    @IBOutlet weak var restaurant: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

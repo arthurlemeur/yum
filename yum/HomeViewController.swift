@@ -12,44 +12,97 @@ import Parse
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
+    
+    
+    
+    
+    var deliveries: [Delivery] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
+        
     }
-
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    func loadInRange(range: Range<Int>, completionBlock: ([Delivery]?) -> Void) {
+        // 1
+        ParseHelper.timelineRequestforCurrentUser(range) {
+            (result: [AnyObject]?, error: NSError?) -> Void in
+            // 2
+            let delivery = result as? [Delivery] ?? []
+            // 3
+            completionBlock(delivery)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // 3
+        let postsFromThisUser = Delivery.query()
+        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        
+        // 4
+        let query = PFQuery.orQueryWithSubqueries([postsFromThisUser!])
+        // 5
+        query.includeKey("user")
+        // 6
+        query.orderByDescending("createdAt")
+        
+        // 7
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            // 8
+            self.deliveries = result as? [Delivery] ?? []
+            // 9
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
 extension HomeViewController: UITableViewDataSource {
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 1
+        return deliveries.count
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("OrderCell", forIndexPath: indexPath) as! OrderTableViewCell //1
+        // 2
+        let cell = tableView.dequeueReusableCellWithIdentifier("DeliveryCell") as! UITableViewCell
         
-        let row = indexPath.row
-        cell.nameLabel.text = "adam"
-        cell.restaurantLabel.text  = "chipotle"
+        cell.textLabel!.text = "Delivery"
         
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
 }
+
+
+
+
+
+
+
+
+

@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Parse
 
 class createDeliveryViewController: UIViewController, UITextFieldDelegate {
+    
+    //go to home screen
     @IBAction func goHome(sender: AnyObject) {
+        
+        if textField.text.isEmpty{
+            println("text field is empty")
+        }
         createDelivery()
     }
     
@@ -22,6 +29,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var datePicker: UIDatePicker!
+    
     // sets delivery fee
     @IBAction func indexChanged(sender: UISegmentedControl) {
         switch deliveryFee.selectedSegmentIndex
@@ -43,24 +51,35 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // loading in background
+    
     func createDelivery () {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         var deliver = Delivery()
         deliver.deliveryFee = deliveryFeeInDollars
         deliver.deliveryStartTime = datePicker.date
         deliver.restaurant = textField.text
+        deliver.user = .currentUser()
         
-        
+        // request geopoint
+        //closures run at the same time so saveinBackground need to be inside the geolocation
+//        PFGeoPoint.geoPointForCurrentLocationInBackground {
+//            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+//            deliver.location = geoPoint
+//        }
         deliver.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             if (success) {
-                self.navigationController?.popViewControllerAnimated(true)
+                //self.navigationController?.popViewControllerAnimated(true)
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                
                 // The object has been saved.
             } else {
                 // There was a problem, check error.description
             }
         }
+
     }
     
     // hides keyboard after pressing return
@@ -88,7 +107,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
-    // display end time
+    // display end time (date picker + 1)
     
     func datePickerChanged(datePicker:UIDatePicker) {
         let laterDate = NSCalendar.currentCalendar().dateByAddingUnit(
