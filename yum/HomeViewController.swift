@@ -13,6 +13,10 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var delivery = Delivery()
+
+    var selectedDelivery : Delivery?
+    
     var deliveries: [Delivery] = []
     
     override func viewDidLoad() {
@@ -63,6 +67,20 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let cell = sender as? UITableViewCell {
+            let indexPath = tableView.indexPathForCell(cell)!
+            self.selectedDelivery = deliveries[indexPath.row]
+        }
+        
+        if segue.identifier == "makeOrder" {
+            if let vc = segue.destinationViewController as? MakeOrderViewController {
+                vc.loadView() //if you get a nil value when unwrapping an optional
+                vc.delivery = selectedDelivery
+            }
+        }
+    }
     
     
     /*
@@ -97,11 +115,12 @@ extension HomeViewController: UITableViewDataSource {
     
 }
 
-
-
-
-
-
+extension HomeViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+    }
+}
 
 
 

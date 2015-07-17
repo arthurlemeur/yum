@@ -10,6 +10,7 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var orderButton: UIButton!
     
     // set properties to use in tableview cell
     var delivery : Delivery? {
@@ -43,5 +44,7 @@ class OrderTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

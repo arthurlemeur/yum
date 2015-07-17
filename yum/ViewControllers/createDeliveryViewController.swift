@@ -14,7 +14,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     var delivery = Delivery()
     
     //go to home screen
-    @IBAction func goHome(sender: AnyObject) {
+    @IBAction func createDelivery(sender: AnyObject) {
         
         if textField.text.isEmpty{
             println("text field is empty")
@@ -127,6 +127,16 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    //go to back to home view controller 
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "deliveryCreated" {
+            if let vc = segue.destinationViewController as? DeliveryCreatedViewController {
+                vc.loadView() //if you get a nil value when unwrapping an optional
+                vc.delivery = delivery
+            }
+        }
+    }
 
     
 }

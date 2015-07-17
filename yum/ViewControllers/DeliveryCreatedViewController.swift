@@ -12,25 +12,41 @@ import Parse
 class DeliveryCreatedViewController: UIViewController {
     // self.dismiss viewController
     
-    var delivery = Delivery()
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
+
     }
+    
+
+    
     
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
+    
+    var delivery : Delivery? {
+        didSet{
+            username.text = delivery?.user?.username
+            restaurant.text = delivery?.restaurant
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+            timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
+            endTime.text = formatter.stringFromDate(delivery!.endTime)
+            
+        }
+    }
+    
+    // delete delivery 
     @IBAction func deleteDelivery(sender: AnyObject) {
         
-        delivery.deleteInBackgroundWithBlock { (success, error) -> Void in
+        delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 println("deleted the object")
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }
         }
     }
+    @IBOutlet weak var customerTableView: UITableView!
     
 
     
@@ -38,22 +54,6 @@ class DeliveryCreatedViewController: UIViewController {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    
-    
-    // Configure the view for the selected state
-    func loadInRange(range: Range<Int>, completionBlock: ([Delivery]?) -> Void) {
-        // 1
-        ParseHelper.timelineRequestforCurrentUser(range) {
-            (result: [AnyObject]?, error: NSError?) -> Void in
-            // 2
-            let delivery = result as? [Delivery] ?? []
-            // 3
-            completionBlock(delivery)
-        }
-    }
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -1,29 +1,15 @@
 //
-//  MakeOrderViewController.swift
+//  WaitingViewController.swift
 //  yum
 //
-//  Created by Arthur Le Meur on 7/16/15.
+//  Created by Arthur Le Meur on 7/17/15.
 //  Copyright (c) 2015 Arthur Le Meur. All rights reserved.
 //
 
 import UIKit
 
-class MakeOrderViewController: UIViewController {
+class WaitingViewController: UIViewController {
 
-    @IBOutlet weak var restaurant: UILabel!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var deliveryFee: UILabel!
-    
-    var delivery : Delivery? {
-        didSet{
-            username.text = delivery?.user?.username
-            restaurant.text = delivery?.restaurant
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-            deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

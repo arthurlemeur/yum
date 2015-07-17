@@ -19,6 +19,7 @@ class Delivery : PFObject, PFSubclassing {
     @NSManaged var deliveryStartTime: NSDate
     @NSManaged var restaurant: String
     @NSManaged var location: PFGeoPoint?
+    @NSManaged var userPhoto: PFFile
     
     var endTime : NSDate {
         let laterDate = NSCalendar.currentCalendar().dateByAddingUnit(
