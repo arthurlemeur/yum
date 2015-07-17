@@ -1,16 +1,14 @@
 //
-//  OrderInfoViewController.swift
+//  MakeOrderViewController.swift
 //  yum
 //
-//  Created by Arthur Le Meur on 7/10/15.
+//  Created by Arthur Le Meur on 7/16/15.
 //  Copyright (c) 2015 Arthur Le Meur. All rights reserved.
 //
 
 import UIKit
 
-class OrderInfoViewController: UIViewController {
-    
-    
+class MakeOrderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

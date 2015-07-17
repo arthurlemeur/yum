@@ -13,9 +13,6 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
-    
     var deliveries: [Delivery] = []
     
     override func viewDidLoad() {
@@ -47,7 +44,7 @@ class HomeViewController: UIViewController {
         
         // 3
         let postsFromThisUser = Delivery.query()
-        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+//        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
         
         // 4
         let query = PFQuery.orQueryWithSubqueries([postsFromThisUser!])
@@ -89,9 +86,11 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 2
-        let cell = tableView.dequeueReusableCellWithIdentifier("DeliveryCell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("DeliveryCell") as! OrderTableViewCell
         
-        cell.textLabel!.text = "Delivery"
+        cell.delivery = deliveries[indexPath.row]
+        
+        
         
         return cell
     }

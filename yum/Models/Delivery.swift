@@ -20,6 +20,15 @@ class Delivery : PFObject, PFSubclassing {
     @NSManaged var restaurant: String
     @NSManaged var location: PFGeoPoint?
     
+    var endTime : NSDate {
+        let laterDate = NSCalendar.currentCalendar().dateByAddingUnit(
+            NSCalendarUnit.CalendarUnitHour,
+            value: 1,
+            toDate: deliveryStartTime,
+            options: NSCalendarOptions.WrapComponents)
+      return laterDate!
+    }
+    
     
     
     //MARK: PFSubclassing Protocol

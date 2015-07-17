@@ -11,11 +11,28 @@ import UIKit
 class OrderTableViewCell: UITableViewCell {
     
     
+    // set properties to use in tableview cell
+    var delivery : Delivery? {
+        didSet{
+            username.text = delivery?.user?.username
+            restaurant.text = delivery?.restaurant
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+            timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
+            endTime.text = formatter.stringFromDate(delivery!.endTime)
+            
+        }
+    }
+    
 
     @IBOutlet weak var username: UILabel!
-    
     @IBOutlet weak var restaurant: UILabel!
-
+    @IBOutlet weak var timePicker: UILabel!
+    @IBOutlet weak var endTime: UILabel!
+    @IBOutlet weak var goToOrder: UIButton!
+   
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -11,6 +11,8 @@ import Parse
 
 class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
+    var delivery = Delivery()
+    
     //go to home screen
     @IBAction func goHome(sender: AnyObject) {
         
@@ -55,11 +57,10 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
     func createDelivery () {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        var deliver = Delivery()
-        deliver.deliveryFee = deliveryFeeInDollars
-        deliver.deliveryStartTime = datePicker.date
-        deliver.restaurant = textField.text
-        deliver.user = .currentUser()
+        delivery.deliveryFee = deliveryFeeInDollars
+        delivery.deliveryStartTime = datePicker.date
+        delivery.restaurant = textField.text
+        delivery.user = .currentUser()
         
         // request geopoint
         //closures run at the same time so saveinBackground need to be inside the geolocation
@@ -67,7 +68,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
 //            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
 //            deliver.location = geoPoint
 //        }
-        deliver.saveInBackgroundWithBlock {
+        delivery.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             if (success) {
@@ -110,24 +111,23 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     // display end time (date picker + 1)
     
     func datePickerChanged(datePicker:UIDatePicker) {
-        let laterDate = NSCalendar.currentCalendar().dateByAddingUnit(
-            NSCalendarUnit.CalendarUnitHour,
-            value: 1,
-            toDate: datePicker.date,
-            options: NSCalendarOptions.WrapComponents)
-        
+        delivery.deliveryStartTime = datePicker.date
         var dateFormatter = NSDateFormatter()
-        
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
-        var strDate = dateFormatter.stringFromDate(laterDate!)
+        var strDate = dateFormatter.stringFromDate(delivery.endTime)
         dateLabel.text = strDate
+    
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
 }
 /*
