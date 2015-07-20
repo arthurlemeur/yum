@@ -8,26 +8,60 @@
 
 import UIKit
 
-class MakeOrderViewController: UIViewController {
+class MakeOrderViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
+    @IBOutlet weak var enterOrder: UITextView!
     
-    var delivery : Delivery? {
-        didSet{
-            username.text = delivery?.user?.username
-            restaurant.text = delivery?.restaurant
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-            deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
-        }
-    }
+
+    
+    var delivery : Delivery?
+    
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        username.text = delivery?.user?.username
+        restaurant.text = delivery?.restaurant
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
 
-        // Do any additional setup after loading the view.
+        enterOrder.delegate = self
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "Enter your order:"
+        placeholderLabel.font = UIFont.italicSystemFontOfSize(enterOrder.font.pointSize)
+        placeholderLabel.sizeToFit()
+        enterOrder.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPointMake(5, enterOrder.font.pointSize / 2)
+        placeholderLabel.textColor = UIColor(white: 0, alpha: 0.3)
+        placeholderLabel.hidden = count(enterOrder.text) != 0
+    }
+    
+    var placeholderLabel : UILabel!
+    
+
+    func textViewDidChange(enterOrder: UITextView) {
+        placeholderLabel.hidden = count(enterOrder.text) != 0
+    }
+
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n"
+        {
+            enterOrder.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        enterOrder.returnKeyType = UIReturnKeyType.Done
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,3 +81,4 @@ class MakeOrderViewController: UIViewController {
     */
 
 }
+

@@ -76,7 +76,6 @@ class HomeViewController: UIViewController {
         
         if segue.identifier == "makeOrder" {
             if let vc = segue.destinationViewController as? MakeOrderViewController {
-                vc.loadView() //if you get a nil value when unwrapping an optional
                 vc.delivery = selectedDelivery
             }
         }

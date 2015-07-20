@@ -10,8 +10,23 @@ import UIKit
 
 class WaitingViewController: UIViewController {
 
+    @IBOutlet weak var username: UILabel!
+    
+    @IBOutlet weak var deliveryFee: UILabel!
+
+    var delivery : Delivery? {
+        didSet{
+            username.text = delivery?.user?.username
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
 
         // Do any additional setup after loading the view.
     }

@@ -18,7 +18,7 @@ class OrderTableViewCell: UITableViewCell {
             username.text = delivery?.user?.username
             restaurant.text = delivery?.restaurant
             let formatter = NSDateFormatter()
-            formatter.timeStyle = NSDateFormatterStyle.MediumStyle
+            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
             timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
             endTime.text = formatter.stringFromDate(delivery!.endTime)
             
