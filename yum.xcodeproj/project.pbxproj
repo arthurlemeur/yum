@@ -25,6 +25,8 @@
 		8E6FF2331B586FFA00AAD1EF /* MakeOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF2321B586FFA00AAD1EF /* MakeOrderViewController.swift */; };
 		8E6FF2351B59955800AAD1EF /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF2341B59955800AAD1EF /* WaitingViewController.swift */; };
 		8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */; };
+		8EEC6C6A1B5DBDBD00A1EABF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC6C691B5DBDBD00A1EABF /* ProfileViewController.swift */; };
+		8EEC6C6C1B5EACC100A1EABF /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC6C6B1B5EACC100A1EABF /* Order.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		8E9412E11B55C20E0037848F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		8E9412E21B55C20E0037848F /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		8EEC6C691B5DBDBD00A1EABF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8EEC6C6B1B5EACC100A1EABF /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.release.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.release.xcconfig"; sourceTree = "<group>"; };
 		D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.debug.xcconfig"; sourceTree = "<group>"; };
 		F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +126,7 @@
 				8E6FF22C1B582DDC00AAD1EF /* DeliveryCreatedViewController.swift */,
 				8E6FF2321B586FFA00AAD1EF /* MakeOrderViewController.swift */,
 				8E6FF2341B59955800AAD1EF /* WaitingViewController.swift */,
+				8EEC6C691B5DBDBD00A1EABF /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				8E04F5941B543E78006C447E /* Delivery.swift */,
+				8EEC6C6B1B5EACC100A1EABF /* Order.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 				8E6FF2331B586FFA00AAD1EF /* MakeOrderViewController.swift in Sources */,
 				8E6FF22D1B582DDC00AAD1EF /* DeliveryCreatedViewController.swift in Sources */,
 				8E068FBE1B56CD4D009D0201 /* ParseLoginHelper.swift in Sources */,
+				8EEC6C6A1B5DBDBD00A1EABF /* ProfileViewController.swift in Sources */,
 				8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */,
 				8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */,
 				8E6FF2351B59955800AAD1EF /* WaitingViewController.swift in Sources */,
@@ -372,6 +379,7 @@
 				8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */,
 				8E04F5951B543E78006C447E /* Delivery.swift in Sources */,
 				8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */,
+				8EEC6C6C1B5EACC100A1EABF /* Order.swift in Sources */,
 				8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */,
 				8E2FBEC01B547A1D00061328 /* MBProgressHUD.m in Sources */,
 			);

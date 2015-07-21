@@ -10,7 +10,6 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var orderButton: UIButton!
     
     // set properties to use in tableview cell
     var delivery : Delivery? {
@@ -30,7 +29,6 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
-    @IBOutlet weak var goToOrder: UIButton!
    
     
     

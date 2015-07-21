@@ -65,6 +65,14 @@ class HomeViewController: UIViewController {
             self.tableView.reloadData()
         }
         
+        let install = PFInstallation.currentInstallation()
+        println("channels?? ----> \(install)")
+        
+//        let currentInstallation = PFInstallation.currentInstallation()
+//        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
+//        currentInstallation.saveInBackground()
+
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -120,6 +128,8 @@ extension HomeViewController: UITableViewDelegate {
     {
     }
 }
+
+
 
 
 

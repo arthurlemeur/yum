@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import Parse
 
 class MakeOrderViewController: UIViewController, UITextViewDelegate {
+    var order = Order()
+    var delivery : Delivery?
 
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
     @IBOutlet weak var enterOrder: UITextView!
     
+  
+    @IBAction func makeOrder(sender: AnyObject) {
+    
+        makeOrder()
+    }
+    
+
+
 
     
-    var delivery : Delivery?
-    
+
     
 
     
@@ -39,6 +49,55 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         placeholderLabel.frame.origin = CGPointMake(5, enterOrder.font.pointSize / 2)
         placeholderLabel.textColor = UIColor(white: 0, alpha: 0.3)
         placeholderLabel.hidden = count(enterOrder.text) != 0
+    }
+    
+    func makeOrder () {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        order.user = .currentUser()
+        order.deliveryInfo = delivery
+        order.orderDetail = enterOrder.text
+        
+//        let deliverer = deliveryInfo[user] as! PFUser
+//        
+//        let pushQuery = PFInstallation.query()
+//        pushQuery.whereKey("user", equals: deliverer)
+//        
+//        // Send push notification to query
+//        let push = PFPush()
+//        push.setQuery(pushQuery) // Set our Installation query
+//        let firstName = “John”
+//        push.setMessage(“\(firstName) wants food!”)
+//        push.sendPushInBackground()
+//        
+//        let me = PFUser.currentUser()
+//        let query = PFQuery(“delivery”)
+//        
+//        //find the delivery
+//        query = PFQuery(“Order”)
+//        query.whereKey(“deliveryInfo”, delivery)
+//        query.whereKey(“completed”, false)
+//        
+        
+        
+        // request geopoint
+        //closures run at the same time so saveinBackground need to be inside the geolocation
+        //        PFGeoPoint.geoPointForCurrentLocationInBackground {
+        //            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+        //            deliver.location = geoPoint
+        //        }
+        order.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            if (success) {
+                //self.navigationController?.popViewControllerAnimated(true)
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }
+        
     }
     
     var placeholderLabel : UILabel!
@@ -68,6 +127,8 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
 
     /*
