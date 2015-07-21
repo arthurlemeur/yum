@@ -12,25 +12,25 @@ import Parse
 class MakeOrderViewController: UIViewController, UITextViewDelegate {
     var order = Order()
     var delivery : Delivery?
-
+    
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
     @IBOutlet weak var enterOrder: UITextView!
     
-  
-    @IBAction func makeOrder(sender: AnyObject) {
     
+    @IBAction func makeOrder(sender: AnyObject) {
+        
         makeOrder()
     }
     
-
-
-
     
-
     
-
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
-
+        
         enterOrder.delegate = self
         placeholderLabel = UILabel()
         placeholderLabel.text = "Enter your order:"
@@ -57,26 +57,24 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         order.deliveryInfo = delivery
         order.orderDetail = enterOrder.text
         
-//        let deliverer = deliveryInfo[user] as! PFUser
-//        
-//        let pushQuery = PFInstallation.query()
-//        pushQuery.whereKey("user", equals: deliverer)
-//        
-//        // Send push notification to query
-//        let push = PFPush()
-//        push.setQuery(pushQuery) // Set our Installation query
-//        let firstName = “John”
-//        push.setMessage(“\(firstName) wants food!”)
-//        push.sendPushInBackground()
-//        
-//        let me = PFUser.currentUser()
-//        let query = PFQuery(“delivery”)
-//        
-//        //find the delivery
-//        query = PFQuery(“Order”)
-//        query.whereKey(“deliveryInfo”, delivery)
-//        query.whereKey(“completed”, false)
-//        
+        if let orderer = order.user, deliverer = delivery?.user, pushQuery = PFInstallation.query(), username = orderer.username {
+            pushQuery.whereKey("user", equalTo: deliverer)
+            
+            // Send push notification to query
+            let push = PFPush()
+            push.setQuery(pushQuery) // Set our Installation query
+            push.setMessage("\(username) wants food!")
+            push.sendPushInBackground()
+        }
+        //
+        //        let me = PFUser.currentUser()
+        //        let query = PFQuery(“delivery”)
+        //
+        //        //find the delivery
+        //        query = PFQuery(“Order”)
+        //        query.whereKey(“deliveryInfo”, delivery)
+        //        query.whereKey(“completed”, false)
+        
         
         
         // request geopoint
@@ -102,11 +100,11 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     
     var placeholderLabel : UILabel!
     
-
+    
     func textViewDidChange(enterOrder: UITextView) {
         placeholderLabel.hidden = count(enterOrder.text) != 0
     }
-
+    
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"
@@ -122,24 +120,24 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         enterOrder.returnKeyType = UIReturnKeyType.Done
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     
-
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
