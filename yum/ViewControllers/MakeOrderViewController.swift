@@ -13,6 +13,11 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     var order = Order()
     var delivery : Delivery?
     
+    
+    var selectedDelivery : Delivery?
+    
+    var deliveries: [Delivery] = []
+    
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
@@ -57,6 +62,8 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         order.deliveryInfo = delivery
         order.orderDetail = enterOrder.text
         
+        
+        // set up notifications
         if let orderer = order.user, deliverer = delivery?.user, pushQuery = PFInstallation.query(), username = orderer.username {
             pushQuery.whereKey("user", equalTo: deliverer)
             
@@ -126,6 +133,15 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "orderCreated" {
+            if let vc = segue.destinationViewController as? WaitingViewController {
+                vc.loadView() //if you get a nil value when unwrapping an optional
+                vc.delivery = delivery
+            }
+        }
+    }
+
     
     
     

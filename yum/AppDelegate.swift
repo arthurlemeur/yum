@@ -35,6 +35,8 @@
                     // 3
                     self.window?.rootViewController!.presentViewController(homeVC, animated:true, completion:nil)
                     
+                    //set up notifications
+                    
                     PFInstallation.currentInstallation()["user"] = user
                     PFInstallation.currentInstallation().saveInBackground()
                 }
@@ -71,8 +73,7 @@
             let startViewController: UIViewController;
             
             if (user != nil) {
-                // 3
-                // if we have a user, set the TabBarController to be the initial View Controller
+           
                 if PFInstallation.currentInstallation()["user"] == nil {
                     PFInstallation.currentInstallation()["user"] = user
                     PFInstallation.currentInstallation().saveInBackground()

@@ -65,8 +65,7 @@ class HomeViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        let install = PFInstallation.currentInstallation()
-        println("channels?? ----> \(install)")
+    let install = PFInstallation.currentInstallation()
         
 //        let currentInstallation = PFInstallation.currentInstallation()
 //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
@@ -87,7 +86,13 @@ class HomeViewController: UIViewController {
                 vc.delivery = selectedDelivery
             }
         }
-    }
+        else if segue.identifier == "profileSegue" {
+                if let vc2 = segue.destinationViewController as? ProfileViewController {
+                    vc2.loadView() //if you get a nil value when unwrapping an optional
+                    vc2.delivery = selectedDelivery
+                }
+            }
+        }
     
     
     /*

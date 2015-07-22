@@ -12,9 +12,16 @@ import Parse
 class DeliveryCreatedViewController: UIViewController {
     // self.dismiss viewController
     
-    override func viewDidLoad() {
+    var orders: [Order] = []
+    
+    var selectedOrder : Order?
 
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
+    
     
 
     
@@ -41,13 +48,53 @@ class DeliveryCreatedViewController: UIViewController {
         
         delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
             if success {
-                println("deleted the object")
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
         }
     }
     @IBOutlet weak var customerTableView: UITableView!
     
+    func loadInRange(range: Range<Int>, completionBlock: ([Order ]?) -> Void) {
+        // 1
+        ParseHelper.timelineRequestforCurrentUser(range) {
+            (result: [AnyObject]?, error: NSError?) -> Void in
+            // 2
+            let order = result as? [Order] ?? []
+            // 3
+            completionBlock(order)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // 3
+        let ordersFromThisUser = Order.query()
+        //        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        
+        // 4
+        let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
+        // 5
+        query.includeKey("user")
+        // 6
+        query.orderByDescending("createdAt")
+        
+        // 7
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            // 8
+            self.orders = result as? [Order] ?? []
+            // 9
+           self.customerTableView.reloadData()
+        }
+        
+        let install = PFInstallation.currentInstallation()
+        
+        //        let currentInstallation = PFInstallation.currentInstallation()
+        //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
+        //        currentInstallation.saveInBackground()
+        
+        
+    }
 
     
     override func awakeFromNib() {
@@ -70,6 +117,33 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 // Pass the selected object to the new view controller.
 }
 */
+
+extension DeliveryCreatedViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 1
+        return orders.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // 2
+        let cell = tableView.dequeueReusableCellWithIdentifier("customerCell") as! CustomerTableViewCell
+        
+        cell.order = orders[indexPath.row]
+        
+        
+        
+        return cell
+    }
+    
+}
+
+extension DeliveryCreatedViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+    }
+}
 
 
 
