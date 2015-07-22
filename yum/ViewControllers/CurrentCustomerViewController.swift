@@ -8,22 +8,31 @@
 
 import UIKit
 import MapKit
-
+import Parse
+import ParseUI
 class CurrentCustomerViewController: UIViewController {
     
     @IBOutlet weak var username: UILabel!
-    
     @IBOutlet weak var customerOrder: UILabel!
-    
     @IBOutlet weak var mapView: MKMapView!
-    
-
     @IBOutlet weak var messenger: UIButton!
+    
+    var selectedOrder : Order?
+    var orders: [Order] = []
+    var order : Order? {
+        didSet{
+            username.text = order?.user?.username
+            customerOrder.text = order?.orderDetail
+        }
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // 1
+//        var geoPoint : PFGeoPoint?
         let location = CLLocationCoordinate2D(
             latitude: 51.50007773,
             longitude: -0.1246402
@@ -36,10 +45,12 @@ class CurrentCustomerViewController: UIViewController {
         //3
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "Big Ben"
+        annotation.title = "Order Location"
         annotation.subtitle = "London"
         mapView.addAnnotation(annotation)
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

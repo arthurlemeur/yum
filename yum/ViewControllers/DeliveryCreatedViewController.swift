@@ -12,19 +12,18 @@ import Parse
 class DeliveryCreatedViewController: UIViewController {
     // self.dismiss viewController
     
+    var order = Order()
+
     var orders: [Order] = []
     
     var selectedOrder : Order?
+    
 
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    
-
-    
     
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var restaurant: UILabel!
@@ -105,6 +104,14 @@ class DeliveryCreatedViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "customerView" {
+            if let vc = segue.destinationViewController as? CurrentCustomerViewController {
+                vc.loadView()
+                vc.order = selectedOrder
+            }
+        }
+    }
     
 }
 
@@ -117,6 +124,9 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 // Pass the selected object to the new view controller.
 }
 */
+
+
+
 
 extension DeliveryCreatedViewController: UITableViewDataSource {
     
@@ -142,6 +152,7 @@ extension DeliveryCreatedViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        selectedOrder = orders[indexPath.row]
     }
 }
 

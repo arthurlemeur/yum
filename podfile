@@ -14,6 +14,7 @@ pod 'ConvenienceKit'
 #pod 'ParseFacebookUtils'
 pod 'ParseFacebookUtilsV4'
 pod 'Bond'
+pod 'GoogleMaps'
 
 end
 

@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
         else if segue.identifier == "profileSegue" {
                 if let vc2 = segue.destinationViewController as? ProfileViewController {
                     vc2.loadView() //if you get a nil value when unwrapping an optional
-                    vc2.delivery = selectedDelivery
+                    vc2.delivery = delivery
                 }
             }
         }

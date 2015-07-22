@@ -521,7 +521,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="username" destination="e71-nF-QTY" id="umo-R9-kNX"/>
-                                            <segue destination="nb4-aL-Y5q" kind="show" id="upG-1s-iwN"/>
+                                            <segue destination="nb4-aL-Y5q" kind="show" identifier="customerView" id="upG-1s-iwN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -610,7 +610,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Xn-Ay-eTq">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Xn-Ay-eTq">
                                 <rect key="frame" x="133" y="218" width="334" height="241"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="334" id="tSc-tw-vgF"/>

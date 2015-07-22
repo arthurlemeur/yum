@@ -16,10 +16,14 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
         
-        if textField.text.isEmpty{
-            println("text field is empty")
-        }
-        createDelivery()
+//        if textField.text.isEmpty{
+//            var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+//            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        }
+//        else {
+            createDelivery()
+//        }
     }
     
     
@@ -62,10 +66,10 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         delivery.restaurant = textField.text
         delivery.user = .currentUser()
         
-      PFGeoPoint.geoPointForCurrentLocationInBackground {
-           (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-           self.delivery.location = geoPoint
-        self.delivery.saveInBackgroundWithBlock {
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            self.delivery.location = geoPoint
+            self.delivery.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 if (success) {
@@ -79,7 +83,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
-}
+    }
     
     
     // hides keyboard after pressing return

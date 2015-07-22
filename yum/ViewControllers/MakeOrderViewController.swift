@@ -25,8 +25,14 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func makeOrder(sender: AnyObject) {
-        
+//        if enterOrder.text.isEmpty{
+//                    var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+//                    alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+//                    self.presentViewController(alert, animated: true, completion: nil)
+//                }
+//                else {
         makeOrder()
+//                }
     }
     
     

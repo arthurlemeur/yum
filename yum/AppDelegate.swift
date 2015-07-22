@@ -11,6 +11,7 @@
     import FBSDKCoreKit
     import ParseUI
     import ParseFacebookUtilsV4
+    import GoogleMaps
     
     @UIApplicationMain
     class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -45,6 +46,9 @@
         
         
         func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+            
+            GMSServices.provideAPIKey("AIzaSyD86CI13CKtRWKbM3UcTQURoNiq91_Fxmc")
+            
             
             Parse.setApplicationId("Eo8BrOyhWGnJVYKryzL2ur5gFjplCNRXEqe2Egyi", clientKey: "9cSbM877LoE2SR9L5NPajOciOEyuLkYnrkxKw0QI")
             
