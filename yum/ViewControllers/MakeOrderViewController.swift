@@ -73,34 +73,23 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
             push.setMessage("\(username) wants food!")
             push.sendPushInBackground()
         }
-        //
-        //        let me = PFUser.currentUser()
-        //        let query = PFQuery(“delivery”)
-        //
-        //        //find the delivery
-        //        query = PFQuery(“Order”)
-        //        query.whereKey(“deliveryInfo”, delivery)
-        //        query.whereKey(“completed”, false)
         
-        
-        
-        // request geopoint
-        //closures run at the same time so saveinBackground need to be inside the geolocation
-        //        PFGeoPoint.geoPointForCurrentLocationInBackground {
-        //            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-        //            deliver.location = geoPoint
-        //        }
-        order.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-            if (success) {
-                //self.navigationController?.popViewControllerAnimated(true)
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-                
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            self.order.location = geoPoint
+            self.order.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                if (success) {
+                    //self.navigationController?.popViewControllerAnimated(true)
+                    self.performSegueWithIdentifier("orderCreated", sender: nil)
+                    
+                    // The object has been saved.
+                } else {
+                    // There was a problem, check error.description
+                }
             }
+            
         }
         
     }

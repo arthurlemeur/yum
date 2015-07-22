@@ -62,26 +62,25 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         delivery.restaurant = textField.text
         delivery.user = .currentUser()
         
-        // request geopoint
-        //closures run at the same time so saveinBackground need to be inside the geolocation
-//        PFGeoPoint.geoPointForCurrentLocationInBackground {
-//            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-//            deliver.location = geoPoint
-//        }
-        delivery.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-            if (success) {
-                //self.navigationController?.popViewControllerAnimated(true)
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-                
-                // The object has been saved.
-            } else {
-                // There was a problem, check error.description
+      PFGeoPoint.geoPointForCurrentLocationInBackground {
+           (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+           self.delivery.location = geoPoint
+        self.delivery.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                if (success) {
+                    //self.navigationController?.popViewControllerAnimated(true)
+                    self.performSegueWithIdentifier("deliveryCreated", sender: nil)
+                    
+                    // The object has been saved.
+                } else {
+                    // There was a problem, check error.description
+                }
             }
+            
         }
-
-    }
+}
+    
     
     // hides keyboard after pressing return
     
@@ -117,7 +116,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         
         var strDate = dateFormatter.stringFromDate(delivery.endTime)
         dateLabel.text = strDate
-    
+        
         
     }
     
@@ -127,7 +126,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    //go to back to home view controller 
+    //go to back to home view controller
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "deliveryCreated" {
@@ -137,7 +136,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
     
 }
 /*
