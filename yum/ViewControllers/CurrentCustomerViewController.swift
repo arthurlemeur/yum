@@ -17,12 +17,10 @@ class CurrentCustomerViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var messenger: UIButton!
     
-    var selectedOrder : Order?
     var orders: [Order] = []
     var order : Order? {
         didSet{
-            username.text = order?.user?.username
-            customerOrder.text = order?.orderDetail
+            
         }
     }
     
@@ -31,11 +29,14 @@ class CurrentCustomerViewController: UIViewController {
         super.viewDidLoad()
         
         
+        username.text = order?.user?.username
+        customerOrder.text = order?.orderDetail
         // 1
-//        var geoPoint : PFGeoPoint?
+        //        var geoPoint : PFGeoPoint?
         let location = CLLocationCoordinate2D(
-            latitude: 51.50007773,
-            longitude: -0.1246402
+            latitude: order?.location?.latitude ?? 0.0,
+            
+            longitude: order?.location?.longitude ?? 0.0
         )
         // 2
         let span = MKCoordinateSpanMake(0.05, 0.05)

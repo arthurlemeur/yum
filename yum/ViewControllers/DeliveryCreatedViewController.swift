@@ -106,9 +106,10 @@ class DeliveryCreatedViewController: UIViewController {
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "customerView" {
-            if let vc = segue.destinationViewController as? CurrentCustomerViewController {
-                vc.loadView()
-                vc.order = selectedOrder
+            if let vc = segue.destinationViewController as? CurrentCustomerViewController, cell = sender as? CustomerTableViewCell {
+//                vc.loadView()
+                
+                vc.order = cell.order
             }
         }
     }
@@ -152,7 +153,10 @@ extension DeliveryCreatedViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        selectedOrder = orders[indexPath.row]
+//        selectedOrder = orders[indexPath.row]
+        
+        
+        
     }
 }
 
