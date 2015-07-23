@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController {
 
@@ -18,7 +19,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        username.text = delivery?.user?.username
+        username.text = PFUser.currentUser()?.username
 
 
         // Do any additional setup after loading the view.
