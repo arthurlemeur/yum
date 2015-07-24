@@ -22,26 +22,41 @@ class ProfileViewController: UIViewController {
     
     @IBAction func signOut(sender: AnyObject) {
         
-        PFUser.logOut()
-        self.parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
-            // Initialize the ParseLoginHelper with a callback
-            if let error = error {
-                // 1
-                ErrorHandling.defaultErrorHandler(error)
-            } else  if let user = user {
-                // if login was successful, display the TabBarController
-                // 2
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.navigationController?.popToRootViewControllerAnimated(true)
-            }
+        let alertController = UIAlertController(title: "Sign out of your account?", message: "You will not be will have to login again", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
+            println(action)
         }
+        alertController.addAction(cancelAction)
         
-        let loginViewController = PFLogInViewController()
-        loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
-        loginViewController.delegate = self.parseLoginHelper
-        loginViewController.signUpController?.delegate = self.parseLoginHelper
-        self.presentViewController(loginViewController, animated: true, completion: nil)
-        
+        let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
+            delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
+                if success {
+                    PFUser.logOut()
+                    self.parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
+                        // Initialize the ParseLoginHelper with a callback
+                        if let error = error {
+                            // 1
+                            ErrorHandling.defaultErrorHandler(error)
+                        } else  if let user = user {
+                            // if login was successful, display the TabBarController
+                            // 2
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            self.navigationController?.popToRootViewControllerAnimated(true)
+                        }
+                    }
+                    let loginViewController = PFLogInViewController()
+                    loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
+                    loginViewController.delegate = self.parseLoginHelper
+                    loginViewController.signUpController?.delegate = self.parseLoginHelper
+                    self.presentViewController(loginViewController, animated: true, completion: nil)
+                }
+            }
+            
+        }
+        alertController.addAction(destroyAction)
+        self.presentViewController(alertController, animated: true) {
+        }
         
     }
     
