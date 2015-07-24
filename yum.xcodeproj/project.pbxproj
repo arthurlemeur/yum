@@ -266,6 +266,11 @@
 					8E1E619D1B507A6F00C45E1A = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = EHH3APZ2X7;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					8E1E61B21B507A6F00C45E1A = {
 						CreatedOnToolsVersion = 6.4;

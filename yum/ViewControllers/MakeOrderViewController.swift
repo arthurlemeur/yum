@@ -69,16 +69,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         order.orderDetail = enterOrder.text
         
         
-        // set up notifications
-        if let orderer = order.user, deliverer = delivery?.user, pushQuery = PFInstallation.query(), username = orderer.username {
-            pushQuery.whereKey("user", equalTo: deliverer)
-            
-            // Send push notification to query
-            let push = PFPush()
-            push.setQuery(pushQuery) // Set our Installation query
-            push.setMessage("\(username) wants food!")
-            push.sendPushInBackground()
-        }
+
         
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
@@ -88,6 +79,22 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 if (success) {
                     //self.navigationController?.popViewControllerAnimated(true)
+                    // set up notifications
+                    if let orderer = self.order.user, let orderID = self.order.objectId, let deliverer = self.delivery?.user, pushQuery = PFInstallation.query(), username = orderer.username {
+                        pushQuery.whereKey("user", equalTo: deliverer)
+                        
+                        let data = [
+                            "alert" : "\(username) wants food!",
+                            "orderID" : orderID
+                        ]
+                        // Send push notification to query
+                        let push = PFPush()
+                        push.setQuery(pushQuery) // Set our Installation query
+                        push.setData(data)
+//                        push.setMessage("\(username) wants food!")
+                        push.sendPushInBackground()
+                    }
+                    
                     self.performSegueWithIdentifier("orderCreated", sender: nil)
                     
                     // The object has been saved.
@@ -97,6 +104,8 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
             }
             
         }
+        
+
         
     }
     
