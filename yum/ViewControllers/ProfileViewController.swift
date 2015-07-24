@@ -21,43 +21,43 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var signOut: UIButton!
     
     @IBAction func signOut(sender: AnyObject) {
-        PFUser.logOut()
-        parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
-            // Initialize the ParseLoginHelper with a callback
-            if let error = error {
-                // 1
-                ErrorHandling.defaultErrorHandler(error)
-            } else  if let user = user {
-                // if login was successful, display the TabBarController
-                // 2
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.navigationController?.popToRootViewControllerAnimated(true)
-                //set up notifications
-                
-                PFInstallation.currentInstallation()["user"] = user
-                PFInstallation.currentInstallation().saveInBackground()
-                
-                //request facebook ID
-                
-                FBSDKGraphRequest(graphPath: "me", parameters: nil).startWithCompletionHandler({ (connection, result, error) -> Void in
-                    if let fbid = result["id"] as? String {
-                        user.setObject(fbid, forKey: "fbid")
-                        user.saveInBackground()
-                    }
-                    if let picture = result["picture"] as? PFFile {
-                        user.setObject(picture, forKey: "picture")
-                        user.saveInBackground()
-                    }
-                })
-            }
-        }
+//                let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
+//        
+//                let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
+//                    println(action)
+//                }
+//                alertController.addAction(cancelAction)
+//        
+//                let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
+//                    PFUser.logOut()
+//                    self.parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
+//                        // Initialize the ParseLoginHelper with a callback
+//                        if let error = error {
+//                            // 1
+//                            ErrorHandling.defaultErrorHandler(error)
+//                        } else  if let user = user {
+//                            // if login was successful, display the TabBarController
+//                            // 2
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+//                        }
+//                    }
+//                    
+//                    let loginViewController = PFLogInViewController()
+//                    loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
+//                    loginViewController.delegate = self.parseLoginHelper
+//                    loginViewController.signUpController?.delegate = self.parseLoginHelper
+//                    self.presentViewController(loginViewController, animated: true, completion: nil)
+//                    
+//                    
+//        }
+//        
+//                }
+//                alertController.addAction(destroyAction)
+//                
+//                self.presentViewController(alertController, animated: true) {
+//                    // ...
 
-        let loginViewController = PFLogInViewController()
-        loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
-        loginViewController.delegate = parseLoginHelper
-        loginViewController.signUpController?.delegate = parseLoginHelper
-        self.presentViewController(loginViewController, animated: true, completion: nil)
-    }//This is a comment
+    }
     
     var delivery : Delivery?
 

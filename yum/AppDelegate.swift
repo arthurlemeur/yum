@@ -46,10 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 FBSDKGraphRequest(graphPath: "me", parameters: nil).startWithCompletionHandler({ (connection, result, error) -> Void in
                     if let fbid = result["id"] as? String {
                         user.setObject(fbid, forKey: "fbid")
-                        user.saveInBackground()
-                    }
-                    if let picture = result["picture"] as? PFFile {
-                        user.setObject(picture, forKey: "picture")
+                        user["photoLarge"] = "https://graph.facebook.com/\(fbid)/picture?type=large"
+                        user["photo"] = "https://graph.facebook.com/\(fbid)/picture?type=normal"
                         user.saveInBackground()
                     }
                 })
@@ -120,14 +118,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    // gets called before user is logged in 
+    // gets called before user is logged in
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        // Store the deviceToken in the current Installation and save it to Parse
-//        let installation = PFInstallation.currentInstallation()
-//        installation.setDeviceTokenFromData(deviceToken)
-//        installation["user"] = PFUser.currentUser()
-//        installation.saveInBackground()
+        //         Store the deviceToken in the current Installation and save it to Parse
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        if let user = PFUser.currentUser() {
+            installation["user"] = PFUser.currentUser()
+        }
+        installation.saveInBackground()
     }
     
     func applicationWillResignActive(application: UIApplication) {
