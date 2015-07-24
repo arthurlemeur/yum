@@ -20,7 +20,7 @@ class OrderTableViewCell: UITableViewCell {
             formatter.timeStyle = NSDateFormatterStyle.ShortStyle
             timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
             endTime.text = formatter.stringFromDate(delivery!.endTime)
-            
+          //  picture.
         }
     }
     
@@ -29,6 +29,9 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
+    @IBOutlet weak var picture: UIImageView!
+    
+
    
     
     

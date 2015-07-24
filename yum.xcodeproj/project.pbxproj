@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4B2A4FA719E737ACA8A3B7A9 /* Pods_yum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5901B543043006C447E /* PostMakingHelper.swift */; };
 		8E04F5951B543E78006C447E /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5941B543E78006C447E /* Delivery.swift */; };
 		8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */; };
 		8E068FBD1B56CD4D009D0201 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E068FBB1B56CD4D009D0201 /* ErrorHandling.swift */; };
@@ -26,6 +25,7 @@
 		8E6FF2351B59955800AAD1EF /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF2341B59955800AAD1EF /* WaitingViewController.swift */; };
 		8E872D251B5EF7E9008FACEF /* CustomerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E872D241B5EF7E9008FACEF /* CustomerTableViewCell.swift */; };
 		8E872D271B5FFDFD008FACEF /* CurrentCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E872D261B5FFDFD008FACEF /* CurrentCustomerViewController.swift */; };
+		8E872D2A1B62C3B0008FACEF /* OrderRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E872D291B62C3B0008FACEF /* OrderRequestViewController.swift */; };
 		8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */; };
 		8EEC6C6A1B5DBDBD00A1EABF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC6C691B5DBDBD00A1EABF /* ProfileViewController.swift */; };
 		8EEC6C6C1B5EACC100A1EABF /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC6C6B1B5EACC100A1EABF /* Order.swift */; };
@@ -42,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E04F5901B543043006C447E /* PostMakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostMakingHelper.swift; sourceTree = "<group>"; };
 		8E04F5941B543E78006C447E /* Delivery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		8E04F5981B5443F6006C447E /* createDeliveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createDeliveryViewController.swift; sourceTree = "<group>"; };
 		8E068FBB1B56CD4D009D0201 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		8E6FF2341B59955800AAD1EF /* WaitingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
 		8E872D241B5EF7E9008FACEF /* CustomerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerTableViewCell.swift; sourceTree = "<group>"; };
 		8E872D261B5FFDFD008FACEF /* CurrentCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCustomerViewController.swift; sourceTree = "<group>"; };
+		8E872D291B62C3B0008FACEF /* OrderRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderRequestViewController.swift; sourceTree = "<group>"; };
 		8E9412CD1B55B17D0037848F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E9412CF1B55B1860037848F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		8E9412DF1B55C20E0037848F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../Makestagram-Swift-Solution-StarterProject/Frameworks/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -113,14 +113,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8E04F58E1B542F9C006C447E /* PostMaking */ = {
-			isa = PBXGroup;
-			children = (
-				8E04F5901B543043006C447E /* PostMakingHelper.swift */,
-			);
-			path = PostMaking;
-			sourceTree = "<group>";
-		};
 		8E04F58F1B542FA9006C447E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +125,7 @@
 				8E6FF22C1B582DDC00AAD1EF /* DeliveryCreatedViewController.swift */,
 				8E872D241B5EF7E9008FACEF /* CustomerTableViewCell.swift */,
 				8E872D261B5FFDFD008FACEF /* CurrentCustomerViewController.swift */,
+				8E872D291B62C3B0008FACEF /* OrderRequestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -175,11 +168,10 @@
 				8E068FBB1B56CD4D009D0201 /* ErrorHandling.swift */,
 				8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */,
 				8E068FBC1B56CD4D009D0201 /* ParseLoginHelper.swift */,
-				8E04F5931B543E53006C447E /* Models */,
-				8E04F58F1B542FA9006C447E /* ViewControllers */,
-				8E04F58E1B542F9C006C447E /* PostMaking */,
 				8E1E61A31B507A6F00C45E1A /* AppDelegate.swift */,
 				8E1E61A71B507A6F00C45E1A /* Main.storyboard */,
+				8E04F5931B543E53006C447E /* Models */,
+				8E04F58F1B542FA9006C447E /* ViewControllers */,
 				8E1E61AA1B507A6F00C45E1A /* Images.xcassets */,
 				8E1E61AC1B507A6F00C45E1A /* LaunchScreen.xib */,
 				8E1E61A11B507A6F00C45E1A /* Supporting Files */,
@@ -381,6 +373,7 @@
 				8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */,
 				8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */,
 				8E6FF2351B59955800AAD1EF /* WaitingViewController.swift in Sources */,
+				8E872D2A1B62C3B0008FACEF /* OrderRequestViewController.swift in Sources */,
 				8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */,
 				8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */,
 				8E04F5951B543E78006C447E /* Delivery.swift in Sources */,
@@ -388,7 +381,6 @@
 				8E872D251B5EF7E9008FACEF /* CustomerTableViewCell.swift in Sources */,
 				8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */,
 				8EEC6C6C1B5EACC100A1EABF /* Order.swift in Sources */,
-				8E04F5911B543043006C447E /* PostMakingHelper.swift in Sources */,
 				8E2FBEC01B547A1D00061328 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

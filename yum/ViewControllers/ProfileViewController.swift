@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController {
                         }
                     }
                     let loginViewController = PFLogInViewController()
-                    loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
+                    loginViewController.fields = .Facebook
                     loginViewController.delegate = self.parseLoginHelper
                     loginViewController.signUpController?.delegate = self.parseLoginHelper
                     self.presentViewController(loginViewController, animated: true, completion: nil)
