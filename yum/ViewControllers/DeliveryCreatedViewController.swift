@@ -49,8 +49,31 @@ class DeliveryCreatedViewController: UIViewController {
             if success {
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
-        }
+        
+//        let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
+//        
+//        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
+//            println(action)
+//        }
+//        alertController.addAction(cancelAction)
+//        
+//        let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
+//            delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
+//                if success {
+//                    self.navigationController?.popToRootViewControllerAnimated(true)
+//                }
+//            }
+//
+//        }
+//        alertController.addAction(destroyAction)
+//        
+//        self.presentViewController(alertController, animated: true) {
+//            // ...
+     }
+        
     }
+    
+    
     @IBOutlet weak var customerTableView: UITableView!
     
     func loadInRange(range: Range<Int>, completionBlock: ([Order ]?) -> Void) {

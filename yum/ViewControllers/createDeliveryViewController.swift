@@ -65,6 +65,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         delivery.deliveryStartTime = datePicker.date
         delivery.restaurant = textField.text
         delivery.user = .currentUser()
+//        delivery.facebookID = 
         
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in

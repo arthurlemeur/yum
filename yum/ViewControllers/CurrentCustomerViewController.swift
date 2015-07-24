@@ -17,6 +17,14 @@ class CurrentCustomerViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var messenger: UIButton!
     
+    @IBAction func facebookMessenger(sender: AnyObject) {
+        if let fbid = order?.user?.valueForKey("fbid") as? String {
+            println(fbid)
+            let url = NSURL(string: "fb-messenger://user-thread/\(fbid)")
+            UIApplication.sharedApplication().openURL(url!)
+        }
+    }
+    
     var orders: [Order] = []
     var order : Order? {
         didSet{
