@@ -15,74 +15,60 @@ import ParseFacebookUtilsV4
 class ProfileViewController: UIViewController {
     
     var parseLoginHelper: ParseLoginHelper!
-
-
+    
+    
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var signOut: UIButton!
     
     @IBAction func signOut(sender: AnyObject) {
-//                let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
-//        
-//                let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-//                    println(action)
-//                }
-//                alertController.addAction(cancelAction)
-//        
-//                let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
-//                    PFUser.logOut()
-//                    self.parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
-//                        // Initialize the ParseLoginHelper with a callback
-//                        if let error = error {
-//                            // 1
-//                            ErrorHandling.defaultErrorHandler(error)
-//                        } else  if let user = user {
-//                            // if login was successful, display the TabBarController
-//                            // 2
-//                            self.dismissViewControllerAnimated(true, completion: nil)
-//                        }
-//                    }
-//                    
-//                    let loginViewController = PFLogInViewController()
-//                    loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
-//                    loginViewController.delegate = self.parseLoginHelper
-//                    loginViewController.signUpController?.delegate = self.parseLoginHelper
-//                    self.presentViewController(loginViewController, animated: true, completion: nil)
-//                    
-//                    
-//        }
-//        
-//                }
-//                alertController.addAction(destroyAction)
-//                
-//                self.presentViewController(alertController, animated: true) {
-//                    // ...
-
+        
+        PFUser.logOut()
+        self.parseLoginHelper = ParseLoginHelper {[unowned self] user, error in
+            // Initialize the ParseLoginHelper with a callback
+            if let error = error {
+                // 1
+                ErrorHandling.defaultErrorHandler(error)
+            } else  if let user = user {
+                // if login was successful, display the TabBarController
+                // 2
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+        }
+        
+        let loginViewController = PFLogInViewController()
+        loginViewController.fields = .UsernameAndPassword | .LogInButton | .SignUpButton | .PasswordForgotten | .Facebook
+        loginViewController.delegate = self.parseLoginHelper
+        loginViewController.signUpController?.delegate = self.parseLoginHelper
+        self.presentViewController(loginViewController, animated: true, completion: nil)
+        
+        
     }
     
     var delivery : Delivery?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         username.text = PFUser.currentUser()?.username
-
-
+        
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
