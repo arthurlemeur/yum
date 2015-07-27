@@ -18,12 +18,36 @@ class OrderRequestViewController: UIViewController {
     @IBOutlet weak var orderText: UILabel!
     @IBOutlet weak var accept: UIButton!
     @IBOutlet weak var reject: UIButton!
+    var order : Order?
     @IBAction func acceptOrder(sender: AnyObject) {
-        
+        //fetch PFObject order (segue for example)
+        if let order = order {
+            order.accepted = true
+            order.save()
+            //send a push notification that the order is accepted
+        }
+//        performSegueWithIdentifier("goToDelivery", sender: nil)
+
     }
-    @IBOutlet weak var rejectOrder: UIButton!
+    
+    @IBAction func rejectOrder(sender: AnyObject) {
+        if let order = order {
+            order.accepted = false
+            order.save()
+        }
+ //       performSegueWithIdentifier("goToDelivery", sender: nil)
+
+        //send a push notification that the order is rejected
+
+    }
+    
+
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Do any additional setup after loading the view.
     }

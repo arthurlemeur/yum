@@ -58,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        Order.registerSubclass()
+
+        
         GMSServices.provideAPIKey("AIzaSyD86CI13CKtRWKbM3UcTQURoNiq91_Fxmc")
         
         
@@ -166,6 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let orderID = userInfo["orderID"] as? String {
                 //            println(order.objectId)
                 let order = PFObject(withoutDataWithClassName: "Order", objectId: orderID)
+                
                 order.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
                     // Show photo view controller
                     if error != nil {
@@ -177,7 +181,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         //                    self.homeVC?.title = "WOW"
                         //                   self.homeVC?.navigationBar.hidden = true
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
+                        let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
+                        orderVC.order = object as? Order
                         self.window?.rootViewController?.presentViewController(orderVC, animated: true, completion: nil)
                         
                         

@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="1842" y="-921"/>
         </scene>
-        <!--HomeController-->
+        <!--yum-->
         <scene sceneID="xEt-LY-cSP">
             <objects>
                 <viewController storyboardIdentifier="HomeController" automaticallyAdjustsScrollViewInsets="NO" id="3Jf-r8-r9Z" customClass="HomeViewController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
@@ -185,7 +185,7 @@
                             <constraint firstItem="gvb-Rd-EuF" firstAttribute="top" secondItem="H1S-5u-LOq" secondAttribute="bottom" constant="8" symbolic="YES" id="s6T-nf-PcM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="HomeController" id="Jhh-dB-alg">
+                    <navigationItem key="navigationItem" title="yum" id="Jhh-dB-alg">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="F13-fa-EbH">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pZN-UY-dbx">
                                 <rect key="frame" x="16" y="7" width="82" height="36"/>
@@ -321,6 +321,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="rejectOrder:" destination="4CA-sf-Xui" eventType="touchUpInside" id="yJ1-WW-3ov"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dm0-Pc-WiH">
                                 <rect key="frame" x="397" y="502" width="79" height="30"/>
@@ -387,10 +390,10 @@
                         <outlet property="mapView" destination="av6-l9-gQj" id="7Sa-dA-K8S"/>
                         <outlet property="orderText" destination="btd-nQ-GAE" id="Fk2-LN-fzs"/>
                         <outlet property="reject" destination="6Rc-PU-plO" id="ROX-td-Ugc"/>
-                        <outlet property="rejectOrder" destination="6Rc-PU-plO" id="rYv-IB-zFL"/>
                         <outlet property="username" destination="rlz-sf-Kie" id="Baz-Y6-qyH"/>
                         <outlet property="username2" destination="XXn-bw-o7V" id="WgB-Bu-jgV"/>
                         <outlet property="username3" destination="WLp-Dk-ea0" id="Qy7-D2-m6N"/>
+                        <segue destination="6WG-1J-dRG" kind="show" identifier="goToDelivery" id="Gre-SM-eRV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xnu-g2-RiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -913,4 +916,7 @@
         <image name="Fill91" width="27" height="36"/>
         <image name="MessengerIcon" width="117" height="121"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gre-SM-eRV"/>
+    </inferredMetricsTieBreakers>
 </document>

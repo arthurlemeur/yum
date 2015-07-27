@@ -35,13 +35,13 @@ class Order : PFObject, PFSubclassing {
         super.init()
     }
     
-    override class func initialize() {
-        var onceToken : dispatch_once_t = 0;
-        dispatch_once(&onceToken) {
-            // inform Parse about this subclass
-            self.registerSubclass()
-        }
-    }
+//    override class func initialize() {
+//        var onceToken : dispatch_once_t = 0;
+//        dispatch_once(&onceToken) {
+//            // inform Parse about this subclass
+//            self.registerSubclass()
+//        }
+//    }
     
     
 }

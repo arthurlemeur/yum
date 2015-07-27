@@ -29,8 +29,8 @@ class HomeViewController: UIViewController {
         // Fetch more objects from a web service, for example...
         
         // Simply adding an object to the data source for this example
-
-        self.tableView.reloadData()
+        refreshQuery()
+//        self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -51,13 +51,10 @@ class HomeViewController: UIViewController {
             completionBlock(delivery)
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    func refreshQuery() {
         // 3
         let postsFromThisUser = Delivery.query()
-//        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        //        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
         
         // 4
         let query = PFQuery.orQueryWithSubqueries([postsFromThisUser!])
@@ -73,6 +70,11 @@ class HomeViewController: UIViewController {
             // 9
             self.tableView.reloadData()
         }
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        refreshQuery()
         
     let install = PFInstallation.currentInstallation()
         

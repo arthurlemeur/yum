@@ -23,6 +23,8 @@ class DeliveryCreatedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.customerTableView.addSubview(self.refreshControl)
+
     }
     
     @IBOutlet weak var username: UILabel!
@@ -89,12 +91,21 @@ class DeliveryCreatedViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        refreshQuery()
+   
         
+        
+    }
+    func refreshQuery() {
         // 3
         let ordersFromThisUser = Order.query()
+        
         //        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
         
         // 4
+        //        ordersFromThisUser?.whereKeyExists("accepted")
+        ordersFromThisUser?.whereKey("accepted", equalTo: true)
+        
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
         // 5
         query.includeKey("user")
@@ -106,7 +117,7 @@ class DeliveryCreatedViewController: UIViewController {
             // 8
             self.orders = result as? [Order] ?? []
             // 9
-           self.customerTableView.reloadData()
+            self.customerTableView.reloadData()
         }
         
         let install = PFInstallation.currentInstallation()
@@ -114,9 +125,15 @@ class DeliveryCreatedViewController: UIViewController {
         //        let currentInstallation = PFInstallation.currentInstallation()
         //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
         //        currentInstallation.saveInBackground()
-        
-        
+
     }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+        }()
 
     
     override func awakeFromNib() {
@@ -135,6 +152,16 @@ class DeliveryCreatedViewController: UIViewController {
                 vc.order = cell.order
             }
         }
+    }
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+        
+        
+        refreshQuery()
+        refreshControl.endRefreshing()
     }
     
 }

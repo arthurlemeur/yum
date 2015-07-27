@@ -41,16 +41,16 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         switch deliveryFee.selectedSegmentIndex
         {
         case 0:
-            deliveryFeeLabel.text = "Adam delivers for free!";
+            deliveryFeeLabel.text = "";
             deliveryFeeInDollars = 0
         case 1:
-            deliveryFeeLabel.text = "Adam delivers for $1";
+            deliveryFeeLabel.text = "";
             deliveryFeeInDollars = 1
         case 2:
-            deliveryFeeLabel.text = "Adam delivers for $2"
+            deliveryFeeLabel.text = ""
             deliveryFeeInDollars = 2
         case 3:
-            deliveryFeeLabel.text = "Adam delivers for $3"
+            deliveryFeeLabel.text = ""
             deliveryFeeInDollars = 3
         default:
             break;
@@ -65,7 +65,6 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         delivery.deliveryStartTime = datePicker.date
         delivery.restaurant = textField.text
         delivery.user = .currentUser()
-//        delivery.facebookID = 
         
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
