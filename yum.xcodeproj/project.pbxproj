@@ -29,6 +29,7 @@
 		8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */; };
 		8EEC6C6A1B5DBDBD00A1EABF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC6C691B5DBDBD00A1EABF /* ProfileViewController.swift */; };
 		8EEC6C6C1B5EACC100A1EABF /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC6C6B1B5EACC100A1EABF /* Order.swift */; };
+		8EFB01BB1B66A4B200A60649 /* PickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFB01BA1B66A4B200A60649 /* PickupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		8E9E9DDC1B5705D20047D43E /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		8EEC6C691B5DBDBD00A1EABF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8EEC6C6B1B5EACC100A1EABF /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		8EFB01BA1B66A4B200A60649 /* PickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupViewController.swift; sourceTree = "<group>"; };
 		9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.release.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.release.xcconfig"; sourceTree = "<group>"; };
 		D81E2B15370E2DA11E1B945F /* Pods-yum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.debug.xcconfig"; sourceTree = "<group>"; };
 		F7A94F37A26CEFD47243AE46 /* Pods_yum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 				8E872D241B5EF7E9008FACEF /* CustomerTableViewCell.swift */,
 				8E872D261B5FFDFD008FACEF /* CurrentCustomerViewController.swift */,
 				8E872D291B62C3B0008FACEF /* OrderRequestViewController.swift */,
+				8EFB01BA1B66A4B200A60649 /* PickupViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */,
 				8E04F5991B5443F6006C447E /* createDeliveryViewController.swift in Sources */,
 				8E04F5951B543E78006C447E /* Delivery.swift in Sources */,
+				8EFB01BB1B66A4B200A60649 /* PickupViewController.swift in Sources */,
 				8E872D271B5FFDFD008FACEF /* CurrentCustomerViewController.swift in Sources */,
 				8E872D251B5EF7E9008FACEF /* CustomerTableViewCell.swift in Sources */,
 				8E9E9DDD1B5705D20047D43E /* ParseHelper.swift in Sources */,

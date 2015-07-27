@@ -115,32 +115,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         
-//        if let userInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-//            
-//            if let orderID = userInfo["orderID"] as? String {
-//                //            println(order.objectId)
-//                let order = PFObject(withoutDataWithClassName: "Order", objectId: orderID)
-//                order.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-//                    // Show photo view controller
-//                    if error != nil {
-//                        //                            completionHandler(UIBackgroundFetchResult.Failed)
-//                    } else if PFUser.currentUser() != nil {
-//                        //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-//                        //                    self.homeVC?.pushViewController(orderVC, animated: false)
-//                        //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
-//                        //                    self.homeVC?.title = "WOW"
-//                        //                   self.homeVC?.navigationBar.hidden = true
-//                        let orderVC = self.storyboard!.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-//                        self.window?.rootViewController?.presentViewController(orderVC, animated: true, completion: nil)
-//                        
-//                        
-//                        
-//                        //                            completionHandler(UIBackgroundFetchResult.NewData)
-//                    } else {
-//                        //                            completionHandler(UIBackgroundFetchResult.NoData)
-//                    }
-//                }
-//            }
+        if let userInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            
+            if let orderID = userInfo["orderID"] as? String {
+                //            println(order.objectId)
+                let order = PFObject(withoutDataWithClassName: "Order", objectId: orderID)
+                order.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+                    // Show photo view controller
+                    if error != nil {
+                        //                            completionHandler(UIBackgroundFetchResult.Failed)
+                    } else if PFUser.currentUser() != nil {
+                        //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
+                        //                    self.homeVC?.pushViewController(orderVC, animated: false)
+                        //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
+                        //                    self.homeVC?.title = "WOW"
+                        //                   self.homeVC?.navigationBar.hidden = true
+                        let orderVC = self.storyboard!.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
+                        self.window?.rootViewController?.presentViewController(orderVC, animated: true, completion: nil)
+                        
+                        
+                        
+                        //                            completionHandler(UIBackgroundFetchResult.NewData)
+                    } else {
+                        //                            completionHandler(UIBackgroundFetchResult.NoData)
+                    }
+                }
+            }
+        }
         
             return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
             
@@ -159,6 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             installation.saveInBackground()
         }
+    
         func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
             println("Called")
             if let orderID = userInfo["orderID"] as? String {
@@ -187,7 +189,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             completionHandler(UIBackgroundFetchResult.NoData)
-        }
+    }
+    
         func applicationWillResignActive(application: UIApplication) {
             // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
             // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

@@ -49,7 +49,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         restaurant.text = delivery?.restaurant
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
+        deliveryFee.text = "charges \(formatter.stringFromNumber(delivery!.deliveryFee)) for delivery"
         
         enterOrder.delegate = self
         placeholderLabel = UILabel()

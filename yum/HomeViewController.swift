@@ -21,9 +21,18 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.addSubview(self.refreshControl)
+
     }
-    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        // Simply adding an object to the data source for this example
+
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -103,6 +112,12 @@ class HomeViewController: UIViewController {
     // Pass the selected object to the new view controller.
     }
     */
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+        }()
     
 }
 
@@ -112,6 +127,7 @@ extension HomeViewController: UITableViewDataSource {
         // 1
         return deliveries.count
     }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 2

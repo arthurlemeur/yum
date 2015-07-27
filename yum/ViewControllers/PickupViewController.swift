@@ -1,27 +1,24 @@
 //
-//  OrderRequestViewController.swift
+//  PickupViewController.swift
 //  yum
 //
-//  Created by Arthur Le Meur on 7/24/15.
+//  Created by Arthur Le Meur on 7/27/15.
 //  Copyright (c) 2015 Arthur Le Meur. All rights reserved.
 //
 
 import UIKit
+import Parse
 import MapKit
 
-class OrderRequestViewController: UIViewController {
-
+class PickupViewController: UIViewController {
+    
+    @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var username2: UILabel!
-    @IBOutlet weak var username3: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var orderText: UILabel!
-    @IBOutlet weak var accept: UIButton!
-    @IBOutlet weak var reject: UIButton!
-    @IBAction func acceptOrder(sender: AnyObject) {
-        
-    }
-    @IBOutlet weak var rejectOrder: UIButton!
+    @IBOutlet weak var messenger: UIButton!
+    @IBOutlet weak var finish: UIButton!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
