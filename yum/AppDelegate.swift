@@ -183,7 +183,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
                         orderVC.order = object as? Order
-                        self.window?.rootViewController?.presentViewController(orderVC, animated: true, completion: nil)
+                        if let vc = self.window?.rootViewController as? UINavigationController {
+                            vc.pushViewController(orderVC, animated: true)
+                        }
+//                        self.window?.rootViewController?.presentViewController(, animated: true, completion: nil)
                         
                         
                         

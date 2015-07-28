@@ -13,18 +13,32 @@ class DeliveryCreatedViewController: UIViewController {
     // self.dismiss viewController
     
     var order = Order()
-
+    
     var orders: [Order] = []
     
     var selectedOrder : Order?
     
-
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customerTableView.addSubview(self.refreshControl)
-
+ 
+// disable back button and behavior 
+//        self.navigationItem.leftBarButtonItem = nil
+//        self.navigationItem.setHidesBackButton(true, animated: false)
+//        self.navigationItem.backBarButtonItem = nil
+//        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+        
+        if let delivery = delivery {
+            username.text = delivery.user?.username
+            restaurant.text = delivery.restaurant
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            timePicker.text = formatter.stringFromDate(delivery.deliveryStartTime)
+            endTime.text = formatter.stringFromDate(delivery.endTime)
+        }
     }
     
     @IBOutlet weak var username: UILabel!
@@ -32,46 +46,36 @@ class DeliveryCreatedViewController: UIViewController {
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
     
-    var delivery : Delivery? {
-        didSet{
-            username.text = delivery?.user?.username
-            restaurant.text = delivery?.restaurant
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-            timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
-            endTime.text = formatter.stringFromDate(delivery!.endTime)
-            
-        }
-    }
+    var delivery : Delivery?
     
-    // delete delivery 
+    // delete delivery
     @IBAction func deleteDelivery(sender: AnyObject) {
         
         delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
-        
-//        let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
-//        
-//        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-//            println(action)
-//        }
-//        alertController.addAction(cancelAction)
-//        
-//        let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
-//            delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
-//                if success {
-//                    self.navigationController?.popToRootViewControllerAnimated(true)
-//                }
-//            }
-//
-//        }
-//        alertController.addAction(destroyAction)
-//        
-//        self.presentViewController(alertController, animated: true) {
-//            // ...
-     }
+            
+            //        let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
+            //
+            //        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
+            //            println(action)
+            //        }
+            //        alertController.addAction(cancelAction)
+            //
+            //        let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
+            //            delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
+            //                if success {
+            //                    self.navigationController?.popToRootViewControllerAnimated(true)
+            //                }
+            //            }
+            //
+            //        }
+            //        alertController.addAction(destroyAction)
+            //
+            //        self.presentViewController(alertController, animated: true) {
+            //            // ...
+        }
         
     }
     
@@ -92,7 +96,7 @@ class DeliveryCreatedViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         refreshQuery()
-   
+        
         
         
     }
@@ -125,7 +129,7 @@ class DeliveryCreatedViewController: UIViewController {
         //        let currentInstallation = PFInstallation.currentInstallation()
         //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
         //        currentInstallation.saveInBackground()
-
+        
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -134,7 +138,7 @@ class DeliveryCreatedViewController: UIViewController {
         
         return refreshControl
         }()
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -147,7 +151,7 @@ class DeliveryCreatedViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "customerView" {
             if let vc = segue.destinationViewController as? CurrentCustomerViewController, cell = sender as? CustomerTableViewCell {
-//                vc.loadView()
+                //                vc.loadView()
                 
                 vc.order = cell.order
             }
@@ -203,7 +207,7 @@ extension DeliveryCreatedViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-//        selectedOrder = orders[indexPath.row]
+        //        selectedOrder = orders[indexPath.row]
         
         
         

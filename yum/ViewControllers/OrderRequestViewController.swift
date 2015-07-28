@@ -25,11 +25,10 @@ class OrderRequestViewController: UIViewController {
             println(order.objectId)
             order.accepted = true
             println(order.accepted)
-//            order.save()
             order.saveInBackground()
             //send a push notification that the order is accepted
         }
-//        performSegueWithIdentifier("goToDelivery", sender: nil)
+        performSegueWithIdentifier("goToDelivery", sender: nil)
 
     }
     
@@ -38,7 +37,7 @@ class OrderRequestViewController: UIViewController {
             order.accepted = false
             order.save()
         }
- //       performSegueWithIdentifier("goToDelivery", sender: nil)
+        performSegueWithIdentifier("goToDelivery", sender: nil)
 
         //send a push notification that the order is rejected
 

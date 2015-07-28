@@ -135,7 +135,6 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "deliveryCreated" {
             if let vc = segue.destinationViewController as? DeliveryCreatedViewController {
-                vc.loadView() //if you get a nil value when unwrapping an optional
                 vc.delivery = delivery
             }
         }
