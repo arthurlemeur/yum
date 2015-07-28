@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Parse
+import ParseUI
 
 class OrderRequestViewController: UIViewController {
 
@@ -19,6 +21,9 @@ class OrderRequestViewController: UIViewController {
     @IBOutlet weak var accept: UIButton!
     @IBOutlet weak var reject: UIButton!
     var order : Order?
+    var orders: [Order] = []
+
+    var delivery : Delivery?
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
         if let order = order {
@@ -27,6 +32,39 @@ class OrderRequestViewController: UIViewController {
             println(order.accepted)
             order.saveInBackground()
             //send a push notification that the order is accepted
+//            PFGeoPoint.geoPointForCurrentLocationInBackground {
+//                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+//                self.delivery.location = geoPoint
+//                self.delivery.saveInBackgroundWithBlock {
+//                    (success: Bool, error: NSError?) -> Void in
+//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+//                    if (success) {
+//                        //self.navigationController?.popViewControllerAnimated(true)
+//                        // set up notifications
+//                        if let deliverer = self.deliery.user, let deliveryID = self.delivery.objectId, let deliverer = self.delivery?.user, pushQuery = PFInstallation.query(), username = deliverer.username {
+//                            pushQuery.whereKey("user", equalTo: deliverer)
+//                            
+//                            let data = [
+//                                "alert" : "\(username) has accepted your order!",
+//                                "deliveryID" : deliveryID
+//                            ]
+//                            // Send push notification to query
+//                            let push = PFPush()
+//                            push.setQuery(pushQuery) // Set our Installation query
+//                            push.setData(data)
+//                            //                        push.setMessage("\(username) wants food!")
+//                            push.sendPushInBackground()
+//                        }
+//                        
+//                        self.performSegueWithIdentifier("orderAccepted", sender: nil)
+//                        
+//                        // The object has been saved.
+//                    } else {
+//                        // There was a problem, check error.description
+//                    }
+//                }
+//                
+//            }
         }
         performSegueWithIdentifier("goToDelivery", sender: nil)
 
@@ -35,7 +73,40 @@ class OrderRequestViewController: UIViewController {
     @IBAction func rejectOrder(sender: AnyObject) {
         if let order = order {
             order.accepted = false
-            order.save()
+            order.saveInBackground()
+//            PFGeoPoint.geoPointForCurrentLocationInBackground {
+//                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+//                self.delivery.location = geoPoint
+//                self.delivery.saveInBackgroundWithBlock {
+//                    (success: Bool, error: NSError?) -> Void in
+//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+//                    if (success) {
+//                        //self.navigationController?.popViewControllerAnimated(true)
+//                        // set up notifications
+//                        if let deliverer = self.deliery.user, let deliveryID = self.delivery.objectId, let deliverer = self.delivery?.user, pushQuery = PFInstallation.query(), username = deliverer.username {
+//                            pushQuery.whereKey("user", equalTo: deliverer)
+//                            
+//                            let data = [
+//                                "alert" : "\(username) has rejected your order :(",
+//                                "deliveryID" : deliveryID
+//                            ]
+//                            // Send push notification to query
+//                            let push = PFPush()
+//                            push.setQuery(pushQuery) // Set our Installation query
+//                            push.setData(data)
+//                            //                        push.setMessage("\(username) wants food!")
+//                            push.sendPushInBackground()
+//                        }
+//                        
+//                        self.performSegueWithIdentifier("orderRejected", sender: nil)
+//                        
+//                        // The object has been saved.
+//                    } else {
+//                        // There was a problem, check error.description
+//                    }
+//                }
+//                
+//            }
         }
         performSegueWithIdentifier("goToDelivery", sender: nil)
 
@@ -49,10 +120,33 @@ class OrderRequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        if let order = order {
+//            username.text = order.user?.username
+//            username2.text = order.user?.username
+//            username3.text = order.user?.username
+//            orderText.text = order.orderDetail
+//        }
+        let location = CLLocationCoordinate2D(
+            latitude: order?.location?.latitude ?? 0.0,
+            
+            longitude: order?.location?.longitude ?? 0.0
+        )
+        // 2
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
         
+        //3
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Order Location"
+        annotation.subtitle = "London"
+        mapView.addAnnotation(annotation)
 
         // Do any additional setup after loading the view.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

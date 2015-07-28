@@ -592,6 +592,8 @@
                     <connections>
                         <outlet property="deliveryFee" destination="wwb-7Q-Vub" id="oAz-vb-qpD"/>
                         <outlet property="username" destination="PfL-y4-Mu5" id="QtS-iS-JKP"/>
+                        <segue destination="MpD-cg-j2y" kind="show" identifier="orderAccepted" id="JQG-TJ-WYv"/>
+                        <segue destination="Y1l-zQ-d8U" kind="show" identifier="orderRejected" id="WY6-8I-FeH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rfh-Hb-isa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -601,7 +603,7 @@
         <!--Pickup View Controller-->
         <scene sceneID="tHB-v9-kIe">
             <objects>
-                <viewController id="MpD-cg-j2y" customClass="PickupViewController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeliveryVC" id="MpD-cg-j2y" customClass="PickupViewController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kgE-07-0yh"/>
                         <viewControllerLayoutGuide type="bottom" id="d2b-xy-YNA"/>
@@ -917,6 +919,7 @@
         <image name="MessengerIcon" width="117" height="121"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KgA-BH-Ik2"/>
+        <segue reference="WY6-8I-FeH"/>
+        <segue reference="Gre-SM-eRV"/>
     </inferredMetricsTieBreakers>
 </document>

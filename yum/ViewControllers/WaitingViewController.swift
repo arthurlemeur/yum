@@ -36,6 +36,14 @@ class WaitingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "orderAccepted" {
+            if let vc = segue.destinationViewController as? WaitingViewController {
+                vc.loadView() //if you get a nil value when unwrapping an optional
+                vc.delivery = delivery
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

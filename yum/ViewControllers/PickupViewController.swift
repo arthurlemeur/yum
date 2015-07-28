@@ -18,6 +18,11 @@ class PickupViewController: UIViewController {
     @IBOutlet weak var messenger: UIButton!
     @IBOutlet weak var finish: UIButton!
     
+    var delivery = Delivery()
+    
+    var selectedDelivery : Delivery?
+    
+    var deliveries: [Delivery] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

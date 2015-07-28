@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = startViewController;
         self.window?.makeKeyAndVisible()
         
-        
+        //SEND NOTIF TO DELIVERER
         if let userInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
             
             if let orderID = userInfo["orderID"] as? String {
@@ -145,6 +145,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+       
+//        //SEND NOTIF TO ORDERDER
+//        if let userInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+//            
+//            if let deliveryID = userInfo["deliveryID"] as? String {
+//                //            println(order.objectId)
+//                let delivery = PFObject(withoutDataWithClassName: "Delivery", objectId: deliveryID)
+//                delivery.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+//                    // Show photo view controller
+//                    if error != nil {
+//                        //                            completionHandler(UIBackgroundFetchResult.Failed)
+//                    } else if PFUser.currentUser() != nil {
+//                        //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
+//                        //                    self.homeVC?.pushViewController(orderVC, animated: false)
+//                        //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
+//                        //                    self.homeVC?.title = "WOW"
+//                        //                   self.homeVC?.navigationBar.hidden = true
+//                        let deliveryVC = self.storyboard!.instantiateViewControllerWithIdentifier("DeliveryVC") as! UIViewController
+//                        self.window?.rootViewController?.presentViewController(deliveryVC, animated: true, completion: nil)
+//                        
+//                        
+//                        
+//                        //                            completionHandler(UIBackgroundFetchResult.NewData)
+//                    } else {
+//                        //                            completionHandler(UIBackgroundFetchResult.NoData)
+//                    }
+//                }
+//            }
+//        }
         
             return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
             
@@ -198,6 +227,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             completionHandler(UIBackgroundFetchResult.NoData)
     }
+    
+    //SEND NOTIF TO ORDERER
+    
+//    func applicationForOrderer(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+//        println("Called")
+//        if let deliveryID = userInfo["deliveryID"] as? String {
+//            //            println(order.objectId)
+//            let delivery = PFObject(withoutDataWithClassName: "Delivery", objectId: deliveryID)
+//            
+//            delivery.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+//                // Show photo view controller
+//                if error != nil {
+//                    completionHandler(UIBackgroundFetchResult.Failed)
+//                } else if PFUser.currentUser() != nil {
+//                    //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
+//                    //                    self.homeVC?.pushViewController(orderVC, animated: false)
+//                    //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
+//                    //                    self.homeVC?.title = "WOW"
+//                    //                   self.homeVC?.navigationBar.hidden = true
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
+//                    deliveryVC.delivery = object as? Delivery
+//                    if let vc = self.window?.rootViewController as? UINavigationController {
+//                        vc.pushViewController(deliveryVC, animated: true)
+//                    }
+//                    //                        self.window?.rootViewController?.presentViewController(, animated: true, completion: nil)
+//                    
+//                    
+//                    
+//                    completionHandler(UIBackgroundFetchResult.NewData)
+//                } else {
+//                    completionHandler(UIBackgroundFetchResult.NoData)
+//                }
+//            }
+//        }
+//        completionHandler(UIBackgroundFetchResult.NoData)
+//    }
     
         func applicationWillResignActive(application: UIApplication) {
             // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
