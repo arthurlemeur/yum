@@ -68,7 +68,13 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         order.deliveryInfo = delivery
         order.orderDetail = enterOrder.text
         
-        
+        //changing read access
+        let acl = PFACL()
+        acl.setWriteAccess(true, forUser: PFUser.currentUser()!)
+        acl.setWriteAccess(true, forUser: delivery!.user!)
+//        acl.setReadAccess(true, forUser: PFUser.currentUser())
+        acl.setPublicReadAccess(true)
+        order.ACL = acl
 
         
         PFGeoPoint.geoPointForCurrentLocationInBackground {

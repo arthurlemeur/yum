@@ -22,8 +22,11 @@ class OrderRequestViewController: UIViewController {
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
         if let order = order {
+            println(order.objectId)
             order.accepted = true
-            order.save()
+            println(order.accepted)
+//            order.save()
+            order.saveInBackground()
             //send a push notification that the order is accepted
         }
 //        performSegueWithIdentifier("goToDelivery", sender: nil)
