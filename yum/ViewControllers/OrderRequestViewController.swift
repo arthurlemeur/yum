@@ -22,8 +22,7 @@ class OrderRequestViewController: UIViewController {
     @IBOutlet weak var reject: UIButton!
     var order : Order?
     var orders: [Order] = []
-
-    var delivery : Delivery?
+    
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
         if let order = order {
@@ -120,12 +119,12 @@ class OrderRequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let order = order {
-//            username.text = order.user?.username
-//            username2.text = order.user?.username
-//            username3.text = order.user?.username
-//            orderText.text = order.orderDetail
-//        }
+        if let order = order {
+            username.text = order.user?.username
+            username2.text = order.user?.username
+            username3.text = order.user?.username
+            orderText.text = order.orderDetail
+        }
         let location = CLLocationCoordinate2D(
             latitude: order?.location?.latitude ?? 0.0,
             
@@ -154,14 +153,17 @@ class OrderRequestViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "goToDelivery" {
+            if let vc = segue.destinationViewController as? DeliveryCreatedViewController {
+                vc.delivery = order?["deliveryInfo"] as? Delivery
+            }
+        }
     }
-    */
+
 
 }

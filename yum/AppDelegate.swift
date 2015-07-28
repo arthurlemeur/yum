@@ -197,9 +197,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("Called")
             if let orderID = userInfo["orderID"] as? String {
                 //            println(order.objectId)
-                let order = PFObject(withoutDataWithClassName: "Order", objectId: orderID)
                 
-                order.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+                //QUERY for users
+                let query = PFQuery(className: "Order")
+                query.includeKey("user")
+                query.includeKey("deliveryInfo")
+                query.includeKey("deliveryInfo.user")
+                
+                query.getObjectInBackgroundWithId(orderID, block: { (object, error) -> Void in
                     // Show photo view controller
                     if error != nil {
                         completionHandler(UIBackgroundFetchResult.Failed)
@@ -215,7 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let vc = self.window?.rootViewController as? UINavigationController {
                             vc.pushViewController(orderVC, animated: true)
                         }
-//                        self.window?.rootViewController?.presentViewController(, animated: true, completion: nil)
+                        //                        self.window?.rootViewController?.presentViewController(, animated: true, completion: nil)
                         
                         
                         
@@ -223,7 +228,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     } else {
                         completionHandler(UIBackgroundFetchResult.NoData)
                     }
-                }
+                })
+                
+                
             }
             completionHandler(UIBackgroundFetchResult.NoData)
     }
