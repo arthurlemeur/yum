@@ -30,7 +30,6 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField! = nil
     @IBOutlet weak var deliveryFee: UISegmentedControl!
     var deliveryFeeInDollars = 0
-    @IBOutlet weak var deliveryFeeLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -41,16 +40,12 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         switch deliveryFee.selectedSegmentIndex
         {
         case 0:
-            deliveryFeeLabel.text = "";
             deliveryFeeInDollars = 0
         case 1:
-            deliveryFeeLabel.text = "";
             deliveryFeeInDollars = 1
         case 2:
-            deliveryFeeLabel.text = ""
             deliveryFeeInDollars = 2
         case 3:
-            deliveryFeeLabel.text = ""
             deliveryFeeInDollars = 3
         default:
             break;
@@ -106,7 +101,9 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         datePickerChanged(datePicker)
+        datePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
         
+
         
         // Do any additional setup after loading the view.
     }
@@ -118,12 +115,13 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         var dateFormatter = NSDateFormatter()
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
-        var strDate = dateFormatter.stringFromDate(delivery.endTime)
+        var strDate = "finish delivery at: \(dateFormatter.stringFromDate(delivery.endTime))"
         dateLabel.text = strDate
         
         
     }
     
+
     //restrict textfield characters
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
