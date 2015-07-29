@@ -36,8 +36,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    
-    
+
     
     
     
@@ -124,12 +123,14 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        // Set character limits on each of the fields.
         if text == "\n"
         {
             enterOrder.resignFirstResponder()
             return false
         }
-        return true
+        let descriptionCharLimit = 400
+        return (count(textView.text) + count(text) - range.length) <= descriptionCharLimit
     }
     
     override func viewWillAppear(animated: Bool) {

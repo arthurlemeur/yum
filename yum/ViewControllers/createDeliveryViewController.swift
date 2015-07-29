@@ -124,6 +124,16 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //restrict textfield characters
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let length = count(textField.text.utf16) + count(string.utf16) - range.length
+        
+        return length <= 15
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

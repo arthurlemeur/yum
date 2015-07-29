@@ -15,6 +15,7 @@ pod 'ConvenienceKit'
 pod 'ParseFacebookUtilsV4'
 pod 'Bond'
 pod 'GoogleMaps'
+pod 'SDWebImage'
 
 end
 

@@ -22,7 +22,8 @@ class OrderRequestViewController: UIViewController {
     @IBOutlet weak var reject: UIButton!
     var order : Order?
     var orders: [Order] = []
-    
+    var delivery: Delivery?
+
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
         if let order = order {
@@ -31,39 +32,39 @@ class OrderRequestViewController: UIViewController {
             println(order.accepted)
             order.saveInBackground()
             //send a push notification that the order is accepted
-//            PFGeoPoint.geoPointForCurrentLocationInBackground {
-//                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-//                self.delivery.location = geoPoint
-//                self.delivery.saveInBackgroundWithBlock {
-//                    (success: Bool, error: NSError?) -> Void in
-//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-//                    if (success) {
-//                        //self.navigationController?.popViewControllerAnimated(true)
-//                        // set up notifications
-//                        if let deliverer = self.deliery.user, let deliveryID = self.delivery.objectId, let deliverer = self.delivery?.user, pushQuery = PFInstallation.query(), username = deliverer.username {
-//                            pushQuery.whereKey("user", equalTo: deliverer)
-//                            
-//                            let data = [
-//                                "alert" : "\(username) has accepted your order!",
-//                                "deliveryID" : deliveryID
-//                            ]
-//                            // Send push notification to query
-//                            let push = PFPush()
-//                            push.setQuery(pushQuery) // Set our Installation query
-//                            push.setData(data)
-//                            //                        push.setMessage("\(username) wants food!")
-//                            push.sendPushInBackground()
-//                        }
-//                        
-//                        self.performSegueWithIdentifier("orderAccepted", sender: nil)
-//                        
-//                        // The object has been saved.
-//                    } else {
-//                        // There was a problem, check error.description
-//                    }
-//                }
-//                
-//            }
+            PFGeoPoint.geoPointForCurrentLocationInBackground {
+                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                self.delivery?.location = geoPoint
+                self.delivery?.saveInBackgroundWithBlock {
+                    (success: Bool, error: NSError?) -> Void in
+                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                    if (success) {
+                        //self.navigationController?.popViewControllerAnimated(true)
+                        // set up notifications
+                        if let deliverer = self.delivery?.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
+                            pushQuery.whereKey("user", equalTo: deliverer)
+                            
+                            let data = [
+                                "alert" : "\(username) has accepted your order!",
+                                "deliveryID" : deliveryID
+                            ]
+                            // Send push notification to query
+                            let push = PFPush()
+                            push.setQuery(pushQuery) // Set our Installation query
+                            push.setData(data)
+                            //                        push.setMessage("\(username) wants food!")
+                            push.sendPushInBackground()
+                        }
+                        
+                        self.performSegueWithIdentifier("orderAccepted", sender: nil)
+                        
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                }
+                
+            }
         }
         performSegueWithIdentifier("goToDelivery", sender: nil)
 
@@ -72,40 +73,30 @@ class OrderRequestViewController: UIViewController {
     @IBAction func rejectOrder(sender: AnyObject) {
         if let order = order {
             order.accepted = false
-            order.saveInBackground()
-//            PFGeoPoint.geoPointForCurrentLocationInBackground {
-//                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-//                self.delivery.location = geoPoint
-//                self.delivery.saveInBackgroundWithBlock {
-//                    (success: Bool, error: NSError?) -> Void in
-//                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-//                    if (success) {
-//                        //self.navigationController?.popViewControllerAnimated(true)
-//                        // set up notifications
-//                        if let deliverer = self.deliery.user, let deliveryID = self.delivery.objectId, let deliverer = self.delivery?.user, pushQuery = PFInstallation.query(), username = deliverer.username {
-//                            pushQuery.whereKey("user", equalTo: deliverer)
-//                            
-//                            let data = [
-//                                "alert" : "\(username) has rejected your order :(",
-//                                "deliveryID" : deliveryID
-//                            ]
-//                            // Send push notification to query
-//                            let push = PFPush()
-//                            push.setQuery(pushQuery) // Set our Installation query
-//                            push.setData(data)
-//                            //                        push.setMessage("\(username) wants food!")
-//                            push.sendPushInBackground()
-//                        }
-//                        
-//                        self.performSegueWithIdentifier("orderRejected", sender: nil)
-//                        
-//                        // The object has been saved.
-//                    } else {
-//                        // There was a problem, check error.description
-//                    }
-//                }
-//                
-//            }
+           order.saveInBackground()
+            
+                        //self.navigationController?.popViewControllerAnimated(true)
+                        // set up notifications
+            if let deliverer = self.delivery?.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
+                pushQuery.whereKey("user", equalTo: deliverer)
+
+                            
+                            let data = [
+                                "alert" : "\(username) has rejected your order :(",
+                                "deliveryID" : deliveryID
+                            ]
+                            // Send push notification to query
+                            let push = PFPush()
+                            push.setQuery(pushQuery) // Set our Installation query
+                            push.setData(data)
+                            //                        push.setMessage("\(username) wants food!")
+                            push.sendPushInBackground()
+                        }
+                        
+                        self.performSegueWithIdentifier("orderRejected", sender: nil)
+                        
+                        // The object has been saved.
+
         }
         performSegueWithIdentifier("goToDelivery", sender: nil)
 
