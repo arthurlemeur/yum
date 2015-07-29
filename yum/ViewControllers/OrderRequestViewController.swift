@@ -26,7 +26,7 @@ class OrderRequestViewController: UIViewController {
 
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
-       if let order = order {
+        if let order = order {
             println(order.objectId)
             order.accepted = true
             println(order.accepted)

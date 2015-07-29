@@ -129,7 +129,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
             enterOrder.resignFirstResponder()
             return false
         }
-        let descriptionCharLimit = 200
+        let descriptionCharLimit = 400
         return (count(textView.text) + count(text) - range.length) <= descriptionCharLimit
     }
     
