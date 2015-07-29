@@ -21,6 +21,11 @@ class OrderTableViewCell: UITableViewCell {
             timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
             endTime.text = formatter.stringFromDate(delivery!.endTime)
           //  picture.
+            
+            if let urlString = delivery?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+                // Add placeholder later
+                picture.sd_setImageWithURL(url, placeholderImage: nil)
+            }
         }
     }
     

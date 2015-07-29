@@ -12,7 +12,7 @@ import Parse
 import ParseUI
 
 class OrderRequestViewController: UIViewController {
-
+    
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var username2: UILabel!
     @IBOutlet weak var username3: UILabel!
@@ -23,7 +23,7 @@ class OrderRequestViewController: UIViewController {
     var order : Order?
     var orders: [Order] = []
     var delivery: Delivery?
-
+    
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
         if let order = order, let delivery = order.deliveryInfo {
@@ -67,46 +67,45 @@ class OrderRequestViewController: UIViewController {
                 
             }
         }
-
+        
     }
     
     @IBAction func rejectOrder(sender: AnyObject) {
         if let order = order {
             order.accepted = false
-           order.saveInBackground()
+            order.saveInBackground()
             
-                        //self.navigationController?.popViewControllerAnimated(true)
-                        // set up notifications
-            if let deliverer = self.delivery?.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
+            //self.navigationController?.popViewControllerAnimated(true)
+            // set up notifications
+            if let deliverer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
                 pushQuery.whereKey("user", equalTo: deliverer)
-
-                            
-                            let data = [
-                                "alert" : "\(username) has rejected your order :(",
-                                "deliveryID" : deliveryID
-                            ]
-                            // Send push notification to query
-                            let push = PFPush()
-                            push.setQuery(pushQuery) // Set our Installation query
-                            push.setData(data)
-                            //                        push.setMessage("\(username) wants food!")
-                            push.sendPushInBackground()
-                        }
-                        
-                        self.performSegueWithIdentifier("orderRejected", sender: nil)
-                        
-                        // The object has been saved.
-
+                
+                
+                let data = [
+                    "alert" : "\(username) has rejected your order :(",
+                    "deliveryID" : deliveryID
+                ]
+                // Send push notification to query
+                let push = PFPush()
+                push.setQuery(pushQuery) // Set our Installation query
+                push.setData(data)
+                //                        push.setMessage("\(username) wants food!")
+                push.sendPushInBackground()
+            }
+            
+            self.performSegueWithIdentifier("goToDelivery", sender: nil)
+            
+            // The object has been saved.
+            
         }
-        performSegueWithIdentifier("goToDelivery", sender: nil)
-
+        
         //send a push notification that the order is rejected
-
+        
     }
     
-
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -132,21 +131,21 @@ class OrderRequestViewController: UIViewController {
         annotation.title = "Order Location"
         annotation.subtitle = "London"
         mapView.addAnnotation(annotation)
-
+        
         // Do any additional setup after loading the view.
     }
     
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "goToDelivery" {
@@ -155,6 +154,6 @@ class OrderRequestViewController: UIViewController {
             }
         }
     }
-
-
+    
+    
 }
