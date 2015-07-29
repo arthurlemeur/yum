@@ -26,7 +26,8 @@ class PickupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+            username.text = delivery.user?.username
+    
         // Do any additional setup after loading the view.
     }
 

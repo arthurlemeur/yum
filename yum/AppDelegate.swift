@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var homeVC : UINavigationController?
     var parseLoginHelper: ParseLoginHelper!
     
+
+    
     override init() {
         super.init()
         

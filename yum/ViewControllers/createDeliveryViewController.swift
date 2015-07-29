@@ -30,7 +30,6 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField! = nil
     @IBOutlet weak var deliveryFee: UISegmentedControl!
     var deliveryFeeInDollars = 0
-    @IBOutlet weak var deliveryFeeLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -41,16 +40,12 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         switch deliveryFee.selectedSegmentIndex
         {
         case 0:
-            deliveryFeeLabel.text = "";
             deliveryFeeInDollars = 0
         case 1:
-            deliveryFeeLabel.text = "";
             deliveryFeeInDollars = 1
         case 2:
-            deliveryFeeLabel.text = ""
             deliveryFeeInDollars = 2
         case 3:
-            deliveryFeeLabel.text = ""
             deliveryFeeInDollars = 3
         default:
             break;

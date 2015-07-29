@@ -109,6 +109,7 @@ class DeliveryCreatedViewController: UIViewController {
         // 4
         //        ordersFromThisUser?.whereKeyExists("accepted")
         ordersFromThisUser?.whereKey("accepted", equalTo: true)
+        ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
         
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
         // 5
