@@ -26,7 +26,8 @@ class OrderRequestViewController: UIViewController {
 
     @IBAction func acceptOrder(sender: AnyObject) {
         //fetch PFObject order (segue for example)
-        if let order = order {
+        if let order = order, let delivery = order.deliveryInfo {
+            self.delivery = delivery
             println(order.objectId)
             order.accepted = true
             println(order.accepted)
@@ -41,7 +42,7 @@ class OrderRequestViewController: UIViewController {
                     if (success) {
                         //self.navigationController?.popViewControllerAnimated(true)
                         // set up notifications
-                        if let deliverer = self.delivery?.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
+                        if let deliverer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
                             pushQuery.whereKey("user", equalTo: deliverer)
                             
                             let data = [
@@ -56,7 +57,7 @@ class OrderRequestViewController: UIViewController {
                             push.sendPushInBackground()
                         }
                         
-                        self.performSegueWithIdentifier("orderAccepted", sender: nil)
+                        self.performSegueWithIdentifier("goToDelivery", sender: nil)
                         
                         // The object has been saved.
                     } else {
@@ -66,7 +67,6 @@ class OrderRequestViewController: UIViewController {
                 
             }
         }
-        performSegueWithIdentifier("goToDelivery", sender: nil)
 
     }
     
