@@ -235,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //            println(order.objectId)
             
             //QUERY for users
-            let query = PFQuery(className: "Order")
+            let query = PFQuery(className: "Delivery")
             query.includeKey("user")
             query.includeKey("deliveryInfo")
             query.includeKey("deliveryInfo.user")

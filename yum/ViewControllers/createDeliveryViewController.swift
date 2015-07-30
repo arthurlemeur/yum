@@ -117,7 +117,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
         var strDate = dateFormatter.stringFromDate(delivery.endTime)
-        dateLabel.text = strDate
+        dateLabel.text =  "finish delivery at \(strDate)"
         
         
     }
