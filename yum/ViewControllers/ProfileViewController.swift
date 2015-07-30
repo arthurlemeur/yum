@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var signOut: UIButton!
     
+    @IBOutlet weak var picture: UIImageView!
     @IBAction func signOut(sender: AnyObject) {
         
         let alertController = UIAlertController(title: "Sign out of your account?", message: "You will not be will have to login again", preferredStyle: .Alert)
@@ -65,7 +66,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         username.text = PFUser.currentUser()?.username
-        
+        if let urlString = PFUser.currentUser()?.valueForKey("photoLarge") as? String, url = NSURL(string: urlString) {
+            // Add placeholder later
+            picture.sd_setImageWithURL(url, placeholderImage: nil)
+        }
+
         
         // Do any additional setup after loading the view.
     }

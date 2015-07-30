@@ -20,8 +20,9 @@ class OrderTableViewCell: UITableViewCell {
             formatter.timeStyle = NSDateFormatterStyle.ShortStyle
             timePicker.text = formatter.stringFromDate(delivery!.deliveryStartTime)
             endTime.text = formatter.stringFromDate(delivery!.endTime)
-          //  picture.
-            
+           picture.layer.masksToBounds = false
+            picture.layer.cornerRadius = picture.frame.height/2
+            picture.clipsToBounds = true
             if let urlString = delivery?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
                 // Add placeholder later
                 picture.sd_setImageWithURL(url, placeholderImage: nil)
@@ -35,6 +36,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var picture: UIImageView!
+    
     
 
    

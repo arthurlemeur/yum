@@ -60,6 +60,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         delivery.deliveryStartTime = datePicker.date
         delivery.restaurant = textField.text
         delivery.user = .currentUser()
+
         
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
@@ -79,7 +80,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
-    
+
     
     // hides keyboard after pressing return
     
@@ -101,6 +102,8 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         datePickerChanged(datePicker)
+        datePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
+
         
         
         // Do any additional setup after loading the view.
