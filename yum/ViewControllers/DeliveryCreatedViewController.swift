@@ -104,7 +104,6 @@ class DeliveryCreatedViewController: UIViewController {
     func refreshQuery() {
         // 3
         let ordersFromThisUser = Order.query()
-        let deliveriesFromThisUser = Delivery.query()
         
         //        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
         
@@ -112,7 +111,7 @@ class DeliveryCreatedViewController: UIViewController {
         //        ordersFromThisUser?.whereKeyExists("accepted")
         ordersFromThisUser?.whereKey("accepted", equalTo: true)
         ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
-        deliveriesFromThisUser?.whereKey("completed", notEqualTo: true)
+        ordersFromThisUser?.whereKey("completed", notEqualTo: true)
         
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
         // 5

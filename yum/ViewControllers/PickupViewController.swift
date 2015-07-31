@@ -30,11 +30,10 @@ class PickupViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
         //event handler with closure
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
-            let fields = alert.textFields as! [UITextField];
-                if let order = self.order, let delivery = order.deliveryInfo {
-                    self.order = order
-                    delivery.completed = true
-                    delivery.saveInBackground()
+                if let order = self.order {
+//                    self.order = order
+                    order.completed = true
+                    order.saveInBackground()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 }
         }));

@@ -228,6 +228,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
                     deliveryVC.delivery = order.deliveryInfo!
+                    deliveryVC.order = order
+
                     if let vc = self.window?.rootViewController as? UINavigationController {
                         vc.pushViewController(deliveryVC, animated: true)
                     }

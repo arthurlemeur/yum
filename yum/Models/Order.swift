@@ -20,7 +20,7 @@ class Order : PFObject, PFSubclassing {
     @NSManaged var orderDetail: String
     @NSManaged var deliveryInfo: Delivery?
     @NSManaged var accepted: Bool
-
+    @NSManaged var completed: Bool
     
     
     

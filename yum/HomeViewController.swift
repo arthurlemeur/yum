@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     var selectedDelivery : Delivery?
     
     var deliveries: [Delivery] = []
+    var order : Order?
     
     override func viewDidLoad() {
         super.viewDidLoad()

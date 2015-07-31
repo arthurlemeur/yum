@@ -55,6 +55,15 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     // loading in background
     
     func createDelivery () {
+        
+        let acl = PFACL()
+//        acl.setWriteAccess(true, forUser: PFUser.currentUser()!)
+//        acl.setWriteAccess(true, forUser: Order!.user!)
+        //        acl.setReadAccess(true, forUser: PFUser.currentUser())
+        acl.setPublicReadAccess(true)
+
+        acl.setPublicWriteAccess(true)
+        delivery.ACL = acl
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         delivery.deliveryFee = deliveryFeeInDollars
         delivery.deliveryStartTime = datePicker.date
