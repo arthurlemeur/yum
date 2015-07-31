@@ -17,7 +17,10 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
         UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
      self.navigationBar.translucent = false
         if let font = UIFont(name: "Avenir Next", size: 34) {
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font];
+            [NSForegroundColorAttributeName: UIColor.whiteColor()]
         }
+
+
     }
 }

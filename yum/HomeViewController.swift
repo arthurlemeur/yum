@@ -12,6 +12,7 @@ import Parse
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var current: UILabel!
     
     var delivery = Delivery()
 
@@ -23,7 +24,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.addSubview(self.refreshControl)
-
+        current.text = "Current Deliveries"
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source

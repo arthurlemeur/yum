@@ -36,6 +36,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var go: UIImageView!
     
     
 
