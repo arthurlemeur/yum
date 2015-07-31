@@ -69,7 +69,11 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         delivery.deliveryStartTime = datePicker.date
         delivery.restaurant = textField.text
         delivery.user = .currentUser()
-
+        delivery.expiration = NSCalendar.currentCalendar().dateByAddingUnit(
+            .CalendarUnitHour,
+            value: 1,
+            toDate: datePicker.date,
+            options: NSCalendarOptions(0))!
         
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in

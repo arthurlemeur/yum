@@ -21,6 +21,7 @@ class Delivery : PFObject, PFSubclassing {
     @NSManaged var location: PFGeoPoint?
     @NSManaged var fbID: String
     @NSManaged var completed: Bool
+    @NSManaged var expiration: NSDate
 
 
     

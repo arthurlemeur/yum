@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var current: UILabel!
     
     var delivery = Delivery()
-
+    
     var selectedDelivery : Delivery?
     
     var deliveries: [Delivery] = []
@@ -25,14 +25,36 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.addSubview(self.refreshControl)
         current.text = "Current Deliveries"
+        
     }
+    
+    func checkForCurrentDelivery() {
+        let query = Delivery.query()!
+        
+        query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        // 5
+        query.includeKey("user")
+        // 6
+        query.orderByDescending("createdAt")
+        
+        // 7
+        
+        query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
+            if let delivery = object as? Delivery {
+                self.performSegueWithIdentifier("showCurrentDelivery", sender: delivery)
+            }
+        }
+        
+    }
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
         
         // Simply adding an object to the data source for this example
         refreshQuery()
-//        self.tableView.reloadData()
+        //        self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -55,11 +77,10 @@ class HomeViewController: UIViewController {
     }
     func refreshQuery() {
         // 3
-        let postsFromThisUser = Delivery.query()
-        //        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        let query = Delivery.query()!
         
-        // 4
-        let query = PFQuery.orQueryWithSubqueries([postsFromThisUser!])
+        query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
+        
         // 5
         query.includeKey("user")
         // 6
@@ -73,17 +94,20 @@ class HomeViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         refreshQuery()
         
-    let install = PFInstallation.currentInstallation()
+        let install = PFInstallation.currentInstallation()
         
-//        let currentInstallation = PFInstallation.currentInstallation()
-//        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
-//        currentInstallation.saveInBackground()
-
+        checkForCurrentDelivery()
+        
+        //        let currentInstallation = PFInstallation.currentInstallation()
+        //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
+        //        currentInstallation.saveInBackground()
+        
         
     }
     
@@ -100,11 +124,15 @@ class HomeViewController: UIViewController {
             }
         }
         else if segue.identifier == "profileSegue" {
-                if let vc2 = segue.destinationViewController as? ProfileViewController {
-                    vc2.delivery = delivery
-                }
+            if let vc2 = segue.destinationViewController as? ProfileViewController {
+                vc2.delivery = delivery
+            }
+        } else if segue.identifier == "showCurrentDelivery" {
+            if let vc = segue.destinationViewController as? DeliveryCreatedViewController, delivery = sender as? Delivery {
+                vc.delivery = delivery
             }
         }
+    }
     
     
     /*

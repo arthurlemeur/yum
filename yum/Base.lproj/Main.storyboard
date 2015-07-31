@@ -259,6 +259,7 @@
                         <outlet property="current" destination="9AG-AF-Fa9" id="9Cf-P6-74c"/>
                         <outlet property="tableView" destination="H1S-5u-LOq" id="6ya-OB-fS9"/>
                         <segue destination="4CA-sf-Xui" kind="show" identifier="showOrderRequest" id="nK1-Kc-Ho1"/>
+                        <segue destination="6WG-1J-dRG" kind="show" identifier="showCurrentDelivery" id="G9V-Iq-8aB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emE-NR-7Dx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1058,6 +1059,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="15U-ol-Hkf"/>
-        <segue reference="Gre-SM-eRV"/>
+        <segue reference="KgA-BH-Ik2"/>
     </inferredMetricsTieBreakers>
 </document>
