@@ -17,6 +17,7 @@ class CurrentCustomerViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var messenger: UIButton!
     
+    @IBOutlet weak var picture: UIImageView!
     @IBAction func facebookMessenger(sender: AnyObject) {
         if let fbid = order?.user?.valueForKey("fbid") as? String {
             println(fbid)
@@ -39,6 +40,13 @@ class CurrentCustomerViewController: UIViewController {
         
         username.text = order?.user?.username
         customerOrder.text = order?.orderDetail
+        picture.layer.masksToBounds = false
+        picture.layer.cornerRadius = picture.frame.height/2
+        picture.clipsToBounds = true
+        if let urlString = order?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+            // Add placeholder later
+            picture.sd_setImageWithURL(url, placeholderImage: nil)
+        }
         // 1
         //        var geoPoint : PFGeoPoint?
         let location = CLLocationCoordinate2D(

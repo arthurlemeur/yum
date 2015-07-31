@@ -22,6 +22,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var deliveryFee: UILabel!
     @IBOutlet weak var enterOrder: UITextView!
+    @IBOutlet weak var picture: UIImageView!
     
     
     @IBAction func makeOrder(sender: AnyObject) {
@@ -59,6 +60,13 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         placeholderLabel.frame.origin = CGPointMake(5, enterOrder.font.pointSize / 2)
         placeholderLabel.textColor = UIColor(white: 0, alpha: 0.3)
         placeholderLabel.hidden = count(enterOrder.text) != 0
+        picture.layer.masksToBounds = false
+        picture.layer.cornerRadius = picture.frame.height/2
+        picture.clipsToBounds = true
+        if let urlString = delivery?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+            // Add placeholder later
+            picture.sd_setImageWithURL(url, placeholderImage: nil)
+        }
     }
     
     func makeOrder () {

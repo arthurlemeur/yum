@@ -20,6 +20,7 @@ class OrderRequestViewController: UIViewController {
     @IBOutlet weak var orderText: UILabel!
     @IBOutlet weak var accept: UIButton!
     @IBOutlet weak var reject: UIButton!
+    @IBOutlet weak var picture: UIImageView!
     var order : Order?
     var orders: [Order] = []
     var delivery: Delivery?
@@ -28,9 +29,7 @@ class OrderRequestViewController: UIViewController {
         //fetch PFObject order (segue for example)
         if let order = order, let delivery = order.deliveryInfo {
             self.delivery = delivery
-            println(order.objectId)
             order.accepted = true
-            println(order.accepted)
             order.saveInBackground()
             //send a push notification that the order is accepted
             PFGeoPoint.geoPointForCurrentLocationInBackground {
@@ -42,12 +41,13 @@ class OrderRequestViewController: UIViewController {
                     if (success) {
                         //self.navigationController?.popViewControllerAnimated(true)
                         // set up notifications
-                        if let deliverer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
-                            pushQuery.whereKey("user", equalTo: deliverer)
+                        if let orderer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = order.deliveryInfo?.user?.username {
+                            pushQuery.whereKey("user", equalTo: orderer)
                             
                             let data = [
                                 "alert" : "\(username) has accepted your order!",
-                                "deliveryID" : deliveryID
+                                "deliveryID" : deliveryID,
+                                "orderID" : order.objectId!,
                             ]
                             // Send push notification to query
                             let push = PFPush()
@@ -71,33 +71,49 @@ class OrderRequestViewController: UIViewController {
     }
     
     @IBAction func rejectOrder(sender: AnyObject) {
-        if let order = order {
+        //fetch PFObject order (segue for example)
+        if let order = order, let delivery = order.deliveryInfo {
+            self.delivery = delivery
             order.accepted = false
             order.saveInBackground()
-            
-            //self.navigationController?.popViewControllerAnimated(true)
-            // set up notifications
-            if let deliverer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = deliverer.username {
-                pushQuery.whereKey("user", equalTo: deliverer)
+            //send a push notification that the order is accepted
+            PFGeoPoint.geoPointForCurrentLocationInBackground {
+                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                self.delivery?.location = geoPoint
+                self.delivery?.saveInBackgroundWithBlock {
+                    (success: Bool, error: NSError?) -> Void in
+                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                    if (success) {
+                        //self.navigationController?.popViewControllerAnimated(true)
+                        // set up notifications
+                        if let orderer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = order.deliveryInfo?.user?.username {
+                            pushQuery.whereKey("user", equalTo: orderer)
+                            
+                            let data = [
+                                "alert" : "\(username) has accepted your order!",
+                                "deliveryID" : deliveryID,
+                                "orderID" : order.objectId!,
+                            ]
+                            // Send push notification to query
+                            let push = PFPush()
+                            push.setQuery(pushQuery) // Set our Installation query
+                            push.setData(data)
+                            //                        push.setMessage("\(username) wants food!")
+                            push.sendPushInBackground()
+                        }
+                        
+                        self.performSegueWithIdentifier("goToDelivery", sender: nil)
+                        
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                }
                 
-                
-                let data = [
-                    "alert" : "\(username) has rejected your order :(",
-                    "deliveryID" : deliveryID
-                ]
-                // Send push notification to query
-                let push = PFPush()
-                push.setQuery(pushQuery) // Set our Installation query
-                push.setData(data)
-                //                        push.setMessage("\(username) wants food!")
-                push.sendPushInBackground()
             }
-            
-            self.performSegueWithIdentifier("goToDelivery", sender: nil)
-            
-            // The object has been saved.
-            
         }
+
+
         
         //send a push notification that the order is rejected
         
@@ -110,10 +126,17 @@ class OrderRequestViewController: UIViewController {
         super.viewDidLoad()
         
         if let order = order {
-            username.text = order.user?.username
+            username.text = "\(order.user?.username) wants food!"
             username2.text = order.user?.username
-            username3.text = order.user?.username
+            username3.text = "\(order.user?.username)'s order:"
             orderText.text = order.orderDetail
+            picture.layer.masksToBounds = false
+            picture.layer.cornerRadius = picture.frame.height/2
+            picture.clipsToBounds = true
+            if let urlString = delivery?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+                // Add placeholder later
+                picture.sd_setImageWithURL(url, placeholderImage: nil)
+            }
         }
         let location = CLLocationCoordinate2D(
             latitude: order?.location?.latitude ?? 0.0,

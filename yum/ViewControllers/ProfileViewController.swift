@@ -66,6 +66,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         username.text = PFUser.currentUser()?.username
+        picture.layer.masksToBounds = false
+        picture.layer.cornerRadius = picture.frame.height/2
+        picture.clipsToBounds = true
         if let urlString = PFUser.currentUser()?.valueForKey("photoLarge") as? String, url = NSURL(string: urlString) {
             // Add placeholder later
             picture.sd_setImageWithURL(url, placeholderImage: nil)

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var homeVC : UINavigationController?
     var parseLoginHelper: ParseLoginHelper!
     
-
+    
     
     override init() {
         super.init()
@@ -124,53 +124,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if let orderID = userInfo["orderID"] as? String {
                 //            println(order.objectId)
-                let order = PFObject(withoutDataWithClassName: "Order", objectId: orderID)
-                order.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+                
+                //QUERY for users
+                let query = PFQuery(className: "Order")
+                query.includeKey("user")
+                query.includeKey("deliveryInfo")
+                query.includeKey("deliveryInfo.user")
+                
+                query.getObjectInBackgroundWithId(orderID, block: { (object, error) -> Void in
                     // Show photo view controller
+                    let order = object as! Order
+                    println(order.user?.objectId)
+                    println(order.deliveryInfo?.user?.objectId)
+                    println(PFUser.currentUser()?.objectId)
                     if error != nil {
-                        //                            completionHandler(UIBackgroundFetchResult.Failed)
-                    } else if PFUser.currentUser() != nil {
-                        //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-                        //                    self.homeVC?.pushViewController(orderVC, animated: false)
-                        //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
-                        //                    self.homeVC?.title = "WOW"
-                        //                   self.homeVC?.navigationBar.hidden = true
-                        let orderVC = self.storyboard!.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-                        self.window?.rootViewController?.presentViewController(orderVC, animated: true, completion: nil)
-                        
-                        
-                        
-                        //                            completionHandler(UIBackgroundFetchResult.NewData)
+             //           completionHandler(UIBackgroundFetchResult.Failed)
+                    } else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
+                        orderVC.order = object as? Order
+                        if let vc = self.window?.rootViewController as? UINavigationController {
+                            vc.pushViewController(orderVC, animated: true)
+                        }
+                 //       completionHandler(UIBackgroundFetchResult.NewData)
+                    } else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == true {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
+                        deliveryVC.delivery = order.deliveryInfo!
+                        if let vc = self.window?.rootViewController as? UINavigationController {
+                            vc.pushViewController(deliveryVC, animated: true)
+                        }
+               //         completionHandler(UIBackgroundFetchResult.NoData)
+                    } else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == false {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let HomeController = storyboard.instantiateViewControllerWithIdentifier("HomeController") as! HomeViewController
+                        HomeController.delivery = order.deliveryInfo!
+                        if let vc = self.window?.rootViewController as? UINavigationController {
+                            vc.pushViewController(HomeController, animated: true)
+                            let alertController = UIAlertController(title: "Order Rejected, Sorry", message:
+                                "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
+                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                            
+                            self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                        }
+                 //       completionHandler(UIBackgroundFetchResult.NoData)
                     } else {
-                        //                            completionHandler(UIBackgroundFetchResult.NoData)
+                   //     completionHandler(UIBackgroundFetchResult.NoData)
                     }
-                }
+                })
+                
+                
             }
-           else if let deliveryID = userInfo["deliveryID"] as? String {
-                //            println(order.objectId)
-                let delivery = PFObject(withoutDataWithClassName: "Delivery", objectId: deliveryID)
-                delivery.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-                    // Show photo view controller
-                    if error != nil {
-                        //                            completionHandler(UIBackgroundFetchResult.Failed)
-                    } else if PFUser.currentUser() != nil {
-                        //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-                        //                    self.homeVC?.pushViewController(orderVC, animated: false)
-                        //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
-                        //                    self.homeVC?.title = "WOW"
-                        //                   self.homeVC?.navigationBar.hidden = true
-                        let deliveryVC = self.storyboard!.instantiateViewControllerWithIdentifier("DeliveryVC") as! UIViewController
-                        self.window?.rootViewController?.presentViewController(deliveryVC, animated: true, completion: nil)
-                        
-                        
-                        
-                        //                            completionHandler(UIBackgroundFetchResult.NewData)
-                    } else {
-                        //                            completionHandler(UIBackgroundFetchResult.NoData)
-                    }
-                }
-            }
-
+            
         }
         
         
@@ -205,100 +210,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             query.getObjectInBackgroundWithId(orderID, block: { (object, error) -> Void in
                 // Show photo view controller
+                let order = object as! Order
+                println(order.user?.objectId)
+                println(order.deliveryInfo?.user?.objectId)
+                println(PFUser.currentUser()?.objectId)
                 if error != nil {
                     completionHandler(UIBackgroundFetchResult.Failed)
-                } else if PFUser.currentUser() != nil {
-                    //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-                    //                    self.homeVC?.pushViewController(orderVC, animated: false)
-                    //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
-                    //                    self.homeVC?.title = "WOW"
-                    //                   self.homeVC?.navigationBar.hidden = true
+                } else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
                     orderVC.order = object as? Order
                     if let vc = self.window?.rootViewController as? UINavigationController {
                         vc.pushViewController(orderVC, animated: true)
                     }
-                    //                        self.window?.rootViewController?.presentViewController(, animated: true, completion: nil)
-                    
-                    
-                    
                     completionHandler(UIBackgroundFetchResult.NewData)
-                } else {
-                    completionHandler(UIBackgroundFetchResult.NoData)
-                }
-            })
-            
-            
-        }
-        else if let deliveryID = userInfo["deliveryID"] as? String {
-            //            println(order.objectId)
-            
-            //QUERY for users
-            let query = PFQuery(className: "Delivery")
-            query.includeKey("user")
-            query.includeKey("deliveryInfo")
-            query.includeKey("deliveryInfo.user")
-            
-            query.getObjectInBackgroundWithId(deliveryID, block: { (object, error) -> Void in
-                // Show photo view controller
-                if error != nil {
-                    completionHandler(UIBackgroundFetchResult.Failed)
-                } else if PFUser.currentUser() != nil {
-                    //                    let orderVC = self.storyboard?.instantiateViewControllerWithIdentifier("OrderVC") as! UIViewController
-                    //                    self.homeVC?.pushViewController(orderVC, animated: false)
-                    //                    self.homeVC?.performSegueWithIdentifier("showOrderRequest", sender: self.homeVC)
-                    //                    self.homeVC?.title = "WOW"
-                    //                   self.homeVC?.navigationBar.hidden = true
+                } else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == true {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
-                    deliveryVC.delivery = (object as? Delivery)!
+                    deliveryVC.delivery = order.deliveryInfo!
                     if let vc = self.window?.rootViewController as? UINavigationController {
                         vc.pushViewController(deliveryVC, animated: true)
                     }
-                    //                        self.window?.rootViewController?.presentViewController(, animated: true, completion: nil)
-                    
-                    
-                    
-                    completionHandler(UIBackgroundFetchResult.NewData)
+                    completionHandler(UIBackgroundFetchResult.NoData)
+                } else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == false {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let HomeController = storyboard.instantiateViewControllerWithIdentifier("HomeController") as! HomeViewController
+                    HomeController.delivery = order.deliveryInfo!
+                    if let vc = self.window?.rootViewController as? UINavigationController {
+                        vc.pushViewController(HomeController, animated: true)
+                        let alertController = UIAlertController(title: "Order Rejected, Sorry", message:
+                            "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                    completionHandler(UIBackgroundFetchResult.NoData)
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
-                
             })
             
             
         }
-                
-        completionHandler(UIBackgroundFetchResult.NoData)
-    }
-        
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-    
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-    
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-    
-    func applicationDidBecomeActive(application: UIApplication) {
-        FBSDKAppEvents.activateApp()
-    }
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-        
-    }
-    
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        completionHandler(UIBackgroundFetchResult.NewData)
     }
     
 }
+
+func applicationWillResignActive(application: UIApplication) {
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+}
+
+func applicationDidEnterBackground(application: UIApplication) {
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+}
+
+func applicationWillEnterForeground(application: UIApplication) {
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+}
+
+func applicationDidBecomeActive(application: UIApplication) {
+    FBSDKAppEvents.activateApp()
+}
+
+func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    
+}
+
+func applicationWillTerminate(application: UIApplication) {
+    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+
 

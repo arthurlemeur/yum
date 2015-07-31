@@ -13,11 +13,20 @@ class CustomerTableViewCell: UITableViewCell {
     // set properties to use in tableview cell
     var order : Order? {
         didSet{
-            username.text = order?.user?.username
+            username.text =
+                order?.user?.username
+            picture.layer.masksToBounds = false
+            picture.layer.cornerRadius = picture.frame.height/2
+            picture.clipsToBounds = true
+            if let urlString = order?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+                // Add placeholder later
+                picture.sd_setImageWithURL(url, placeholderImage: nil)
+            }
         }
     }
     
-    
+    @IBOutlet weak var picture: UIImageView!
+
     @IBOutlet weak var username: UILabel!
 
     
