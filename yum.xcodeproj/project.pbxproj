@@ -36,6 +36,7 @@
 		8E2FBEC01B547A1D00061328 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FBEBF1B547A1D00061328 /* MBProgressHUD.m */; };
 		8E3A848E1B5081FA00581033 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A848D1B5081FA00581033 /* HomeViewController.swift */; };
 		8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */; };
+		8E5D77501B6BFAF200023980 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5D774F1B6BFAF200023980 /* NavigationController.swift */; };
 		8E6FF22D1B582DDC00AAD1EF /* DeliveryCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF22C1B582DDC00AAD1EF /* DeliveryCreatedViewController.swift */; };
 		8E6FF2331B586FFA00AAD1EF /* MakeOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF2321B586FFA00AAD1EF /* MakeOrderViewController.swift */; };
 		8E6FF2351B59955800AAD1EF /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF2341B59955800AAD1EF /* WaitingViewController.swift */; };
@@ -110,6 +111,7 @@
 		8E2FBEBF1B547A1D00061328 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		8E3A848D1B5081FA00581033 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		8E3A848F1B5083D200581033 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderTableViewCell.swift; path = ../OrderTableViewCell.swift; sourceTree = "<group>"; };
+		8E5D774F1B6BFAF200023980 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		8E6FF22C1B582DDC00AAD1EF /* DeliveryCreatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryCreatedViewController.swift; sourceTree = "<group>"; };
 		8E6FF2321B586FFA00AAD1EF /* MakeOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeOrderViewController.swift; sourceTree = "<group>"; };
 		8E6FF2341B59955800AAD1EF /* WaitingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				8E872D261B5FFDFD008FACEF /* CurrentCustomerViewController.swift */,
 				8E872D291B62C3B0008FACEF /* OrderRequestViewController.swift */,
 				8EFB01BA1B66A4B200A60649 /* PickupViewController.swift */,
+				8E5D774F1B6BFAF200023980 /* NavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				8E3A84901B5083D200581033 /* OrderTableViewCell.swift in Sources */,
 				8E1E61A41B507A6F00C45E1A /* AppDelegate.swift in Sources */,
 				8E22D2281B6995870010DD4B /* SDWebImagePrefetcher.m in Sources */,
+				8E5D77501B6BFAF200023980 /* NavigationController.swift in Sources */,
 				8E22D22E1B6995870010DD4B /* UIImageView+WebCache.m in Sources */,
 				8E6FF2351B59955800AAD1EF /* WaitingViewController.swift in Sources */,
 				8E872D2A1B62C3B0008FACEF /* OrderRequestViewController.swift in Sources */,

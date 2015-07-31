@@ -136,6 +136,22 @@ class OrderRequestViewController: UIViewController {
             if let urlString = delivery?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
                 // Add placeholder later
                 picture.sd_setImageWithURL(url, placeholderImage: nil)
+                let location = CLLocationCoordinate2D(
+                    latitude: order.location?.latitude ?? 0.0,
+                    longitude: order.location?.longitude ?? 0.0
+                )
+                // 2
+                let span = MKCoordinateSpanMake(0.05, 0.05)
+                let region = MKCoordinateRegion(center: location, span: span)
+                mapView.setRegion(region, animated: true)
+                
+                // Do any additional setup after loading the view.
+                //3
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = location
+                annotation.title = "Order Location"
+                annotation.subtitle = "London"
+                mapView.addAnnotation(annotation)
             }
         }
         let location = CLLocationCoordinate2D(

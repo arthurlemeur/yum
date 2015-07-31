@@ -995,7 +995,7 @@
         <!--Navigation Controller-->
         <scene sceneID="EU9-Ph-4ue">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="adh-G0-Mj6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="adh-G0-Mj6" customClass="NavigationController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="keT-Zc-aHu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -20,44 +20,46 @@ class PickupViewController: UIViewController {
     
     var delivery = Delivery()
     var order : Order?
-    var selectedDelivery : Delivery?
     
     var deliveries: [Delivery] = []
-    
+
     @IBAction func deleteOrder(sender: AnyObject) {
-        order?.deleteInBackgroundWithBlock { (success, error) -> Void in
-            if success {
-                self.navigationController?.popToRootViewControllerAnimated(true)
-            }
-            
-            //        let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
-                //
-            //        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-            //            println(action)
-            //        }
-            //        alertController.addAction(cancelAction)
-            //
-            //        let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
-            //            delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
-            //                if success {
-            //                    self.navigationController?.popToRootViewControllerAnimated(true)
-            //                }
-            //            }
-            //
-            //        }
-            //        alertController.addAction(destroyAction)
-            //
-            //        self.presentViewController(alertController, animated: true) {
-            //            // ...
-        }
-        
+
+        var alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
+        //no event handler (just close dialog box)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
+        //event handler with closure
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
+            let fields = alert.textFields as! [UITextField];
+                if let order = self.order, let delivery = order.deliveryInfo {
+                    self.order = order
+                    delivery.completed = true
+                    delivery.saveInBackground()
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                }
+        }));
+        presentViewController(alert, animated: true, completion: nil);
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         username.text = delivery.user?.username
+        let location = CLLocationCoordinate2D(
+        latitude: delivery.location?.latitude ?? 0.0,
+        longitude: delivery.location?.longitude ?? 0.0
+        )
+        // 2
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
     
         // Do any additional setup after loading the view.
+        //3
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Order Location"
+        annotation.subtitle = "London"
+        mapView.addAnnotation(annotation)
     }
 
     override func didReceiveMemoryWarning() {

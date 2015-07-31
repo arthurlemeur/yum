@@ -20,6 +20,7 @@ class Delivery : PFObject, PFSubclassing {
     @NSManaged var restaurant: String
     @NSManaged var location: PFGeoPoint?
     @NSManaged var fbID: String
+    @NSManaged var completed: Bool
 
 
     
