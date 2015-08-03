@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("cancelled", notEqualTo: true)
-
+        
         // 5
         query.includeKey("user")
         // 6
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
                     self.performSegueWithIdentifier("showCurrentOrder", sender: order)
                 } else {
                     self.performSegueWithIdentifier("showWaiting", sender: order)
-
+                    
                     
                 }
             }
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
         
     }
     
-
+    
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
@@ -107,23 +107,29 @@ class HomeViewController: UIViewController {
         }
     }
     func refreshQuery() {
-        // 3
-        let query = Delivery.query()!
-        
-        query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
-        query.whereKey("cancelled", notEqualTo: true)
-        
-        // 5
-        query.includeKey("user")
-        // 6
-        query.orderByDescending("createdAt")
-        
-        // 7
-        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
-            // 8
-            self.deliveries = result as? [Delivery] ?? []
-            // 9
-            self.tableView.reloadData()
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (point, error) -> Void in
+            // 3
+            let query = Delivery.query()!
+            
+            query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
+            query.whereKey("cancelled", notEqualTo: true)
+            if let point = point {
+//                query.whereKey("location", nearGeoPoint: point)
+                query.whereKey("location", nearGeoPoint: point, withinMiles: 5)
+            }
+            
+            // 5
+            query.includeKey("user")
+            // 6
+            query.orderByDescending("createdAt")
+            
+            // 7
+            query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+                // 8
+                self.deliveries = result as? [Delivery] ?? []
+                // 9
+                self.tableView.reloadData()
+            }
         }
     }
     
