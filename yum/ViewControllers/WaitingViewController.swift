@@ -15,6 +15,23 @@ class WaitingViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
     
     @IBOutlet weak var deliveryFee: UILabel!
+    @IBOutlet weak var cancelOrder: UIButton!
+//    @IBAction func cancelOrder(sender: AnyObject) {
+//        var alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
+//        //no event handler (just close dialog box)
+//        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
+//        //event handler with closure
+//        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
+//            if let order = self.order {
+//                //                    self.order = order
+//                order.completed = true
+//                order.saveInBackground()
+//                self.navigationController?.popToRootViewControllerAnimated(true)
+//            }
+//        }));
+//        presentViewController(alert, animated: true, completion: nil);
+//    }
+    
 
     var delivery : Delivery? {
         didSet{

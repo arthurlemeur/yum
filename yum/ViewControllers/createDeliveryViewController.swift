@@ -15,15 +15,17 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
-        
-//        if textField.text.isEmpty{
-//            var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-//            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        }
-//        else {
-            createDelivery()
-//        }
+    //   CLLocationManager.locationServicesEnabled() -> Bool {
+            
+            //        if textField.text.isEmpty{
+            //            var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+            //            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+            //            self.presentViewController(alert, animated: true, completion: nil)
+            //        }
+            //        else {
+            self.createDelivery()
+            //        }
+   //     }
     }
     
     
@@ -55,13 +57,12 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     // loading in background
     
     func createDelivery () {
-        
         let acl = PFACL()
-//        acl.setWriteAccess(true, forUser: PFUser.currentUser()!)
-//        acl.setWriteAccess(true, forUser: Order!.user!)
+        //        acl.setWriteAccess(true, forUser: PFUser.currentUser()!)
+        //        acl.setWriteAccess(true, forUser: Order!.user!)
         //        acl.setReadAccess(true, forUser: PFUser.currentUser())
         acl.setPublicReadAccess(true)
-
+        
         acl.setPublicWriteAccess(true)
         delivery.ACL = acl
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -93,7 +94,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
-
+    
     
     // hides keyboard after pressing return
     
@@ -116,7 +117,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         datePickerChanged(datePicker)
         datePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
-
+        
         
         
         // Do any additional setup after loading the view.

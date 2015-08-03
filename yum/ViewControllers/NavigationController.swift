@@ -12,6 +12,7 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationBar.barStyle = UIBarStyle.Black
         self.navigationBar.tintColor = UIColor.whiteColor()
         let navBgImage:UIImage = UIImage(named: "BGPic")!
         UINavigationBar.appearance().setBackgroundImage(navBgImage, forBarMetrics: .Default)
@@ -20,7 +21,5 @@ class NavigationController: UINavigationController, UIViewControllerTransitionin
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font];
             [NSForegroundColorAttributeName: UIColor.whiteColor()]
         }
-
-
     }
 }

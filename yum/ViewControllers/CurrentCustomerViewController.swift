@@ -17,6 +17,25 @@ class CurrentCustomerViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var messenger: UIButton!
     
+    @IBOutlet weak var deliveryCompleted: UIButton!
+
+    @IBAction func deliveryCompleted(sender: AnyObject) {
+        var alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
+        //no event handler (just close dialog box)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
+        //event handler with closure
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
+            if let order = self.order {
+                //                    self.order = order
+                order.completed = true
+                order.saveInBackground()
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+        }));
+        presentViewController(alert, animated: true, completion: nil);
+        
+    }
+    
     @IBOutlet weak var picture: UIImageView!
     @IBAction func facebookMessenger(sender: AnyObject) {
         if let fbid = order?.user?.valueForKey("fbid") as? String {
