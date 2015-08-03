@@ -110,7 +110,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             loginViewController.fields = .Facebook
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
-            
             startViewController = loginViewController
         }
         
@@ -184,6 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     }
+    
     
     // gets called before user is logged in
     

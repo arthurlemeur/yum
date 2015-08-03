@@ -52,7 +52,9 @@ class DeliveryCreatedViewController: UIViewController {
     // delete delivery
     @IBAction func deleteDelivery(sender: AnyObject) {
         
-        delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
+        
+        delivery?.cancelled = true
+        delivery?.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }

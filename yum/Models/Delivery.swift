@@ -22,6 +22,7 @@ class Delivery : PFObject, PFSubclassing {
     @NSManaged var fbID: String
     @NSManaged var completed: Bool
     @NSManaged var expiration: NSDate
+    @NSManaged var cancelled: Bool
 
 
     

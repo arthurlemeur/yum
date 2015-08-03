@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     var selectedDelivery : Delivery?
     
     var deliveries: [Delivery] = []
-    var order : Order?
+    var order = Order()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,8 @@ class HomeViewController: UIViewController {
         
         query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
         query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("cancelled", notEqualTo: true)
+
         // 5
         query.includeKey("user")
         // 6
@@ -47,6 +49,35 @@ class HomeViewController: UIViewController {
         }
         
     }
+    
+    func checkForOrderRequest() {
+        let query = Order.query()!
+        
+        query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("deliveryInfo.cancelled", notEqualTo: true)
+        
+        // 5
+        query.includeKey("deliveryInfo")
+        query.includeKey("user")
+        // 6
+        
+        // 7
+        
+        query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
+            if let order = object as? Order {
+                if order.accepted {
+                    self.performSegueWithIdentifier("showCurrentOrder", sender: order)
+                } else {
+                    self.performSegueWithIdentifier("showWaiting", sender: order)
+
+                    
+                }
+            }
+        }
+        
+    }
+    
+
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
@@ -80,6 +111,7 @@ class HomeViewController: UIViewController {
         let query = Delivery.query()!
         
         query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
+        query.whereKey("cancelled", notEqualTo: true)
         
         // 5
         query.includeKey("user")
@@ -103,6 +135,7 @@ class HomeViewController: UIViewController {
         let install = PFInstallation.currentInstallation()
         
         checkForCurrentDelivery()
+        checkForOrderRequest()
         
         //        let currentInstallation = PFInstallation.currentInstallation()
         //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
@@ -130,6 +163,16 @@ class HomeViewController: UIViewController {
         } else if segue.identifier == "showCurrentDelivery" {
             if let vc = segue.destinationViewController as? DeliveryCreatedViewController, delivery = sender as? Delivery {
                 vc.delivery = delivery
+            }
+        }
+        else if segue.identifier == "showWaiting" {
+            if let vc = segue.destinationViewController as? WaitingViewController, order = sender as? Order {
+                vc.order = order
+            }
+        }
+        else if segue.identifier == "showCurrentOrder" {
+            if let vc = segue.destinationViewController as? PickupViewController, order = sender as? Order {
+                vc.order = order
             }
         }
     }

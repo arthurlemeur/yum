@@ -9,6 +9,8 @@
 import UIKit
 
 class WaitingViewController: UIViewController {
+    var order = Order()
+
 
     @IBOutlet weak var username: UILabel!
     

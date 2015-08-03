@@ -260,6 +260,8 @@
                         <outlet property="tableView" destination="H1S-5u-LOq" id="6ya-OB-fS9"/>
                         <segue destination="4CA-sf-Xui" kind="show" identifier="showOrderRequest" id="nK1-Kc-Ho1"/>
                         <segue destination="6WG-1J-dRG" kind="show" identifier="showCurrentDelivery" id="G9V-Iq-8aB"/>
+                        <segue destination="RbV-Lo-wd3" kind="show" identifier="showWaiting" id="c0T-3V-Am6"/>
+                        <segue destination="MpD-cg-j2y" kind="show" identifier="showCurrentOrder" id="QQr-Ha-ncH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emE-NR-7Dx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1058,7 +1060,9 @@
         <image name="reject" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="c0T-3V-Am6"/>
         <segue reference="15U-ol-Hkf"/>
-        <segue reference="KgA-BH-Ik2"/>
+        <segue reference="G9V-Iq-8aB"/>
+        <segue reference="QQr-Ha-ncH"/>
     </inferredMetricsTieBreakers>
 </document>
