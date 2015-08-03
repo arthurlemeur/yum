@@ -126,9 +126,9 @@ class OrderRequestViewController: UIViewController {
         super.viewDidLoad()
         
         if let order = order {
-            username.text = "\(order.user?.username) wants food!"
+            username.text = "\(order.user?.username!) wants food!"
             username2.text = order.user?.username
-            username3.text = "\(order.user?.username)'s order:"
+            username3.text = "\(order.user?.username!)'s order:"
             orderText.text = order.orderDetail
             picture.layer.masksToBounds = false
             picture.layer.cornerRadius = picture.frame.height/2
