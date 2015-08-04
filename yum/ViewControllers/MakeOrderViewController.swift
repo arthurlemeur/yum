@@ -26,28 +26,28 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func makeOrder(sender: AnyObject) {
-        if CLLocationManager.locationServicesEnabled() {
+        if enterOrder.text.isEmpty{
+            var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            }
+      
+       else if CLLocationManager.locationServicesEnabled() {
             if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
                 
-                
-                //                    if textField.text.isEmpty{
-                //                        var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-                //                        alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
-                //                        self.presentViewController(alert, animated: true, completion: nil)
-                //                    }
-                //                    else {
                 self.makeOrder()
                 
                 
             }
             else {
-                var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+                var alert = UIAlertController(title: "Please allow location", message: "yum needs your location to pair you with deliveries", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            //   }
         }
+            
     }
+
     
     
 
@@ -87,6 +87,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         order.user = .currentUser()
         order.deliveryInfo = delivery
         order.orderDetail = enterOrder.text
+
         
         //changing read access
         let acl = PFACL()
@@ -100,6 +101,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
             self.order.location = geoPoint
+            self.order.pending = true
             self.order.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)

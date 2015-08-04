@@ -43,7 +43,10 @@ class WaitingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.backBarButtonItem = nil
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
 
 
         // Do any additional setup after loading the view.

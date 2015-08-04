@@ -21,11 +21,19 @@ class CustomerTableViewCell: UITableViewCell {
             if let urlString = order?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
                 // Add placeholder later
                 picture.sd_setImageWithURL(url, placeholderImage: nil)
+                if ((order?.pending = true != nil) != nil) {
+                    pending.text = "pending"
+
+                }
+                else {
+                    pending.text = ""
+                }
             }
         }
     }
     
     @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var pending: UILabel!
 
     @IBOutlet weak var username: UILabel!
 

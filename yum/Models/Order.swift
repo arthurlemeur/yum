@@ -22,7 +22,7 @@ class Order : PFObject, PFSubclassing {
     @NSManaged var accepted: Bool
     @NSManaged var completed: Bool
     @NSManaged var cancelled: Bool
-    
+    @NSManaged var pending: Bool
     
     
     //MARK: PFSubclassing Protocol

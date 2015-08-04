@@ -124,6 +124,10 @@ class OrderRequestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.backBarButtonItem = nil
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
         
         if let order = order {
             username.text = "\(order.user?.username!) wants food!"

@@ -17,6 +17,13 @@ class PickupViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var messenger: UIButton!
     @IBOutlet weak var finish: UIButton!
+    @IBAction func messenger(sender: AnyObject) {
+        if let fbid = delivery.user?.valueForKey("fbid") as? String {
+            println(fbid)
+            let url = NSURL(string: "fb-messenger://user-thread/\(fbid)")
+            UIApplication.sharedApplication().openURL(url!)
+        }
+    }
     
     var delivery = Delivery()
     var order : Order?
@@ -42,6 +49,10 @@ class PickupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.backBarButtonItem = nil
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
         username.text = delivery.user?.username
         let location = CLLocationCoordinate2D(
         latitude: delivery.location?.latitude ?? 0.0,

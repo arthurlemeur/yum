@@ -18,6 +18,8 @@ class DeliveryCreatedViewController: UIViewController {
     
     var selectedOrder : Order?
     
+
+    
     
     
     
@@ -25,11 +27,11 @@ class DeliveryCreatedViewController: UIViewController {
         super.viewDidLoad()
         self.customerTableView.addSubview(self.refreshControl)
  
-// disable back button and behavior 
-//        self.navigationItem.leftBarButtonItem = nil
-//        self.navigationItem.setHidesBackButton(true, animated: false)
-//        self.navigationItem.backBarButtonItem = nil
-//        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
+// disable back button and behavior
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationItem.backBarButtonItem = nil
+        self.navigationItem.setLeftBarButtonItem(nil, animated: false)
         
         if let delivery = delivery {
             username.text = delivery.user?.username
@@ -111,9 +113,12 @@ class DeliveryCreatedViewController: UIViewController {
         
         // 4
         //        ordersFromThisUser?.whereKeyExists("accepted")
-        ordersFromThisUser?.whereKey("accepted", equalTo: true)
+        ordersFromThisUser?.whereKey("accepted", notEqualTo: false)
         ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
-        ordersFromThisUser?.whereKey("completed", notEqualTo: true)
+       ordersFromThisUser?.whereKey("completed", notEqualTo: true)
+       ordersFromThisUser?.whereKey("cancelled", notEqualTo: true)
+        ordersFromThisUser?.whereKey("pending", equalTo: true)
+
         
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
         // 5
@@ -154,7 +159,19 @@ class DeliveryCreatedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "customerView" {
+        
+        if let cell = sender as? UITableViewCell {
+            let indexPath = customerTableView.indexPathForCell(cell)!
+            self.selectedOrder = orders[indexPath.row]
+        }
+        
+        if segue.identifier == "pending" {
+            if let vc = segue.destinationViewController as? OrderRequestViewController, cell = sender as? CustomerTableViewCell {
+                vc.order = cell.order
+            }
+        }
+        
+        else if segue.identifier == "customerView" {
             if let vc = segue.destinationViewController as? CurrentCustomerViewController, cell = sender as? CustomerTableViewCell {
                 //                vc.loadView()
                 

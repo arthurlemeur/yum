@@ -75,13 +75,7 @@ class HomeViewController: UIViewController {
         }
         
     }
-//    func checkForPendingOrder {
-//        let query = Order.query()
-//        query.whereKey("user", equalTo: PFUser.currentUser()!)
-//        query.whereKey(<#key: String#>, equalTo: <#AnyObject#>)
-//        
-//    }
-    
+
     
     
     func handleRefresh(refreshControl: UIRefreshControl) {
@@ -119,7 +113,7 @@ class HomeViewController: UIViewController {
             query.whereKey("expiration", greaterThanOrEqualTo: NSDate())
             query.whereKey("cancelled", notEqualTo: true)
             if let point = point {
-//                query.whereKey("location", nearGeoPoint: point)
+                //                query.whereKey("location", nearGeoPoint: point)
                 query.whereKey("location", nearGeoPoint: point, withinMiles: 5)
             }
             
@@ -146,7 +140,8 @@ class HomeViewController: UIViewController {
         let install = PFInstallation.currentInstallation()
         
         checkForCurrentDelivery()
-        checkForOrderRequest()
+//        checkForOrderRequest()
+//        checkForPendingOrder()
         
         //        let currentInstallation = PFInstallation.currentInstallation()
         //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
@@ -183,6 +178,11 @@ class HomeViewController: UIViewController {
         }
         else if segue.identifier == "showCurrentOrder" {
             if let vc = segue.destinationViewController as? PickupViewController, order = sender as? Order {
+                vc.order = order
+            }
+        }
+        else if segue.identifier == "showOrderRequest" {
+            if let vc = segue.destinationViewController as? OrderRequestViewController, order = sender as? Order {
                 vc.order = order
             }
         }

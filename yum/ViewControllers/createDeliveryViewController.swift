@@ -15,27 +15,24 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
-        //        var locationManager = CLLocationManager()
-        if CLLocationManager.locationServicesEnabled() {
+        if textField.text.isEmpty{
+            var alert = UIAlertController(title: "Please input a restaurant name", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+            
+        else if CLLocationManager.locationServicesEnabled() {
             if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
                 
-                
-                //                    if textField.text.isEmpty{
-                //                        var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-                //                        alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
-                //                        self.presentViewController(alert, animated: true, completion: nil)
-                //                    }
-                //                    else {
                 self.createDelivery()
                 
                 
             }
             else {
-                var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+                var alert = UIAlertController(title: "Please allow location", message: "yum needs your location to pair you with deliveries", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            //   }
         }
         
     }

@@ -110,7 +110,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let loginViewController = PFLogInViewController()
             loginViewController.fields = (.Facebook)
             // change this to your own logo later
-            loginViewController.logInView?.logo = nil
+//         loginViewController.logInView!.logo = UIImageView(image: UIImage(named:"yum"))
+//         loginViewController.logInView?.backgroundColor = UIImageView(image: UIImage(named:"BGPic"))
+
+    //    loginViewController.logInView?.
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
             startViewController = loginViewController
@@ -220,15 +223,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println(PFUser.currentUser()?.objectId)
                 if error != nil {
                     completionHandler(UIBackgroundFetchResult.Failed)
-                } else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
-                    orderVC.order = object as? Order
-                    if let vc = self.window?.rootViewController as? UINavigationController {
-                        vc.pushViewController(orderVC, animated: true)
-                    }
-                    completionHandler(UIBackgroundFetchResult.NewData)
-                } else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == true {
+            }
+           //         else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId {
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
+//                    orderVC.order = object as? Order
+//                    if let vc = self.window?.rootViewController as? UINavigationController {
+//                        vc.pushViewController(orderVC, animated: true)
+//                    }
+//                    completionHandler(UIBackgroundFetchResult.NewData)
+//                    
+//                } 
+                    else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == true {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
                     deliveryVC.delivery = order.deliveryInfo!
@@ -250,6 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
                     }
+                    
                     completionHandler(UIBackgroundFetchResult.NoData)
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)
