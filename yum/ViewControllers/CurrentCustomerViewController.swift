@@ -29,7 +29,8 @@ class CurrentCustomerViewController: UIViewController {
                 //                    self.order = order
                 order.completed = true
                 order.saveInBackground()
-                self.navigationController?.popToRootViewControllerAnimated(true)
+//                self.popToRootViewControllerAnimated(true)
+                self.navigationController?.popViewControllerAnimated(true)
             }
         }));
         presentViewController(alert, animated: true, completion: nil);

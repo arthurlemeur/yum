@@ -21,6 +21,7 @@ class Order : PFObject, PFSubclassing {
     @NSManaged var deliveryInfo: Delivery?
     @NSManaged var accepted: Bool
     @NSManaged var completed: Bool
+    @NSManaged var cancelled: Bool
     
     
     

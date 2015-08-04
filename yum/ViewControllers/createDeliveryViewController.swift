@@ -15,7 +15,7 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
-    //   CLLocationManager.locationServicesEnabled() -> Bool {
+        if CLLocationManager.locationServicesEnabled() == true {
             
             //        if textField.text.isEmpty{
             //            var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
@@ -25,7 +25,10 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
             //        else {
             self.createDelivery()
             //        }
-   //     }
+        }
+        else {
+            // show an alert 
+        }
     }
     
     

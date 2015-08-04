@@ -55,7 +55,6 @@ class HomeViewController: UIViewController {
         
         query.whereKey("user", equalTo: PFUser.currentUser()!)
         query.whereKey("deliveryInfo.cancelled", notEqualTo: true)
-        
         // 5
         query.includeKey("deliveryInfo")
         query.includeKey("user")
@@ -76,6 +75,12 @@ class HomeViewController: UIViewController {
         }
         
     }
+//    func checkForPendingOrder {
+//        let query = Order.query()
+//        query.whereKey("user", equalTo: PFUser.currentUser()!)
+//        query.whereKey(<#key: String#>, equalTo: <#AnyObject#>)
+//        
+//    }
     
     
     
