@@ -15,20 +15,29 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
-        if CLLocationManager.locationServicesEnabled() == true {
-            
-            //        if textField.text.isEmpty{
-            //            var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-            //            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
-            //            self.presentViewController(alert, animated: true, completion: nil)
-            //        }
-            //        else {
-            self.createDelivery()
-            //        }
+        //        var locationManager = CLLocationManager()
+        if CLLocationManager.locationServicesEnabled() {
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
+                
+                
+                //                    if textField.text.isEmpty{
+                //                        var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+                //                        alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+                //                        self.presentViewController(alert, animated: true, completion: nil)
+                //                    }
+                //                    else {
+                self.createDelivery()
+                
+                
+            }
+            else {
+                var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            //   }
         }
-        else {
-            // show an alert 
-        }
+        
     }
     
     

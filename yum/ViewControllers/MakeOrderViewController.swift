@@ -26,14 +26,27 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func makeOrder(sender: AnyObject) {
-//        if enterOrder.text.isEmpty{
-//                    var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-//                    alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
-//                    self.presentViewController(alert, animated: true, completion: nil)
-//                }
-//                else {
-        makeOrder()
-//                }
+        if CLLocationManager.locationServicesEnabled() {
+            if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
+                
+                
+                //                    if textField.text.isEmpty{
+                //                        var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+                //                        alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+                //                        self.presentViewController(alert, animated: true, completion: nil)
+                //                    }
+                //                    else {
+                self.makeOrder()
+                
+                
+            }
+            else {
+                var alert = UIAlertController(title: "Hey", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            //   }
+        }
     }
     
     
