@@ -110,11 +110,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let loginViewController = PFLogInViewController()
             loginViewController.fields = (.Facebook)
             // change this to your own logo later
-         loginViewController.logInView!.logo = UIImageView(image: UIImage(named:"yum"))
-//         loginViewController.logInView?.backgroundColor = UIImage(named:"BGPic"))
-            loginViewController.logInView?.backgroundColor = UIColor.clearColor()
-
-    //    loginViewController.logInView?.
+            loginViewController.logInView!.logo = UIImageView(image: UIImage(named:"yum"))
+            //         loginViewController.logInView?.backgroundColor = UIImage(named:"BGPic"))
+            loginViewController.logInView?.backgroundColor = UIColor(red: 78/256, green: 100/256, blue: 127/256, alpha: 1)
+            
+            //    loginViewController.logInView?.
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
             startViewController = loginViewController
@@ -223,8 +223,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println(PFUser.currentUser()?.objectId)
                 if error != nil {
                     completionHandler(UIBackgroundFetchResult.Failed)
-            }
-                    else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId {
+                }
+                else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let orderVC = storyboard.instantiateViewControllerWithIdentifier("OrderVC") as! OrderRequestViewController
                     orderVC.order = object as? Order
@@ -233,8 +233,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     completionHandler(UIBackgroundFetchResult.NewData)
                     
-                } 
-                    else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == true {
+                }
+                else if PFUser.currentUser()?.objectId == order.user?.objectId && order.accepted == true {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
                     deliveryVC.delivery = order.deliveryInfo!
@@ -258,24 +258,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     
                     completionHandler(UIBackgroundFetchResult.NoData)
+                } else if (PFUser.currentUser()?.objectId == order.user?.objectId) && order.deliveryInfo?.cancelled == true {
+                    if let vc = self.window?.rootViewController as? UINavigationController {
+                        let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
+                            "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        vc.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                    
+                    completionHandler(UIBackgroundFetchResult.NoData)
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
-//                else if PFUser.currentUser()?.objectId == order.user?.objectId && delivery.cancelled == true {
-//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let HomeController = storyboard.instantiateViewControllerWithIdentifier("HomeController") as! HomeViewController
-//                    HomeController.delivery = order.deliveryInfo!
-//                    if let vc = self.window?.rootViewController as? UINavigationController {
-//                        vc.pushViewController(HomeController, animated: true)
-//                        let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
-//                            "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
-//                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-//                        
-//                        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
-//                    }
-//                
-//                    completionHandler(UIBackgroundFetchResult.NoData)
-//                }
+               
             })
             
             

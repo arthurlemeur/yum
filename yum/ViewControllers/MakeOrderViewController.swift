@@ -170,7 +170,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "orderCreated" {
             if let vc = segue.destinationViewController as? WaitingViewController {
-                vc.loadView() //if you get a nil value when unwrapping an optional
+//                vc.loadView() //if you get a nil value when unwrapping an optional
                 vc.delivery = delivery
             }
         }

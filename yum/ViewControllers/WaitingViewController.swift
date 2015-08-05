@@ -10,8 +10,8 @@ import UIKit
 
 class WaitingViewController: UIViewController {
     var order = Order()
-
-
+    
+    
     @IBOutlet weak var username: UILabel!
     
     @IBOutlet weak var deliveryFee: UILabel!
@@ -22,38 +22,34 @@ class WaitingViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
         //event handler with closure
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
-                //                    self.order = order
-                self.order.cancelled = true
-                self.order.saveInBackground()
-                self.navigationController?.popToRootViewControllerAnimated(true)
-
+            //                    self.order = order
+            self.order.cancelled = true
+            self.order.saveInBackground()
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            
         }));
         presentViewController(alert, animated: true, completion: nil);
     }
     
-
-    var delivery : Delivery? {
-        didSet{
-            username.text = delivery?.user?.username
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-            deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
-        }
-    }
+    
+    var delivery : Delivery? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.backBarButtonItem = nil
         self.navigationItem.setLeftBarButtonItem(nil, animated: false)
-
-        // Do any additional setup after loading the view.
+        
+        username.text = delivery?.user?.username
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
     }
     
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,20 +58,20 @@ class WaitingViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "orderAccepted" {
             if let vc = segue.destinationViewController as? WaitingViewController {
-                vc.loadView() //if you get a nil value when unwrapping an optional
+//                vc.loadView() //if you get a nil value when unwrapping an optional
                 vc.delivery = delivery
             }
         }
     }
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
