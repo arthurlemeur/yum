@@ -112,8 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // change this to your own logo later
          loginViewController.logInView!.logo = UIImageView(image: UIImage(named:"yum"))
 //         loginViewController.logInView?.backgroundColor = UIImage(named:"BGPic"))
-            loginViewController.logInView?.backgroundColor = UIColor.blueColor()
-
+            loginViewController.logInView?.backgroundColor = UIColor.clearColor()
 
     //    loginViewController.logInView?.
             loginViewController.delegate = parseLoginHelper
@@ -262,19 +261,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
-//                else if PFUser.currentUser()?.objectId == order.user?.objectId && order.canceled == false {
+//                else if PFUser.currentUser()?.objectId == order.user?.objectId && delivery.cancelled == true {
 //                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //                    let HomeController = storyboard.instantiateViewControllerWithIdentifier("HomeController") as! HomeViewController
 //                    HomeController.delivery = order.deliveryInfo!
 //                    if let vc = self.window?.rootViewController as? UINavigationController {
 //                        vc.pushViewController(HomeController, animated: true)
-//                        let alertController = UIAlertController(title: "Order Rejected, Sorry", message:
+//                        let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
 //                            "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
 //                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
 //                        
 //                        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
 //                    }
-//                    
+//                
 //                    completionHandler(UIBackgroundFetchResult.NoData)
 //                }
             })

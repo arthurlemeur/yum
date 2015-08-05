@@ -23,8 +23,18 @@ class PickupViewController: UIViewController {
             let url = NSURL(string: "fb-messenger://user-thread/\(fbid)")
             UIApplication.sharedApplication().openURL(url!)
         }
+        else {
+            let alertController = UIAlertController(title: "Facebook Messenger Missing", message:
+                "Please install facebook messenger", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+
+        }
+        
     }
-    
+    var window: UIWindow?
+
     var delivery = Delivery()
     var order : Order?
     
