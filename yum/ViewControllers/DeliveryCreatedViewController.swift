@@ -113,16 +113,18 @@ class DeliveryCreatedViewController: UIViewController {
         
         // 4
         //        ordersFromThisUser?.whereKeyExists("accepted")
-        ordersFromThisUser?.whereKey("accepted", notEqualTo: false)
+//        ordersFromThisUser?.whereKey("accepted", notEqualTo: false)
         ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
        ordersFromThisUser?.whereKey("completed", notEqualTo: true)
        ordersFromThisUser?.whereKey("cancelled", notEqualTo: true)
-        ordersFromThisUser?.whereKey("pending", equalTo: true)
+//        ordersFromThisUser?.whereKey("pending", equalTo: true)
 
         
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
         // 5
         query.includeKey("user")
+        query.includeKey("deliveryInfo")
+        query.includeKey("deliveryInfo.user")
         // 6
         query.orderByDescending("createdAt")
         
@@ -173,7 +175,6 @@ class DeliveryCreatedViewController: UIViewController {
         
         else if segue.identifier == "customerView" {
             if let vc = segue.destinationViewController as? CurrentCustomerViewController, cell = sender as? CustomerTableViewCell {
-                //                vc.loadView()
                 
                 vc.order = cell.order
             }

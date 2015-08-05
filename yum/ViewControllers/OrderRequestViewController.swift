@@ -30,6 +30,7 @@ class OrderRequestViewController: UIViewController {
         if let order = order, let delivery = order.deliveryInfo {
             self.delivery = delivery
             order.accepted = true
+            order.pending = false
             order.saveInBackground()
             //send a push notification that the order is accepted
             PFGeoPoint.geoPointForCurrentLocationInBackground {

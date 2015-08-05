@@ -21,7 +21,7 @@ class CustomerTableViewCell: UITableViewCell {
             if let urlString = order?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
                 // Add placeholder later
                 picture.sd_setImageWithURL(url, placeholderImage: nil)
-                if ((order?.pending = true != nil) != nil) {
+                if (order?.pending == true) {
                     pending.text = "pending"
 
                 }
