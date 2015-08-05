@@ -14,7 +14,6 @@ import ParseUI
 class OrderRequestViewController: UIViewController {
     
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var username2: UILabel!
     @IBOutlet weak var username3: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var orderText: UILabel!
@@ -132,7 +131,6 @@ class OrderRequestViewController: UIViewController {
         
         if let order = order {
             username.text = "\(order.user!.username!) wants food!"
-            username2.text = order.user!.username!
             username3.text = "\(order.user!.username!)'s order:"
             orderText.text = order.orderDetail
             picture.layer.masksToBounds = false

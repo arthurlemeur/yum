@@ -58,6 +58,24 @@ class DeliveryCreatedViewController: UIViewController {
         delivery?.cancelled = true
         delivery?.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
+                // send notif to all 
+                if let orderer = self.order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = self.order.deliveryInfo?.user?.username {
+                    pushQuery.whereKey("user", equalTo: orderer)
+                    
+                    let data = [
+                        "alert" : "\(username) has accepted your order!",
+                        "deliveryID" : deliveryID,
+                        "orderID" : self.order.objectId!,
+                    ]
+                    // Send push notification to query
+                    let push = PFPush()
+                    push.setQuery(pushQuery) // Set our Installation query
+                    push.setData(data)
+                    //                        push.setMessage("\(username) wants food!")
+                    push.sendPushInBackground()
+                }
+                
+                
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
             
