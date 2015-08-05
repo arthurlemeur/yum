@@ -173,7 +173,7 @@ class DeliveryCreatedViewController: UIViewController {
             }
         }
         
-        else if segue.identifier == "customerView" {
+        else if segue.identifier == "showCurrentCustomer" {
             if let vc = segue.destinationViewController as? CurrentCustomerViewController, cell = sender as? CustomerTableViewCell {
                 
                 vc.order = cell.order
@@ -230,8 +230,14 @@ extension DeliveryCreatedViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        //        selectedOrder = orders[indexPath.row]
+         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
+        if selectedOrder?.pending == true {
+            
+            performSegueWithIdentifier("pending", sender: cell)
+        } else {
+            performSegueWithIdentifier("showCurrentCustomer", sender: cell)
+        }
         
         
     }

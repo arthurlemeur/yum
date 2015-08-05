@@ -920,7 +920,6 @@
                                             <outlet property="pending" destination="VuQ-PT-efj" id="rhd-eD-5sj"/>
                                             <outlet property="picture" destination="JOC-jC-bKP" id="uts-QW-77D"/>
                                             <outlet property="username" destination="e71-nF-QTY" id="umo-R9-kNX"/>
-                                            <segue destination="4CA-sf-Xui" kind="show" identifier="pending" id="KkI-2Y-uTd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -982,6 +981,8 @@
                         <outlet property="restaurant" destination="f5k-at-NRn" id="RZV-Ia-QZa"/>
                         <outlet property="timePicker" destination="zim-Q0-cjC" id="Cjp-iM-h9x"/>
                         <outlet property="username" destination="Oqi-u9-C9t" id="WL4-kR-7t3"/>
+                        <segue destination="4CA-sf-Xui" kind="show" identifier="pending" id="iAa-sG-y0K"/>
+                        <segue destination="nb4-aL-Y5q" kind="show" identifier="showCurrentCustomer" id="XUS-ca-wWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKx-ed-tEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1129,10 +1130,10 @@
         <image name="reject" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KkI-2Y-uTd"/>
-        <segue reference="Gre-SM-eRV"/>
-        <segue reference="QQr-Ha-ncH"/>
+        <segue reference="nK1-Kc-Ho1"/>
         <segue reference="15U-ol-Hkf"/>
+        <segue reference="QQr-Ha-ncH"/>
         <segue reference="c0T-3V-Am6"/>
+        <segue reference="Gre-SM-eRV"/>
     </inferredMetricsTieBreakers>
 </document>
