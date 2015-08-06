@@ -42,7 +42,7 @@ class PickupViewController: UIViewController {
 
     @IBAction func deleteOrder(sender: AnyObject) {
 
-        var alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
+        var alert=UIAlertController(title: "Finish Order?", message: "Your rating will go down if you cancel your order before receiving your food.", preferredStyle: UIAlertControllerStyle.Alert);
         //no event handler (just close dialog box)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
         //event handler with closure
@@ -77,8 +77,8 @@ class PickupViewController: UIViewController {
         //3
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = "Order Location"
-        annotation.subtitle = "London"
+        annotation.title = "Delivery Location"
+        annotation.subtitle = ""
         mapView.addAnnotation(annotation)
     }
 

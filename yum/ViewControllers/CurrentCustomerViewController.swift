@@ -83,7 +83,7 @@ class CurrentCustomerViewController: UIViewController {
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = "Order Location"
-        annotation.subtitle = "London"
+        annotation.subtitle = ""
         mapView.addAnnotation(annotation)
     }
     

@@ -17,7 +17,7 @@ class WaitingViewController: UIViewController {
     @IBOutlet weak var deliveryFee: UILabel!
     @IBOutlet weak var cancelOrder: UIButton!
     @IBAction func cancelOrder(sender: AnyObject) {
-        var alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
+        var alert=UIAlertController(title: "Are you sure you want to cancel your order?", message: "", preferredStyle: UIAlertControllerStyle.Alert);
         //no event handler (just close dialog box)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
         //event handler with closure
