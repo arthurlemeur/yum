@@ -58,15 +58,15 @@ class DeliveryCreatedViewController: UIViewController {
         delivery?.cancelled = true
         delivery?.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
-                if let delivery = self.delivery, query = Order.query(), pushQuery = PFInstallation.query() {
+                if let delivery = self.delivery, query = Order.query(), pushQuery = PFInstallation.query(), deliveryID = self.delivery?.objectId {
                 
                     query.whereKey("deliveryInfo", equalTo: delivery)
                     pushQuery.whereKey("user", matchesKey: "user", inQuery: query)
                    
-                    let data = [
-                        "alert" : "\(username) has accepted your order!",
+                    let data : [NSObject : AnyObject] = [
+                        "alert" : " cancelled your order!",
                         "deliveryID" : deliveryID,
-                        "orderID" : self.order.objectId!,
+                        "isOrder" : true,
                     ]
                     // Send push notification to query
                     let push = PFPush()
@@ -76,15 +76,6 @@ class DeliveryCreatedViewController: UIViewController {
                     push.sendPushInBackground()
                     
                 }
-                
-                // send notif to all 
-                if let orderer = self.order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = self.order.deliveryInfo?.user?.username {
-                    
-                    pushQuery.whereKey("user", equalTo: orderer)
-                    
-                    
-                }
-                
                 
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
@@ -145,7 +136,7 @@ class DeliveryCreatedViewController: UIViewController {
         ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
        ordersFromThisUser?.whereKey("completed", notEqualTo: true)
        ordersFromThisUser?.whereKey("cancelled", notEqualTo: true)
-        ordersFromThisUser?.whereKey("pending", notEqualTo: false)
+//        ordersFromThisUser?.whereKey("pending", notEqualTo: false)
 
         
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])

@@ -270,17 +270,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         completionHandler(UIBackgroundFetchResult.NoData)
                     }
                 }
-                else if (PFUser.currentUser()?.objectId == order.user?.objectId) && order.deliveryInfo?.cancelled == true {
-                    if let vc = self.window?.rootViewController as? UINavigationController {
-                        let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
-                            "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-                        
-                        vc.presentViewController(alertController, animated: true, completion: nil)
-                    }
-                    
-                    completionHandler(UIBackgroundFetchResult.NoData)
-                }
                 else {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
@@ -288,7 +277,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             
             
+        } else if let deliveryID = userInfo["deliveryID"] as? String, isOrder = userInfo["isOrder"] as? Bool where isOrder == true {
+            
+            let deliveryQuery = Delivery.query()!
+            
+            deliveryQuery.getObjectInBackgroundWithId(deliveryID, block: { (delivery, error) -> Void in
+                if let delivery = delivery as? Delivery {
+                    let query = Order.query()!
+                    
+                    
+                    query.whereKey("deliveryInfo", equalTo: delivery)
+                    query.whereKey("user", equalTo: PFUser.currentUser()!)
+                    
+                    query.includeKey("user")
+                    query.includeKey("deliveryInfo")
+                    query.includeKey("deliveryInfo.user")
+                    
+                    query.getFirstObjectInBackgroundWithBlock({ (order, error) -> Void in
+                            if let vc = self.window?.rootViewController as? UINavigationController {
+                                let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
+                                    "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
+                                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                                
+                                
+                                vc.presentViewController(alertController, animated: true, completion: { () -> Void in
+                                    vc.popToRootViewControllerAnimated(true)
+                                })
+                            }
+                            
+                            completionHandler(UIBackgroundFetchResult.NoData)
+                    })
+                }
+            })
+            
         }
+        
         completionHandler(UIBackgroundFetchResult.NewData)
     }
     
