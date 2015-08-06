@@ -16,8 +16,8 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
         if textField.text.isEmpty{
-            var alert = UIAlertController(title: "Please input a restaurant name", message: "This is  one Alert", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Working!!", style: UIAlertActionStyle.Default, handler: nil))
+            var alert = UIAlertController(title: "Please input a restaurant name", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
             

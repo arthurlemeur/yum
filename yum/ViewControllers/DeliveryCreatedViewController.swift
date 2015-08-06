@@ -135,7 +135,7 @@ class DeliveryCreatedViewController: UIViewController {
         ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
        ordersFromThisUser?.whereKey("completed", notEqualTo: true)
        ordersFromThisUser?.whereKey("cancelled", notEqualTo: true)
-//        ordersFromThisUser?.whereKey("pending", equalTo: true)
+        ordersFromThisUser?.whereKey("pending", notEqualTo: false)
 
         
         let query = PFQuery.orQueryWithSubqueries([ordersFromThisUser!])
@@ -249,6 +249,7 @@ extension DeliveryCreatedViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
          let cell = tableView.cellForRowAtIndexPath(indexPath)
+        self.selectedOrder = orders[indexPath.row]
         
         if selectedOrder?.pending == true {
             

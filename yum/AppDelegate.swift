@@ -214,7 +214,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             query.includeKey("user")
             query.includeKey("deliveryInfo")
             query.includeKey("deliveryInfo.user")
-            query.whereKey("cancelled", notEqualTo: true)
             
             query.getObjectInBackgroundWithId(orderID, block: { (object, error) -> Void in
                 let order = object as! Order
