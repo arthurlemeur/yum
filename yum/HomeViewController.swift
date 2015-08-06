@@ -54,28 +54,31 @@ class HomeViewController: UIViewController {
         let query = Order.query()!
         
         query.whereKey("user", equalTo: PFUser.currentUser()!)
-        query.whereKey("deliveryInfo.cancelled", notEqualTo: true)
         // 5
         query.includeKey("deliveryInfo")
+        query.includeKey("deliveryInfo.user")
         query.includeKey("user")
         // 6
         
         // 7
         
         query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
+            
             if let order = object as? Order {
-                if order.accepted {
-                    self.performSegueWithIdentifier("showCurrentOrder", sender: order)
-                } else {
-                    self.performSegueWithIdentifier("showWaiting", sender: order)
-                    
-                    
+                if order.cancelled != true && order.deliveryInfo?.cancelled != true {
+                    if order.accepted {
+                        self.performSegueWithIdentifier("showCurrentOrder", sender: order)
+                    } else {
+                        self.performSegueWithIdentifier("showWaiting", sender: order)
+                        
+                        
+                    }
                 }
             }
         }
         
     }
-
+    
     
     
     func handleRefresh(refreshControl: UIRefreshControl) {

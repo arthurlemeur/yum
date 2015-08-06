@@ -662,7 +662,7 @@
 			baseConfigurationReference = 9451BD43865A82E49EF435BC /* Pods-yum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arthur Le Meur (EHH3APZ2X7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/ParseFacebookUtils",

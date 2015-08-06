@@ -137,7 +137,7 @@ class OrderRequestViewController: UIViewController {
             picture.layer.masksToBounds = false
             picture.layer.cornerRadius = picture.frame.height/2
             picture.clipsToBounds = true
-            if let urlString = delivery?.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+            if let urlString = order.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
                 // Add placeholder later
                 picture.sd_setImageWithURL(url, placeholderImage: nil)
                 let location = CLLocationCoordinate2D(
