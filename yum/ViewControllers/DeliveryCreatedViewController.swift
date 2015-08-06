@@ -58,10 +58,11 @@ class DeliveryCreatedViewController: UIViewController {
         delivery?.cancelled = true
         delivery?.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
-                // send notif to all 
-                if let orderer = self.order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = self.order.deliveryInfo?.user?.username {
-                    pushQuery.whereKey("user", equalTo: orderer)
-                    
+                if let delivery = self.delivery, query = Order.query(), pushQuery = PFInstallation.query() {
+                
+                    query.whereKey("deliveryInfo", equalTo: delivery)
+                    pushQuery.whereKey("user", matchesKey: "user", inQuery: query)
+                   
                     let data = [
                         "alert" : "\(username) has accepted your order!",
                         "deliveryID" : deliveryID,
@@ -73,6 +74,15 @@ class DeliveryCreatedViewController: UIViewController {
                     push.setData(data)
                     //                        push.setMessage("\(username) wants food!")
                     push.sendPushInBackground()
+                    
+                }
+                
+                // send notif to all 
+                if let orderer = self.order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = self.order.deliveryInfo?.user?.username {
+                    
+                    pushQuery.whereKey("user", equalTo: orderer)
+                    
+                    
                 }
                 
                 

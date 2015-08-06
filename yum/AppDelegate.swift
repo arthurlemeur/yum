@@ -270,17 +270,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         completionHandler(UIBackgroundFetchResult.NoData)
                     }
                 }
-                    //                 else if (PFUser.currentUser()?.objectId == order.user?.objectId) && order.deliveryInfo?.cancelled == true {
-                    //                if let vc = self.window?.rootViewController as? UINavigationController {
-                    //                let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
-                    //                "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
-                    //                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-                    //
-                    //                vc.presentViewController(alertController, animated: true, completion: nil)
-                    //                }
-                    //
-                    //                completionHandler(UIBackgroundFetchResult.NoData)
-                    //                }
+                else if (PFUser.currentUser()?.objectId == order.user?.objectId) && order.deliveryInfo?.cancelled == true {
+                    if let vc = self.window?.rootViewController as? UINavigationController {
+                        let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
+                            "please choose a different order", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        vc.presentViewController(alertController, animated: true, completion: nil)
+                    }
+                    
+                    completionHandler(UIBackgroundFetchResult.NoData)
+                }
                 else {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
