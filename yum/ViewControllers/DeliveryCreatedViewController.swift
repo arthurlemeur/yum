@@ -53,53 +53,42 @@ class DeliveryCreatedViewController: UIViewController {
     
     // delete delivery
     @IBAction func deleteDelivery(sender: AnyObject) {
-        
-        
-        delivery?.cancelled = true
-        delivery?.saveInBackgroundWithBlock { (success, error) -> Void in
-            if success {
-                if let delivery = self.delivery, query = Order.query(), pushQuery = PFInstallation.query(), deliveryID = self.delivery?.objectId {
-                
-                    query.whereKey("deliveryInfo", equalTo: delivery)
-                    pushQuery.whereKey("user", matchesKey: "user", inQuery: query)
-                   
-                    let data : [NSObject : AnyObject] = [
-                        "alert" : " cancelled your order!",
-                        "deliveryID" : deliveryID,
-                        "isOrder" : true,
-                    ]
-                    // Send push notification to query
-                    let push = PFPush()
-                    push.setQuery(pushQuery) // Set our Installation query
-                    push.setData(data)
-                    //                        push.setMessage("\(username) wants food!")
-                    push.sendPushInBackground()
+        var alert=UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: UIAlertControllerStyle.Alert);
+        //no event handler (just close dialog box)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
+        //event handler with closure
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
+            self.delivery?.cancelled = true
+            self.delivery?.saveInBackgroundWithBlock { (success, error) -> Void in
+                if success {
+                    if let delivery = self.delivery, query = Order.query(), pushQuery = PFInstallation.query(), deliveryID = self.delivery?.objectId {
+                        
+                        query.whereKey("deliveryInfo", equalTo: delivery)
+                        pushQuery.whereKey("user", matchesKey: "user", inQuery: query)
+                        
+                        let data : [NSObject : AnyObject] = [
+                            "alert" : "Your order has been cancelled, sorry",
+                            "deliveryID" : deliveryID,
+                            "isOrder" : true,
+                        ]
+                        // Send push notification to query
+                        let push = PFPush()
+                        push.setQuery(pushQuery) // Set our Installation query
+                        push.setData(data)
+                        //                        push.setMessage("\(username) wants food!")
+                        push.sendPushInBackground()
+                        
+                    }
                     
+                    self.navigationController?.popToRootViewControllerAnimated(true)
                 }
                 
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                
             }
             
-            //        let alertController = UIAlertController(title: "Are you sure you want to cancel your delivery?", message: "You will lose all your customers", preferredStyle: .Alert)
-            //
-            //        let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-            //            println(action)
-            //        }
-            //        alertController.addAction(cancelAction)
-            //
-            //        let destroyAction = UIAlertAction(title: "Yes", style: .Destructive) { (action) in
-            //            delivery?.deleteInBackgroundWithBlock { (success, error) -> Void in
-            //                if success {
-            //                    self.navigationController?.popToRootViewControllerAnimated(true)
-            //                }
-            //            }
-            //
-            //        }
-            //        alertController.addAction(destroyAction)
-            //
-            //        self.presentViewController(alertController, animated: true) {
-            //            // ...
-        }
+        }));
+        presentViewController(alert, animated: true, completion: nil);
+        
         
     }
     

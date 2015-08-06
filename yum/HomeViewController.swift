@@ -140,8 +140,7 @@ class HomeViewController: UIViewController {
         let install = PFInstallation.currentInstallation()
         
         checkForCurrentDelivery()
-//        checkForOrderRequest()
-//        checkForPendingOrder()
+        checkForOrderRequest()
         
         //        let currentInstallation = PFInstallation.currentInstallation()
         //        currentInstallation.addUniqueObject("Delivery", forKey: "channels")
