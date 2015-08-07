@@ -171,7 +171,7 @@ class MakeOrderViewController: UIViewController, UITextViewDelegate {
         if segue.identifier == "orderCreated" {
             if let vc = segue.destinationViewController as? WaitingViewController {
 //                vc.loadView() //if you get a nil value when unwrapping an optional
-                vc.delivery = delivery
+                vc.delivery = delivery!
             }
         }
     }

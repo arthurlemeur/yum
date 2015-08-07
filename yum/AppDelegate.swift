@@ -332,7 +332,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             
             
-        } else if let deliveryID = userInfo["deliveryID"] as? String, isOrder = userInfo["isOrder"] as? Bool where isOrder == true {
+        } else if let deliveryID = userInfo["deliveryID"] as? String, isOrder = userInfo["isOrder"] as? Bool where isOrder == true  {
             
             let deliveryQuery = Delivery.query()!
             

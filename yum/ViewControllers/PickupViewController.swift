@@ -16,11 +16,12 @@ class PickupViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var messenger: UIButton!
-    @IBOutlet weak var finish: UIButton!
+    @IBOutlet weak var finish: UIButton! // \(fbid) //fb-messenger://user-thread/\(fbid)
     @IBAction func messenger(sender: AnyObject) {
         if let fbid = delivery.user?.valueForKey("fbid") as? String {
             println(fbid)
-            let url = NSURL(string: "fb-messenger://user-thread/\(fbid)")
+            println("fb-messenger://user-thread/\(fbid)")
+            let url = NSURL(string: "fb://profile/\(fbid)")
             UIApplication.sharedApplication().openURL(url!)
         }
         else {

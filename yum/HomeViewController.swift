@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
         query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
             
             if let order = object as? Order {
-                if order.cancelled != true && order.deliveryInfo?.cancelled != true {
+                if order.cancelled != true && order.deliveryInfo?.cancelled != true && order.completed != true {
                     if order.accepted {
                         self.performSegueWithIdentifier("showCurrentOrder", sender: order)
                     } else {
@@ -117,7 +117,7 @@ class HomeViewController: UIViewController {
             query.whereKey("cancelled", notEqualTo: true)
             if let point = point {
                 //                query.whereKey("location", nearGeoPoint: point)
-                query.whereKey("location", nearGeoPoint: point, withinMiles: 5)
+                query.whereKey("location", nearGeoPoint: point, withinMiles: 500)
             }
             
             // 5

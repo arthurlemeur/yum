@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class WaitingViewController: UIViewController {
     var order = Order()
@@ -14,6 +15,7 @@ class WaitingViewController: UIViewController {
     
     @IBOutlet weak var username: UILabel!
     
+    @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var deliveryFee: UILabel!
     @IBOutlet weak var cancelOrder: UIButton!
     @IBAction func cancelOrder(sender: AnyObject) {
@@ -32,7 +34,7 @@ class WaitingViewController: UIViewController {
     }
     
     
-    var delivery : Delivery? 
+    var delivery = Delivery()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +43,17 @@ class WaitingViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.backBarButtonItem = nil
         self.navigationItem.setLeftBarButtonItem(nil, animated: false)
-        
-        username.text = delivery?.user?.username
+        picture.layer.masksToBounds = false
+        picture.layer.cornerRadius = picture.frame.height/2
+        picture.clipsToBounds = true
+        if let urlString = delivery.user?["photoLarge"] as? String, url = NSURL(string: urlString) {
+            // Add placeholder later
+            picture.sd_setImageWithURL(url, placeholderImage: nil)
+        }
+        username.text = delivery.user?.username
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        deliveryFee.text = formatter.stringFromNumber(delivery!.deliveryFee)
+        deliveryFee.text = formatter.stringFromNumber(delivery.deliveryFee)
     }
     
     
