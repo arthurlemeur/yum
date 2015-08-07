@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import ParseUI
 import ParseFacebookUtilsV4
 import GoogleMaps
+import LayerKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,9 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var homeVC : UINavigationController?
     var parseLoginHelper: ParseLoginHelper!
-    
-    
-    
+    var layerClient: LYRClient!
+
     override init() {
         super.init()
         
@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //request facebook ID
                 
                 FBSDKGraphRequest(graphPath: "me", parameters: nil).startWithCompletionHandler({ (connection, result, error) -> Void in
+                    println(result)
                     if let fbid = result["id"] as? String {
                         user.setObject(fbid, forKey: "fbid")
                         user["photoLarge"] = "https://graph.facebook.com/\(fbid)/picture?type=large"

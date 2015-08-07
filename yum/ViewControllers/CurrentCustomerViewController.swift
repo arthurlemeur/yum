@@ -40,8 +40,9 @@ class CurrentCustomerViewController: UIViewController {
     @IBOutlet weak var picture: UIImageView!
     @IBAction func facebookMessenger(sender: AnyObject) {
         if let fbid = order?.user?.valueForKey("fbid") as? String {
-            println(fbid)
-            let url = NSURL(string: "fb-messenger://user-thread/\(fbid)")
+            println(fbid)//10207333931494365
+//            let url = NSURL(string: "fb-messenger://user-thread/\(fbid)")
+            let url = NSURL(string: "https://facebook.com/\(fbid)")
             UIApplication.sharedApplication().openURL(url!)
         }
     }

@@ -64,6 +64,8 @@ class DeliveryCreatedViewController: UIViewController {
                     if let delivery = self.delivery, query = Order.query(), pushQuery = PFInstallation.query(), deliveryID = self.delivery?.objectId {
                         
                         query.whereKey("deliveryInfo", equalTo: delivery)
+                        query.whereKey("cancelled", notEqualTo: true)
+                        query.whereKey("accepted", notEqualTo: false)
                         pushQuery.whereKey("user", matchesKey: "user", inQuery: query)
                         
                         let data : [NSObject : AnyObject] = [

@@ -21,7 +21,7 @@ class PickupViewController: UIViewController {
         if let fbid = delivery.user?.valueForKey("fbid") as? String {
             println(fbid)
             println("fb-messenger://user-thread/\(fbid)")
-            let url = NSURL(string: "fb://profile/\(fbid)")
+            let url = NSURL(string: "https://facebook.com/\(fbid)")
             UIApplication.sharedApplication().openURL(url!)
         }
         else {
