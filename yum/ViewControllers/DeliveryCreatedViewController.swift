@@ -121,7 +121,7 @@ class DeliveryCreatedViewController: UIViewController {
         
         // 4
         //        ordersFromThisUser?.whereKeyExists("accepted")
-//        ordersFromThisUser?.whereKey("accepted", notEqualTo: false)
+       ordersFromThisUser?.whereKey("accepted", notEqualTo: false)
         ordersFromThisUser?.whereKey("deliveryInfo", equalTo: delivery!)
        ordersFromThisUser?.whereKey("completed", notEqualTo: true)
        ordersFromThisUser?.whereKey("cancelled", notEqualTo: true)
