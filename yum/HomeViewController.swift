@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import DZNEmptyDataSet
+
 
 class HomeViewController: UIViewController {
     
@@ -25,8 +27,15 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.addSubview(self.refreshControl)
         current.text = "Current Deliveries"
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+//        self.tableView.emptyDataSetSource = self
+//        self.tableView.emptyDataSetDelegate = self
     }
+    
+//    deinit {
+//        self.tableView.emptyDataSetSource = nil
+//        self.tableView.emptyDataSetDelegate = nil
+//    }
     
     func checkForCurrentDelivery() {
         let query = Delivery.query()!
@@ -54,6 +63,8 @@ class HomeViewController: UIViewController {
         let query = Order.query()!
         
         query.whereKey("user", equalTo: PFUser.currentUser()!)
+        query.whereKey("cancelled", notEqualTo: true)
+        query.whereKey("pending", notEqualTo: false)
         // 5
         query.includeKey("deliveryInfo")
         query.includeKey("deliveryInfo.user")
@@ -68,10 +79,8 @@ class HomeViewController: UIViewController {
                 if order.cancelled != true && order.deliveryInfo?.cancelled != true && order.completed != true {
                     if order.accepted {
                         self.performSegueWithIdentifier("showCurrentOrder", sender: order)
-                    } else {
+                    } else if order.cancelled != true {
                         self.performSegueWithIdentifier("showWaiting", sender: order)
-                        
-                        
                     }
                 }
             }
@@ -191,6 +200,8 @@ class HomeViewController: UIViewController {
     }
     
     
+    
+    
     /*
     // MARK: - Navigation
     
@@ -217,6 +228,8 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 2
         let cell = tableView.dequeueReusableCellWithIdentifier("DeliveryCell") as! OrderTableViewCell
@@ -236,6 +249,17 @@ extension HomeViewController: UITableViewDelegate {
     {
     }
 }
+
+//extension HomeViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+//    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+//        return NSAttributedString(string: "Got Nothin'")
+//    }
+//    
+//    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+//        return NSAttributedString(string: "Sorry about this, I'm just all out of data")
+//    }
+//    
+//}
 
 
 

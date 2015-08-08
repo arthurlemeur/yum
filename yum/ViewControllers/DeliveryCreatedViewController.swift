@@ -26,13 +26,14 @@ class DeliveryCreatedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customerTableView.addSubview(self.refreshControl)
- 
+
 // disable back button and behavior
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationItem.backBarButtonItem = nil
+        //self.navigationItem.backBarButtonItem = nil
         self.navigationItem.setLeftBarButtonItem(nil, animated: false)
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
         if let delivery = delivery {
             username.text = delivery.user?.username
             restaurant.text = delivery.restaurant
@@ -111,9 +112,7 @@ class DeliveryCreatedViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         refreshQuery()
-        
-        
-        
+
     }
     func refreshQuery() {
         // 3

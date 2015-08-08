@@ -26,8 +26,12 @@ class WaitingViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
             //                    self.order = order
             self.order.cancelled = true
-            self.order.saveInBackground()
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.order.pending = false
+            self.order.saveInBackgroundWithBlock({ (success, error) -> Void in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            })
+//            self.order.saveInBackground()
+            
             
         }));
         presentViewController(alert, animated: true, completion: nil);

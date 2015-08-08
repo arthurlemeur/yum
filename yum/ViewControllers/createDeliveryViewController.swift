@@ -128,7 +128,6 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         datePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
         
         
-        
         // Do any additional setup after loading the view.
     }
     

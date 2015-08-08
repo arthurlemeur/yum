@@ -158,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                     }
                     else if PFUser.currentUser()?.objectId == order.user?.objectId {
-                        if order.accepted == true && order.deliveryInfo?.cancelled != true  {
+                        if order.accepted == true && order.deliveryInfo?.cancelled != true && order.cancelled != true {
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let deliveryVC = storyboard.instantiateViewControllerWithIdentifier("DeliveryVC") as! PickupViewController
                             deliveryVC.delivery = order.deliveryInfo!

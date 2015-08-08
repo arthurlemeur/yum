@@ -298,7 +298,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="yum" id="Jhh-dB-alg">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="F13-fa-EbH">
+                        <barButtonItem key="leftBarButtonItem" title=" " style="plain" id="F13-fa-EbH">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pZN-UY-dbx">
                                 <rect key="frame" x="16" y="7" width="82" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -342,7 +342,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-az-29c">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-az-29c">
                                 <rect key="frame" x="176" y="129" width="249" height="117"/>
                                 <color key="backgroundColor" red="0.39498394343308774" green="0.44103336604914356" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -382,14 +382,14 @@
                                     <action selector="makeOrder:" destination="Y1l-zQ-d8U" eventType="touchUpInside" id="c4o-Yf-w3G"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0U5-Ot-fEl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0U5-Ot-fEl">
                                 <rect key="frame" x="240" y="295" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="NcJ-sy-aEB"/>
                                     <constraint firstAttribute="width" constant="120" id="Ub6-nK-Bsf"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-vu-szz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-vu-szz">
                                 <rect key="frame" x="0.0" y="266" width="600" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="9gs-HP-B5u"/>
@@ -398,7 +398,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fk-lY-CqP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fk-lY-CqP">
                                 <rect key="frame" x="0.0" y="51" width="600" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="OP1-bL-Ylu"/>
@@ -858,7 +858,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfL-y4-Mu5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfL-y4-Mu5">
                                 <rect key="frame" x="0.0" y="76" width="600" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="ZsF-DC-IIE"/>
@@ -876,7 +876,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tlr-Sp-wxB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tlr-Sp-wxB">
                                 <rect key="frame" x="210" y="113" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="UkP-0I-n0f"/>
@@ -1514,10 +1514,10 @@
         <image name="reject" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iAa-sG-y0K"/>
-        <segue reference="Gre-SM-eRV"/>
-        <segue reference="JQG-TJ-WYv"/>
-        <segue reference="gF2-p2-UNp"/>
-        <segue reference="WY6-8I-FeH"/>
+        <segue reference="G9V-Iq-8aB"/>
+        <segue reference="c0T-3V-Am6"/>
+        <segue reference="QQr-Ha-ncH"/>
+        <segue reference="nK1-Kc-Ho1"/>
+        <segue reference="15U-ol-Hkf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -58,7 +58,6 @@ class CurrentCustomerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         username.text = order?.user?.username
         customerOrder.text = order?.orderDetail
         picture.layer.masksToBounds = false
