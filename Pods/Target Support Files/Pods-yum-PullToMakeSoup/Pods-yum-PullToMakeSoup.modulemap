@@ -1,0 +1,6 @@
+framework module PullToMakeSoup {
+  umbrella header "Pods-yum-PullToMakeSoup-umbrella.h"
+
+  export *
+  module * { export * }
+}

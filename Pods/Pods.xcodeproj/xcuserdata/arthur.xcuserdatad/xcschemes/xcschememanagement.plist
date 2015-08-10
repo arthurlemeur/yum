@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-yum-PullToMakeSoup.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-yum.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,57 +67,62 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10586FD671951516ADACC4AF</key>
+		<key>021C9D82BF97C2327B34E473</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2983C89FE6666BBCCE533CAB</key>
+		<key>03AC0A4D5D61F027638C9161</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51018B3CC7842197444C8F56</key>
+		<key>16EA103B3AB3C0DDD18AF742</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86F3C0A473C17841BF4B0954</key>
+		<key>282504775EEE1D4B7EE81C82</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A967A778D2E79D1300C6A271</key>
+		<key>461FBD3FB82E8D45613B9EA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB76BE3D03A526F204C854EA</key>
+		<key>4BDB9502C78B38D8F2FDA542</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0DDE2FBF345B7D7C8CE8134</key>
+		<key>502A5424EE4429375DB8F9E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBA87AF08F730C9A01A93B7F</key>
+		<key>5C1CE1DD3CEF05C1FD229683</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0A07A39ED6ABBC762456F1A</key>
+		<key>6B02111DB56929B8562CE9B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D11D5D88340C09F5D3F4F3A5</key>
+		<key>985CF7F9DF61EE761DDC6802</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9D6646557D3FC6434F2DA36</key>
+		<key>D2A5C505CFE18FB72E460DF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF36BD514753626F37ED8A3C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

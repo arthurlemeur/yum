@@ -8,7 +8,8 @@
 
 import UIKit
 import Parse
-import DZNEmptyDataSet
+import PullToMakeSoup
+
 
 
 class HomeViewController: UIViewController {
@@ -16,6 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var current: UILabel!
     
+    @IBOutlet weak var yourLabel: UILabel!
     var delivery = Delivery()
     
     var selectedDelivery : Delivery?
@@ -28,14 +30,15 @@ class HomeViewController: UIViewController {
         self.tableView.addSubview(self.refreshControl)
         current.text = "Current Deliveries"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-//        self.tableView.emptyDataSetSource = self
-//        self.tableView.emptyDataSetDelegate = self
+
+        self.tableView.tableFooterView = UIView()
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadList:", name: "reloadList", object: nil)
+            self.yourLabel.hidden = true;
     }
     
-//    deinit {
-//        self.tableView.emptyDataSetSource = nil
-//        self.tableView.emptyDataSetDelegate = nil
-//    }
+
+    
+
     
     func checkForCurrentDelivery() {
         let query = Delivery.query()!
@@ -88,7 +91,7 @@ class HomeViewController: UIViewController {
         
     }
     
-    
+
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
@@ -126,7 +129,7 @@ class HomeViewController: UIViewController {
             query.whereKey("cancelled", notEqualTo: true)
             if let point = point {
                 //                query.whereKey("location", nearGeoPoint: point)
-                query.whereKey("location", nearGeoPoint: point, withinMiles: 500)
+                query.whereKey("location", nearGeoPoint: point, withinMiles: 10)
             }
             
             // 5
@@ -224,6 +227,22 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 1
+        // If the number of tasks are 0
+        if (deliveries.count == 0) {
+            // Set the background hidden view to show up
+            yourLabel.hidden = false
+            
+            // Disable the edit button
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            
+        } else {
+            // Set the background hidden view to dissapear
+            yourLabel.hidden = true
+            
+            // Enbales the edit button
+            self.navigationItem.rightBarButtonItem?.enabled = true
+        }
+        
         return deliveries.count
     }
     
@@ -250,16 +269,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 }
 
-//extension HomeViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
-//    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-//        return NSAttributedString(string: "Got Nothin'")
-//    }
-//    
-//    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-//        return NSAttributedString(string: "Sorry about this, I'm just all out of data")
-//    }
-//    
-//}
+
 
 
 

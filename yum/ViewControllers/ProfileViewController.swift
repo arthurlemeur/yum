@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var picture: UIImageView!
     @IBAction func signOut(sender: AnyObject) {
         
-        let alertController = UIAlertController(title: "Sign out of your account?", message: "You will not be will have to login again", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Sign out of your account?", message: "You will have to login again", preferredStyle: .Alert)
         
         let cancelAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
             println(action)

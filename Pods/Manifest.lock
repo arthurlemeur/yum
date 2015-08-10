@@ -30,6 +30,7 @@ PODS:
     - Parse (~> 1.7.5)
   - ParseUI (1.1.4):
     - Parse (~> 1.7)
+  - PullToMakeSoup (1.0)
 
 DEPENDENCIES:
   - Bond
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - Parse
   - ParseFacebookUtilsV4
   - ParseUI
+  - PullToMakeSoup (~> 1.0)
 
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
@@ -54,5 +56,6 @@ SPEC CHECKSUMS:
   Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
   ParseFacebookUtilsV4: 3107725c6f2b69e3a03afe9c3aff35d6ee3e9ba5
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
+  PullToMakeSoup: 3c5b771495bb6bd11fdce4ca7bc55aa1166b8ecf
 
 COCOAPODS: 0.37.2

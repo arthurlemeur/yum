@@ -29,46 +29,55 @@ class OrderRequestViewController: UIViewController {
         if let order = order, let delivery = order.deliveryInfo {
             self.delivery = delivery
             delivery.fetchInBackgroundWithBlock({ (delivery, error) -> Void in
-                if let delivery = delivery as? Delivery where delivery.cancelled != true {
-                    order.accepted = true
-                    order.pending = false
-                    order.saveInBackground()
-                    //send a push notification that the order is accepted
-                    PFGeoPoint.geoPointForCurrentLocationInBackground {
-                        (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-                        self.delivery?.location = geoPoint
-                        self.delivery?.saveInBackgroundWithBlock {
-                            (success: Bool, error: NSError?) -> Void in
-                            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-                            if (success) {
-                                //self.navigationController?.popViewControllerAnimated(true)
-                                // set up notifications
-                                if let orderer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = order.deliveryInfo?.user?.username {
-                                    pushQuery.whereKey("user", equalTo: orderer)
+                order.fetchInBackgroundWithBlock({ (order, error) -> Void in
+                    if let delivery = delivery as? Delivery, order = order as? Order where delivery.cancelled != true && order.cancelled != true {
+                        order.accepted = true
+                        order.pending = false
+                        order.saveInBackground()
+                        //send a push notification that the order is accepted
+                        PFGeoPoint.geoPointForCurrentLocationInBackground {
+                            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                            self.delivery?.location = geoPoint
+                            self.delivery?.saveInBackgroundWithBlock {
+                                (success: Bool, error: NSError?) -> Void in
+                                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                                if (success) {
+                                    //self.navigationController?.popViewControllerAnimated(true)
+                                    // set up notifications
+                                    if let orderer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = order.deliveryInfo?.user?.username {
+                                        pushQuery.whereKey("user", equalTo: orderer)
+                                        
+                                        let data = [
+                                            "alert" : "\(username) has accepted your order!",
+                                            "deliveryID" : deliveryID,
+                                            "orderID" : order.objectId!,
+                                        ]
+                                        // Send push notification to query
+                                        let push = PFPush()
+                                        push.setQuery(pushQuery) // Set our Installation query
+                                        push.setData(data)
+                                        //                        push.setMessage("\(username) wants food!")
+                                        push.sendPushInBackground()
+                                    }
                                     
-                                    let data = [
-                                        "alert" : "\(username) has accepted your order!",
-                                        "deliveryID" : deliveryID,
-                                        "orderID" : order.objectId!,
-                                    ]
-                                    // Send push notification to query
-                                    let push = PFPush()
-                                    push.setQuery(pushQuery) // Set our Installation query
-                                    push.setData(data)
-                                    //                        push.setMessage("\(username) wants food!")
-                                    push.sendPushInBackground()
+                                    self.performSegueWithIdentifier("goToDelivery", sender: nil)
+                                    
+                                    // The object has been saved.
+                                } else {
+                                    // There was a problem, check error.description
                                 }
-                                
-                                self.performSegueWithIdentifier("goToDelivery", sender: nil)
-                                
-                                // The object has been saved.
-                            } else {
-                                // There was a problem, check error.description
                             }
                         }
+                        
+                    } else {
+                        var alert = UIAlertController(title: "Order was cancelled, sorry.", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) -> Void in
+                            self.performSegueWithIdentifier("goToDelivery", sender: nil)
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+
                     }
-                    
-                }
+                })
             })
         }
         
@@ -78,49 +87,58 @@ class OrderRequestViewController: UIViewController {
         //fetch PFObject order (segue for example)
         if let order = order, let delivery = order.deliveryInfo {
             self.delivery = delivery
-            order.accepted = false
-            order.pending = false
-            order.saveInBackground()
-            //send a push notification that the order is accepted
-            PFGeoPoint.geoPointForCurrentLocationInBackground {
-                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-                self.delivery?.location = geoPoint
-                self.delivery?.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-                    if (success) {
-                        //self.navigationController?.popViewControllerAnimated(true)
-                        // set up notifications
-                        if let orderer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = order.deliveryInfo?.user?.username {
-                            pushQuery.whereKey("user", equalTo: orderer)
-                            
-                            let data = [
-                                "alert" : "\(username) has accepted your order!",
-                                "deliveryID" : deliveryID,
-                                "orderID" : order.objectId!,
-                            ]
-                            // Send push notification to query
-                            let push = PFPush()
-                            push.setQuery(pushQuery) // Set our Installation query
-                            push.setData(data)
-                            //                        push.setMessage("\(username) wants food!")
-                            push.sendPushInBackground()
+            delivery.fetchInBackgroundWithBlock({ (delivery, error) -> Void in
+                order.fetchInBackgroundWithBlock({ (order, error) -> Void in
+                    if let delivery = delivery as? Delivery, order = order as? Order where delivery.cancelled != true && order.cancelled != true {
+                        order.accepted = false
+                        order.pending = false
+                        order.saveInBackground()
+                        //send a push notification that the order is accepted
+                        PFGeoPoint.geoPointForCurrentLocationInBackground {
+                            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                            self.delivery?.location = geoPoint
+                            self.delivery?.saveInBackgroundWithBlock {
+                                (success: Bool, error: NSError?) -> Void in
+                                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                                if (success) {
+                                    //self.navigationController?.popViewControllerAnimated(true)
+                                    // set up notifications
+                                    if let orderer = order.user, deliveryID = self.delivery?.objectId, pushQuery = PFInstallation.query(), username = order.deliveryInfo?.user?.username {
+                                        pushQuery.whereKey("user", equalTo: orderer)
+                                        
+                                        let data = [
+                                            "alert" : "\(username) has rejected your order, sorry.",
+                                            "deliveryID" : deliveryID,
+                                            "orderID" : order.objectId!,
+                                        ]
+                                        // Send push notification to query
+                                        let push = PFPush()
+                                        push.setQuery(pushQuery) // Set our Installation query
+                                        push.setData(data)
+                                        //                        push.setMessage("\(username) wants food!")
+                                        push.sendPushInBackground()
+                                    }
+                                    
+                                    self.performSegueWithIdentifier("goToDelivery", sender: nil)
+                                    
+                                    // The object has been saved.
+                                } else {
+                                    // There was a problem, check error.description
+                                }
+                            }
                         }
                         
-                        self.performSegueWithIdentifier("goToDelivery", sender: nil)
-                        
-                        // The object has been saved.
                     } else {
-                        // There was a problem, check error.description
+                        var alert = UIAlertController(title: "Order was cancelled, sorry.", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .Default, handler: { (action) -> Void in
+                            self.performSegueWithIdentifier("goToDelivery", sender: nil)
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
                     }
-                }
-                
-            }
+                })
+            })
         }
-        
-        
-        
-        //send a push notification that the order is rejected
         
     }
     

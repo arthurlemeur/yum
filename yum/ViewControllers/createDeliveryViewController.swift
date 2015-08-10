@@ -13,6 +13,10 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     
     var delivery = Delivery()
     
+    @IBAction func valueChanged(sender: AnyObject) {
+        
+DismissKeyboard()
+    }
     //go to home screen
     @IBAction func createDelivery(sender: AnyObject) {
         if textField.text.isEmpty{
@@ -105,12 +109,15 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    
     // hides keyboard after pressing return
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
     
     //set return button to done on keyboard
     
@@ -126,9 +133,14 @@ class createDeliveryViewController: UIViewController, UITextFieldDelegate {
         datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         datePickerChanged(datePicker)
         datePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
-        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
+    }
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     // display end time (date picker + 1)

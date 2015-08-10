@@ -11,8 +11,6 @@ import Parse
 import FBSDKCoreKit
 import ParseUI
 import ParseFacebookUtilsV4
-import GoogleMaps
-import LayerKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var homeVC : UINavigationController?
     var parseLoginHelper: ParseLoginHelper!
-    var layerClient: LYRClient!
-
+    
     override init() {
         super.init()
         
@@ -65,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Order.registerSubclass()
         
         
-        GMSServices.provideAPIKey("AIzaSyD86CI13CKtRWKbM3UcTQURoNiq91_Fxmc")
         
         
         Parse.setApplicationId("Eo8BrOyhWGnJVYKryzL2ur5gFjplCNRXEqe2Egyi", clientKey: "9cSbM877LoE2SR9L5NPajOciOEyuLkYnrkxKw0QI")
@@ -111,7 +107,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let loginViewController = PFLogInViewController()
             loginViewController.fields = (.Facebook)
             // change this to your own logo later
-            loginViewController.logInView!.logo = UIImageView(image: UIImage(named:"yum"))
+            let imageView = UIImageView(image: UIImage(named:"yum"))
+            
+            //            let label = UILabel(frame: imageView.frame)
+            //            label.text = "Yum lets you deliver food to friends"
+            //           imageView.addSubview(label)
+            
+            loginViewController.logInView!.logo = imageView
             //         loginViewController.logInView?.backgroundColor = UIImage(named:"BGPic"))
             loginViewController.logInView?.backgroundColor = UIColor(red: 78/256, green: 100/256, blue: 127/256, alpha: 1)
             
@@ -145,7 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     println(order.deliveryInfo?.user?.objectId)
                     println(PFUser.currentUser()?.objectId)
                     if error != nil {
-               //         completionHandler(UIBackgroundFetchResult.Failed)
+                        //         completionHandler(UIBackgroundFetchResult.Failed)
                     }
                     else if PFUser.currentUser()?.objectId == order.deliveryInfo?.user?.objectId && order.deliveryInfo?.cancelled != true {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -154,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let vc = self.window?.rootViewController as? UINavigationController {
                             vc.pushViewController(orderVC, animated: true)
                         }
-                 //       completionHandler(UIBackgroundFetchResult.NewData)
+                        //       completionHandler(UIBackgroundFetchResult.NewData)
                         
                     }
                     else if PFUser.currentUser()?.objectId == order.user?.objectId {
@@ -167,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             if let vc = self.window?.rootViewController as? UINavigationController {
                                 vc.pushViewController(deliveryVC, animated: true)
                             }
-                     //       completionHandler(UIBackgroundFetchResult.NoData)
+                            //       completionHandler(UIBackgroundFetchResult.NoData)
                         } else if order.accepted == false && order.deliveryInfo?.cancelled != true {
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let HomeController = storyboard.instantiateViewControllerWithIdentifier("HomeController") as! HomeViewController
@@ -181,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
                             }
                             
-               //             completionHandler(UIBackgroundFetchResult.NoData)
+                            //             completionHandler(UIBackgroundFetchResult.NoData)
                         } else if order.deliveryInfo?.cancelled == true {
                             if let vc = self.window?.rootViewController as? UINavigationController {
                                 let alertController = UIAlertController(title: "Delivery Cancelled, Sorry", message:
@@ -191,11 +193,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 vc.presentViewController(alertController, animated: true, completion: nil)
                             }
                             
-             //               completionHandler(UIBackgroundFetchResult.NoData)
+                            //               completionHandler(UIBackgroundFetchResult.NoData)
                         }
                     }
                     else {
- //                       completionHandler(UIBackgroundFetchResult.NoData)
+                        //                       completionHandler(UIBackgroundFetchResult.NoData)
                     }
                     
                 })
@@ -229,14 +231,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 })
                             }
                             
-                   //         completionHandler(UIBackgroundFetchResult.NoData)
+                            //         completionHandler(UIBackgroundFetchResult.NoData)
                         })
                     }
                 })
                 
             }
             
-   //         completionHandler(UIBackgroundFetchResult.NewData)
+            //         completionHandler(UIBackgroundFetchResult.NewData)
             
         }
         
@@ -386,6 +388,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        if let navigationController = self.window?.rootViewController as? UINavigationController {
+            navigationController.visibleViewController.viewDidAppear(false)
+        }
+        
+        
+        //    NSNotificationCenter.defaultCenter().postNotificationName("reloadList", object: nil)
+        
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     
