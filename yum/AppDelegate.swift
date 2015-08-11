@@ -11,6 +11,7 @@ import Parse
 import FBSDKCoreKit
 import ParseUI
 import ParseFacebookUtilsV4
+import LayerKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var homeVC : UINavigationController?
     var parseLoginHelper: ParseLoginHelper!
+    var layerClient: LYRClient!
+
     
     override init() {
         super.init()
