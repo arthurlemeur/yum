@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         self.tableView.tableFooterView = UIView()
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadList:", name: "reloadList", object: nil)
+
             self.yourLabel.hidden = true;
     }
     

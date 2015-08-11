@@ -25,6 +25,8 @@ class DeliveryCreatedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.yourLabel.hidden = true;
+        self.customerTableView.tableFooterView = UIView()
         self.customerTableView.addSubview(self.refreshControl)
 
 // disable back button and behavior
@@ -49,6 +51,7 @@ class DeliveryCreatedViewController: UIViewController {
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!
+    @IBOutlet weak var yourLabel: UILabel!
     
     var delivery : Delivery?
     
@@ -219,6 +222,22 @@ extension DeliveryCreatedViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 1
+        // If the number of tasks are 0
+        if (orders.count == 0) {
+            // Set the background hidden view to show up
+            yourLabel.hidden = false
+            
+            // Disable the edit button
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            
+        } else {
+            // Set the background hidden view to dissapear
+            yourLabel.hidden = true
+            
+            // Enbales the edit button
+            self.navigationItem.rightBarButtonItem?.enabled = true
+        }
+        
         return orders.count
     }
     
