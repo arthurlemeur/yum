@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.5.0"
+  },
+  "applications": {
+    "Yum": {
+      "applicationId": "Eo8BrOyhWGnJVYKryzL2ur5gFjplCNRXEqe2Egyi",
+      "masterKey": "Pal7XF4KfKb86uE6wreFtvuciEPOYWdfX5c7eu2h"
+    },
+    "_default": {
+      "link": "Yum"
+    }
+  }
+}

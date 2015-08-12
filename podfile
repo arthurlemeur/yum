@@ -18,6 +18,9 @@ pod 'GoogleMaps'
 pod 'LayerKit'
 pod 'DZNEmptyDataSet'
 pod 'PullToMakeSoup', '~> 1.0'
+pod 'PermissionScope', '~> 0.7'
+
+
 
 end
 

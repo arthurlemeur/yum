@@ -112,9 +112,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // change this to your own logo later
             let imageView = UIImageView(image: UIImage(named:"yum"))
             
-            //            let label = UILabel(frame: imageView.frame)
-            //            label.text = "Yum lets you deliver food to friends"
-            //           imageView.addSubview(label)
+                        let label = UILabel(frame: CGRectMake(-70, 50, 200, 150))
+                        label.text = "sign up to deliver and order food!"
+            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            label.numberOfLines = 2
+            label.textAlignment = .Center;
+            label.font = UIFont (name: "Avenir Next", size: 20)
+
+
+                        label.textColor = UIColor.whiteColor()
+               //         label.font = "Avenir Next"
+                       imageView.addSubview(label)
+            
             
             loginViewController.logInView!.logo = imageView
             //         loginViewController.logInView?.backgroundColor = UIImage(named:"BGPic"))

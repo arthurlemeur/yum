@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "yum/AppDelegate.swift"
-            timestampString = "460941623.3734"
+            timestampString = "461094741.156159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
-            landmarkName = "applicationWillEnterForeground(_:)"
-            landmarkType = "5">
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

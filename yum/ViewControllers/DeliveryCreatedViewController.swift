@@ -37,7 +37,6 @@ class DeliveryCreatedViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         if let delivery = delivery {
-            username.text = delivery.user?.username
             restaurant.text = delivery.restaurant
             let formatter = NSDateFormatter()
             formatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -47,7 +46,6 @@ class DeliveryCreatedViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var timePicker: UILabel!
     @IBOutlet weak var endTime: UILabel!

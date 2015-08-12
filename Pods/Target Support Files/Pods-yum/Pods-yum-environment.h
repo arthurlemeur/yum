@@ -96,6 +96,12 @@
 #define COCOAPODS_VERSION_MINOR_ParseUI 1
 #define COCOAPODS_VERSION_PATCH_ParseUI 4
 
+// PermissionScope
+#define COCOAPODS_POD_AVAILABLE_PermissionScope
+#define COCOAPODS_VERSION_MAJOR_PermissionScope 0
+#define COCOAPODS_VERSION_MINOR_PermissionScope 7
+#define COCOAPODS_VERSION_PATCH_PermissionScope 0
+
 // PullToMakeSoup
 #define COCOAPODS_POD_AVAILABLE_PullToMakeSoup
 #define COCOAPODS_VERSION_MAJOR_PullToMakeSoup 1

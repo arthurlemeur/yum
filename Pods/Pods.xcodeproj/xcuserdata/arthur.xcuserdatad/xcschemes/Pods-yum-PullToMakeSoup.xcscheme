@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2A5C505CFE18FB72E460DF4"
+               BlueprintIdentifier = "9D266A4C17B9A42F19B89F85"
                BuildableName = "PullToMakeSoup.framework"
                BlueprintName = "Pods-yum-PullToMakeSoup"
                ReferencedContainer = "container:Pods.xcodeproj">
