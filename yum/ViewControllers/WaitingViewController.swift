@@ -57,7 +57,7 @@ class WaitingViewController: UIViewController {
         username.text = delivery.user?.username
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        deliveryFee.text = formatter.stringFromNumber(delivery.deliveryFee)
+        deliveryFee.text = "charges \(formatter.stringFromNumber(delivery.deliveryFee)!) for delivery"
     }
     
     
