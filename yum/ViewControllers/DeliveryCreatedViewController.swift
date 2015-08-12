@@ -41,6 +41,7 @@ class DeliveryCreatedViewController: UIViewController {
             let formatter = NSDateFormatter()
             formatter.timeStyle = NSDateFormatterStyle.ShortStyle
             timePicker.text = formatter.stringFromDate(delivery.deliveryStartTime)
+            println(count(timePicker.text!))
             endTime.text = formatter.stringFromDate(delivery.endTime)
 
         }
